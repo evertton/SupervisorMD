@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>SupervisorM</title>
+		
+		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+		<script language="JavaScript" src="functions.js"></script>
+		
+		<link href="style.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<h2>SupervisorM</h2>
+		<h3>Reference model</h3>
+		<p><hr><p>
+		Enter the name of the file (without '.sup'):
+		<form id="load_form">
+			<input type="text" id="filename" maxlength="20">.sup
+			<input type="submit" id="ok_load" value="Load" onclick="_load();">
+		</form>
+		<p><hr><p>
+		Select a pre-defined model: 	
+		<select id="models">
+			<option value="sm">Speed Model</option>
+			<option value="shm">Speed/Heart-rate Model</option>
+			<option value="shtm">Speed/Heart-rate/Temperature Model</option>
+		</select>
+		<button id="ok_models" onclick="_load2();">Load</button><p>
+		<p><hr><p>
+	</body>
+</html>
