@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>SupervisorM</title>
+		
+		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+		<script language="JavaScript" src="functions.js"></script>
+		<script>window.onload = _generateComboOfAttributes();</script>
+		<link href="style.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<h2>SupervisorM</h2>
+		<h3>Training</h3>
+		<p><hr><p>
+		Select an attribute to enter the value:
+		<div id="combo"></div>
+		<input type="text" id="value" maxlength="5"><button id="ok_attributes" onclick="_simulate();">Ok</button><p>
+		<p><hr><p>
+		Current state:
+		<div id="att"></div>- <p>
+		<p><hr><p>
+		<p><hr><p>
+		<button id="go_back" onclick="window.open('index.html');"><< Back</button><p>
+		
+	</body>
+</html>

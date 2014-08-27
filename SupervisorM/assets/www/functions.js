@@ -22,11 +22,25 @@ var erroDeConexao = "conexao com codigo nativo falhou!!";
 function _start() { 
 
 	cordova.exec(
-		function(p){ alert("acerto: "+p.msg); },
-		function(p){ alert("erro: "+p.msg); },
+		function(p){ window.open("simulation.html"); },
+		function(p){ alert(p.msg); },
 		"SupervisorInterface","java_start",[]);
 	
 }
+function _generateComboOfAttributes(){
+	cordova.exec(
+		function(p){ ids = p.ids; names = p.names; },
+		function(p){ alert(p.msg); },
+		"SupervisorInterface","get_model",[]);
+	
+	alert(ids + " " + names);
+	document.getElementById("combo").innerHTML='<select id="attributes">';
+		document.getElementById("combo").innerHTML='<option value="sm">Speed Model</option>';
+		document.getElementById("combo").innerHTML='<option value="shm">Speed/Heart-rate Model</option>';
+		document.getElementById("combo").innerHTML='<option value="shtm">Speed/Heart-rate/Temperature Model</option>';
+	document.getElementById("combo").innerHTML='</select>';
+}
+
 
 function _load() { 
 	name = document.getElementById("filename").value.trim();
