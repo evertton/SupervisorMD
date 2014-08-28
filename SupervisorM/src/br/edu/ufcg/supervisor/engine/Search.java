@@ -15,6 +15,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with Supervisor for Healthcare Professional. 
  *  If not, see <http://www.gnu.org/licenses/>.
+ *  Contact: el7hon at gmail dot com
  */
 package br.edu.ufcg.supervisor.engine;
 
@@ -29,6 +30,14 @@ import java.util.Set;
 
 import br.edu.ufcg.supervisor.model.*;
 
+/**
+ * This class is an adaptation of the classic Dijkstra's algorithm
+ * that solves the single-source shortest path problem for a graph 
+ * with non-negative edge path costs, producing a shortest path tree.
+ * 
+ * @author elthon oliveira
+ *
+ */
 public class Search {
 	private final List<State> nodes;
 	private final List<Transition> edges;
