@@ -72,7 +72,7 @@ public class Automaton {
 	public Automaton(String automatoJson){
 		init();
 		HashMap<String,Object> map = (HashMap<String,Object>) new Gson().fromJson(automatoJson,HashMap.class);
-		this.nome = (String) map.get(NOME);
+		this.nome = (String)map.get(NOME);
 		ArrayList<StringMap<String>> arrayEstadosMap = (ArrayList<StringMap<String>>) map.get(ARRAY_ESTADOS);
 		for (StringMap<String> sm : arrayEstadosMap){
 			State e = new State(sm);
@@ -146,20 +146,16 @@ public class Automaton {
 	 */
 	public String toJson(){
 		HashMap<String, Object> map = new HashMap<String, Object>();
-
 		map.put(NOME, nome); 
-
 		ArrayList<String> arrayStringTransicao = new ArrayList<String>();
 		for(Transition t : arrayTransicoes){
-			arrayStringTransicao.add(t.toJson(vectorEstados));//TODO MODIFICADO
+			arrayStringTransicao.add(t.toJson(vectorEstados));//TO)DO MODIFICADO
 		}
 		map.put(ARRAY_TRANSICOES, arrayStringTransicao.toString());
-		
 		ArrayList<Integer> arrayStringEstadosAceitos = new ArrayList<Integer>();
 		ArrayList<String> arrayStringEstado = new ArrayList<String>();
 		for(State e : vectorEstados){
 			arrayStringEstado.add(e.toJson());
-			
 			if (e.getClassificacao() == State.INT_CL_ACEITACAO){
 				arrayStringEstadosAceitos.add(vectorEstados.indexOf(e));
 			}
@@ -267,7 +263,6 @@ public class Automaton {
 		}
 	}
 
-
 	/**
 	 * Seta o nome do automato.
 	 * @param nome	Uma String contendo o nome do automato.
@@ -292,7 +287,6 @@ public class Automaton {
 		return arrayRotulos;
 	}
 
-
 	/**
 	 * Busca o estado correspondente aos valores das variáveis monitoradas.
 	 * @param map	Um HashMap<Integer, Float> contendo o identificador da 
@@ -308,14 +302,12 @@ public class Automaton {
 		return null;
 	}
 
-
 	/*Inicializa os atributos do automato */
 	private void init(){
 		vectorEstados = new Vector<State>();
 		arrayTransicoes = new ArrayList<Transition>();
 		arrayRotulos = new ArrayList<String>();
 		arrayEstadosAceitos = new ArrayList<State>();
-		nome = null;
-		
+		nome = "";
 	}
 }

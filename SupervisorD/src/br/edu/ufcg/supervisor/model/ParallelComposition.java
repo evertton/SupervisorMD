@@ -46,10 +46,10 @@ public class ParallelComposition {
 			automato_composicao = compoe2Automatos(automato_composicao, automatoB);
 		}
 		String nome = AttributeList.getIdDoAtributo( array.get(0).getAutomato().getNome() ).toString();
-		StringBuffer sbNome = new StringBuffer(nome);
+		StringBuffer sbNome = new StringBuffer(nome+"_");
 		for (int i = 1; i < size; i++){
 			nome = array.get(i).getAutomato().getNome();
-			sbNome.append("_" + AttributeList.getIdDoAtributo( nome ) ); 
+			sbNome.append(AttributeList.getIdDoAtributo(nome)+"_"); 
 		}
 		automato_composicao.setNome(sbNome.toString());
 		return automato_composicao;
