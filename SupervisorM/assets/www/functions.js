@@ -20,28 +20,80 @@
 var erroDeConexao = "conexao com codigo nativo falhou!!";
 
 function _start() { 
-
 	cordova.exec(
-		function(p){ window.open("simulation.html"); },
+		function(p){ saveData(p.ids,p.names); window.open("simulation.html"); },
 		function(p){ alert(p.msg); },
 		"SupervisorInterface","java_start",[]);
-	
-}
-function _generateComboOfAttributes(){
-	cordova.exec(
-		function(p){ ids = p.ids; names = p.names; },
-		function(p){ alert(p.msg); },
-		"SupervisorInterface","get_model",[]);
-	
-	alert(ids + " " + names);
-	document.getElementById("combo").innerHTML='<select id="attributes">';
-		document.getElementById("combo").innerHTML='<option value="sm">Speed Model</option>';
-		document.getElementById("combo").innerHTML='<option value="shm">Speed/Heart-rate Model</option>';
-		document.getElementById("combo").innerHTML='<option value="shtm">Speed/Heart-rate/Temperature Model</option>';
-	document.getElementById("combo").innerHTML='</select>';
 }
 
+//salva dados javascript para carregar em outra tela
+function saveData(ids,names){
+   localStorage.setItem('ids', ids);
+   localStorage.setItem('names', names);
+   return;
+}
+//carrega dados javascript salvos
+function loadData(){
+   var ids = localStorage.getItem('ids');
+   var names = localStorage.getItem('names');
+   //Checks whether the stored data exists
+   if(ids && names) {
+		//alert(ids);alert(names);
+     //Do what you need with the object
+     //fillFields(_account.User, _account.Pass);
+     //If you want to delete the object
+     //localStorage.removeItem('id');
+     _generateCombo(ids,names);
+   } else { alert("vazio"); }
+}
 
+//gera combo de atributos dinamicamente a partir do modelo
+var _atts_names;
+var _atts_ids;
+function _generateCombo(_ids,_names){
+	var i, theContainer, theSelect, theOptions, numOptions, anOption;
+	_atts_names = _names.split(",");//['pop','option 2','option 3'];
+	// Create the container <div>
+	theContainer = document.createElement('div');
+	theContainer.id = 'my_new_div';
+	// Create the <select>
+	theSelect = document.createElement('select');
+	// Give the <select> some attributes
+	theSelect.name = 'name_of_select';
+	theSelect.id = 'id_of_select';
+	theSelect.className = 'class_of_select';
+	// Define something to do onChange
+	//theSelect.onchange = function () {
+   // Do whatever you want to do when the select changes
+   //alert('You selected option '+this.selectedIndex);
+	//};
+	// Add some <option>s
+	currentState = "";
+	_atts_ids = _ids.split(",");
+	for (i = 0; i < _atts_names.length; i++) {
+   	anOption = document.createElement('option');
+   	anOption.id = i;
+    	anOption.value = _atts_ids[i];
+    	anOption.innerHTML = _atts_names[i];
+    	theSelect.appendChild(anOption);
+    	currentState = currentState + "- " + _atts_names[i]+ ": no value.<br>";
+	}
+	// Add the <div> to the DOM, then add the <select> to the <div>
+	document.getElementById('combo').appendChild(theContainer);
+	theContainer.appendChild(theSelect);
+	document.getElementById("att").innerHTML = currentState;
+}
+
+//TODO: executa modelo.
+function _simulate() {
+	//alert("nomes: "+_atts_names);
+	//alert("ids: "+_atts_ids);
+	var e = document.getElementById("id_of_select");
+	alert("id: "+e.value+", nome: "+e.options[e.selectedIndex].text
+			+", valor: "+document.getElementById("_value").value);
+}
+
+//carega modelo do sdcard
 function _load() { 
 	name = document.getElementById("filename").value.trim();
 	if (name != ""){
@@ -54,6 +106,7 @@ function _load() {
 	}
 }
 
+//carrega modelo pre-definido.
 function _load2() { 
 	model = document.getElementById("models").value;
 	cordova.exec(

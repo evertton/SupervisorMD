@@ -33,6 +33,7 @@ import org.json.JSONObject;
 import br.edu.ufcg.supervisor.desktop.util.AttributeList;
 import br.edu.ufcg.supervisor.model.Automaton;
 
+import android.R.integer;
 import android.os.Environment;
 import android.provider.Settings;
 
@@ -67,7 +68,18 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 				r.put("msg", "At first, you have to load a training.");
 				callbackContext.error(r);
 				return true;
-			} else { 
+			} else {
+				LoadedModel.setModelo(SupervisorInterface.model);
+				int[] arrayIds = LoadedModel.getIdVariaveisMonitoradas();
+				ArrayList<String> arrayNames = LoadedModel.getNomesVariaveisMonitoradas();
+				String ids = "";
+				String names = "";
+				for(int i = 0; i<arrayNames.size();i++){
+					ids = ids + "," + arrayIds[i];
+					names = names + "," + arrayNames.get(i);
+				}
+				r.put("ids", ids.replaceFirst(",",""));
+				r.put("names", names.replaceFirst(",",""));
 				r.put("msg", SupervisorInterface.model.getNome());
 				callbackContext.success(r);
 				return true;
@@ -117,12 +129,13 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 			return true;
 		// service
 		} else if (action.equals("get_model")) {
+			//add condicao de modelo nulo
 			JSONObject r = new JSONObject();
-			LoadedModel.setModelo(SupervisorInterface.model);
-			int[] arrayIds = LoadedModel.getIdVariaveisMonitoradas();
-			ArrayList<String> names = LoadedModel.getNomesVariaveisMonitoradas();
-			r.put("ids", arrayIds);
-			r.put("names", names);
+			//LoadedModel.setModelo(SupervisorInterface.model);
+			//int[] arrayIds = LoadedModel.getIdVariaveisMonitoradas();
+			//ArrayList<String> names = LoadedModel.getNomesVariaveisMonitoradas();
+			r.put("ids", "1,2,3");
+			r.put("names", "n1,n2,n3");
 			callbackContext.success(r);
 			return true;
 	    } else { return false; }
