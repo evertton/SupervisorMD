@@ -7,6 +7,6 @@
     <author email="el7hon@gmail.com" href="http://">Elthon Oliveira</author>
     <content src="index.html" />    <access origin="*" />
     <feature name="SupervisorInterface">
-        <param name="android-package" value="br.edu.ufcg.supervisor.engine.SupervisorInterface" />
+        <param name="android-package" value="br.edu.ufcg.supervisor.SupervisorInterface" />
     </feature>
 </widget>

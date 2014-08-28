@@ -96,12 +96,12 @@ function _simulate() {
 
 //carega modelo do sdcard
 function _load() { 
-	name = document.getElementById("filename").value.trim();
-	if (name != ""){
+	_name = document.getElementById("filename").value.trim();
+	if (_name != ""){
 		cordova.exec(
 			function(p){ alert("acerto: "+p.msg); window.open("index.html"); },
-			function(p){ alert("erro: "+p.msg); },
-			"SupervisorInterface","java_load",[name]);
+			function(p){ alert("erro: "+p.msg); window.open("load.html"); },
+			"SupervisorInterface","java_load",[_name]);
 	} else {
 		alert("Enter the name of the model!");	
 	}
