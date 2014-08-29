@@ -24,11 +24,15 @@ function _simulate() {
 	var e = document.getElementById("id_of_select");
 	var _name = e.options[e.selectedIndex].text;
 	var _value = document.getElementById("_value").value;
-	var _curr;
+	var _curr, _rec;
 	cordova.exec(
-		function(p){ _curr = p.state; document.getElementById("att").innerHTML=_curr; },
+		function(p){
+			_curr = p.curSt; 
+			_rec = p.rec; 
+			document.getElementById("att").innerHTML=_curr;
+			document.getElementById("rec").innerHTML=_rec; },
 		function(p){ alert("pau!!"); },
-		"SupervisorInterface","java_simulate",[_name,_value]);	
+		"SupervisorInterface","java_execute_model",[_name,_value]);	
 //alert("id: "+e.value+", nome: "+e.options[e.selectedIndex].text+", valor: "+document.getElementById("_value").value);
 }
 //	document.getElementById("texto").innerHTML="Not developed.";
@@ -122,7 +126,7 @@ function _load() {
 		cordova.exec(
 			function(p){ alert(p.msg); window.open("index.html"); },
 			function(p){ alert(p.msg); window.open("load.html"); },
-			"SupervisorInterface","java_load",[_name]);
+			"SupervisorInterface","java_load_model_from_file",[_name]);
 	} else {
 		alert("Enter the name of the model!");	
 	}
@@ -134,6 +138,6 @@ function _load2() {
 	cordova.exec(
 			function(p){ window.open("index.html"); },
 			function(p){ alert("Unknown error (elthon)"); },
-			"SupervisorInterface","java_load2",[model]);
+			"SupervisorInterface","java_load_pre_defined_model",[model]);
 }
 
