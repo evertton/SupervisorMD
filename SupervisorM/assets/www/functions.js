@@ -18,14 +18,36 @@
  *  Contact: el7hon at gmail dot com
  */
 
-var erroDeConexao = "conexao com codigo nativo falhou!!";
-
-function _start() { 
+//TODO: executa modelo.
+function _simulate() {
+	var e = document.getElementById("id_of_select");
+	var _name = e.options[e.selectedIndex].text;
+	var _value = document.getElementById("_value").value;
+	var _curr;
 	cordova.exec(
-		function(p){ saveData(p.ids,p.names); window.open("simulation.html"); },
-		function(p){ alert(p.msg); },
-		"SupervisorInterface","java_start",[]);
+		function(p){ _curr = p.state; document.getElementById("att").innerHTML=_curr; },
+		function(p){ alert("pau!!"); },
+		"SupervisorInterface","java_simulate",[_name,_value]);	
+//alert("id: "+e.value+", nome: "+e.options[e.selectedIndex].text+", valor: "+document.getElementById("_value").value);
 }
+//	document.getElementById("texto").innerHTML="Not developed.";
+
+//atualiza lista de valores
+function _updateValues(_names){
+	var i, theContainer, theSelect, theOptions, numOptions, anOption;
+	_atts_names = _names.split(",");
+	currentState = "";
+	for (i = 0; i < _atts_names.length; i++) {
+    	currentState = currentState + "- " + _atts_names[i]+ ": "+  +"<br>";
+	}
+	// Add the <div> to the DOM, then add the <select> to the <div>
+	document.getElementById('combo').appendChild(theContainer);
+	theContainer.appendChild(theSelect);
+	document.getElementById("att").innerHTML = currentState;
+}
+
+function _activate() {}
+function _export() { }
 
 //salva dados javascript para carregar em outra tela
 function saveData(ids,names){
@@ -46,6 +68,13 @@ function loadData(){
      //localStorage.removeItem('id');
      _generateCombo(ids,names);
    } else { alert("vazio"); }
+}
+
+function _start() { 
+	cordova.exec(
+		function(p){ saveData(p.ids,p.names); window.open("simulation.html"); },
+		function(p){ alert(p.msg); },
+		"SupervisorInterface","java_start",[]);
 }
 
 //gera combo de atributos dinamicamente a partir do modelo
@@ -85,22 +114,13 @@ function _generateCombo(_ids,_names){
 	document.getElementById("att").innerHTML = currentState;
 }
 
-//TODO: executa modelo.
-function _simulate() {
-	//alert("nomes: "+_atts_names);
-	//alert("ids: "+_atts_ids);
-	var e = document.getElementById("id_of_select");
-	alert("id: "+e.value+", nome: "+e.options[e.selectedIndex].text
-			+", valor: "+document.getElementById("_value").value);
-}
-
 //carega modelo do sdcard
 function _load() { 
 	_name = document.getElementById("filename").value.trim();
 	if (_name != ""){
 		cordova.exec(
-			function(p){ alert("acerto: "+p.msg); window.open("index.html"); },
-			function(p){ alert("erro: "+p.msg); window.open("load.html"); },
+			function(p){ alert(p.msg); window.open("index.html"); },
+			function(p){ alert(p.msg); window.open("load.html"); },
 			"SupervisorInterface","java_load",[_name]);
 	} else {
 		alert("Enter the name of the model!");	
@@ -116,12 +136,3 @@ function _load2() {
 			"SupervisorInterface","java_load2",[model]);
 }
 
-function _activate() { 
-	
-}
-
-function _export() { 
-	
-}
-
-//	document.getElementById("texto").innerHTML="Not developed.";	

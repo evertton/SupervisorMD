@@ -21,9 +21,9 @@
 package br.edu.ufcg.supervisor;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.TimeZone;
 
 import org.apache.cordova.CordovaWebView;
@@ -33,14 +33,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.squareup.okhttp.internal.Util;
-
-import br.edu.ufcg.supervisor.desktop.util.AttributeList;
 import br.edu.ufcg.supervisor.engine.LoadedModel;
 import br.edu.ufcg.supervisor.engine.TrainingLoader;
 import br.edu.ufcg.supervisor.model.Automaton;
 
-import android.R.integer;
 import android.os.Environment;
 import android.provider.Settings;
 
@@ -49,6 +45,7 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 	
 	private static String pathToFile = "";
 	private static Automaton model = null;
+	private static HashMap<String, Float> map = new HashMap<String, Float>();
 	
     /**
      * Sets the context of the Command. This can then be used to do things like
@@ -85,6 +82,7 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 				for(int i = 0; i<arrayNames.size();i++){
 					ids = ids + "," + arrayIds[i];
 					names = names + "," + arrayNames.get(i);
+					map.put(arrayNames.get(i), 0.f);
 				}
 				r.put("ids", ids.replaceFirst(",",""));
 				r.put("names", names.replaceFirst(",",""));
@@ -119,12 +117,6 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 					callbackContext.success(r);
 					return true;
 				}
-			//} else {  //significa que EH o emulador android
-				//r.put("msg", "SD card not mounted. Please, choose one of the pre-defined models available.");
-				//SupervisorInterface.model = null;
-				//callbackContext.error(r);
-				//return true;
-			//}
 		// service
 		} else if (action.equals("java_load2")) {
 			String fileName = args.get(0).toString();
@@ -140,16 +132,19 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 			callbackContext.success();
 			return true;
 		// service
-		} else if (action.equals("get_model")) {
-			//add condicao de modelo nulo
+	    } else if(action.equals("java_simulate")){
 			JSONObject r = new JSONObject();
-			//LoadedModel.setModelo(SupervisorInterface.model);
-			//int[] arrayIds = LoadedModel.getIdVariaveisMonitoradas();
-			//ArrayList<String> names = LoadedModel.getNomesVariaveisMonitoradas();
-			r.put("ids", "1,2,3");
-			r.put("names", "n1,n2,n3");
+			String name = args.get(0).toString();
+			Float value = Float.valueOf((String)args.get(1));
+			map.put(name, value);
+			ArrayList<String> names = LoadedModel.getNomesVariaveisMonitoradas();
+			String currentState ="";
+			for (int i = 0; i < map.size(); i++) {
+				currentState = currentState+"- "+names.get(i)+": "+map.get(names.get(i))+".<br>";
+			}
+			r.put("state",currentState);
 			callbackContext.success(r);
-			return true;
+			return true;  	
 	    } else { return false; }
     }
 

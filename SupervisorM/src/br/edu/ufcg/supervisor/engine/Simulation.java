@@ -22,7 +22,6 @@ package br.edu.ufcg.supervisor.engine;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 
 import br.edu.ufcg.supervisor.desktop.util.AttributeList;
 import br.edu.ufcg.supervisor.model.*;
@@ -36,7 +35,7 @@ public class Simulation {
 	private Automaton automaton;
 	private HashMap<Integer,Float> map;
 	private int[] arrayIds;
-	private List<String> nomes;// = new ArrayList<String>();
+	//private List<String> nomes;// = new ArrayList<String>();
 
 	/** Chamado quando a activity é criada. */
 	public void onCreate() {
@@ -52,7 +51,7 @@ public class Simulation {
 	}	
 	
 	private void initMap(){
-		map = new HashMap<Integer, Float>();
+		map = new HashMap<Integer,Float>();
 		State e = automaton.getArrayEstadosAceitos().get(0);
 		for (Range i : e.getIntervalos()){
 			map.put(i.getIdentificadorEvento(), getMediaDoIntervalo(i));

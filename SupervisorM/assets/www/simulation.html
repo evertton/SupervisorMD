@@ -2,26 +2,26 @@
 <html>
 	<head>
 		<title>SupervisorM</title>
-		<!--
 		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 		<script type="text/javascript" charset="utf-8" src="jquery-1.2.2.pack.js"></script>
 		<script src="device.js"></script>
-		-->
 		<script language="JavaScript" src="functions.js"></script>
 		<link href="style.css" rel="stylesheet" type="text/css" />
 	</head>
 	<body onload="loadData();">
 		<h2>SupervisorM</h2>
 		<h3>Training</h3>
-		<p><hr><p>
+		<hr>
 		Select an attribute to enter the value:
 		<div id="combo"></div>
-		<input type="text" id="_value" maxlength="5"><button id="ok_attributes" onclick="_simulate();">Ok</button><p>
-		<p><hr><p>
-		Current state:
+		<input type="text" id="_value" maxlength="5" size="6"><button id="ok_attributes" onclick="_simulate();">Update</button><p>
+		<hr>
+		<b>Current state</b>
 		<div id="att"></div><p>
-		<p><hr><p>
-		<p><hr><p>
-		<button id="go_back" onclick="window.open('index.html');"><< Back</button><p>
+		<hr>
+		<b>Recommendations</b>
+		<hr>
+		<div id="rec"></div><p>
+		<button id="go_back" onclick="window.open('index.html');"><< Back</button>
 	</body>
 </html>
