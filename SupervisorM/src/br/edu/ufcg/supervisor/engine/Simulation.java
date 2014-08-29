@@ -16,7 +16,9 @@
  *  along with Supervisor for Healthcare Professional. 
  *  Contact: el7hon at gmail dot com
  *  If not, see <http://www.gnu.org/licenses/>.
- */
+ *  
+ *  Contact: el7hon at gmail dot com
+*/
 package br.edu.ufcg.supervisor.engine;
 
 import java.util.ArrayList;

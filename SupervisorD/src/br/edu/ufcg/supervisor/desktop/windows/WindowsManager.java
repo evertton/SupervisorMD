@@ -15,6 +15,8 @@
  *  You should have received a copy of the GNU General Public License
  *  along with SupervisorD for Healthcare Professional. 
  *  If not, see <http://www.gnu.org/licenses/>.
+ *  
+ *  Contact: el7hon at gmail dot com
  */
 
 package br.edu.ufcg.supervisor.desktop.windows;
