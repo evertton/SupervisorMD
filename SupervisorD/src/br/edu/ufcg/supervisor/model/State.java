@@ -52,9 +52,7 @@ public class State {
 	/**
 	 * Construtor padrão.
 	 */
-	public State(){
-		initAtributos();
-	}
+	public State(){ initAtributos(); }
 
 	private void initAtributos(){
 		this.nome = null;
@@ -76,7 +74,7 @@ public class State {
 			Range e = new Range(sm);
 			listaDeIntervalos.add(e);
 		}
-		this.classificacao =  ((Double) map.get(CLASSIFICACAO)).intValue() ;
+		this.classificacao = ((Double) map.get(CLASSIFICACAO)).intValue() ;
 	}
 
 	/**
@@ -106,9 +104,7 @@ public class State {
 	 * Seta o nome do estado.
 	 * @param nome	Uma String contendo o nome do estado.
 	 */
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+	public void setNome(String nome) { this.nome = nome; }
 
 	/**
 	 * Retorna o valor mínimo do intervalo do estado.
@@ -163,9 +159,7 @@ public class State {
 	 * Retorna a classificação do estado.
 	 * @return	Um int contendo a classificação do estado.
 	 */
-	public int getClassificacao() { 
-		return classificacao;
-	}
+	public int getClassificacao() { return classificacao; }
 
 	/**
 	 * Retorna a classificação do estado.
@@ -184,57 +178,43 @@ public class State {
 	 * Seta a classificação do estado.
 	 * @param classificacao
 	 */
-	public void setClassificacao(int classificacao) { 
-		this.classificacao = classificacao;
-	}
+	public void setClassificacao(int classificacao) { this.classificacao = classificacao; }
 
 	
 	/**
 	 * Retorna uma lista de intervalos do estado.
 	 * @return	Um ArrayList<Intervalo> contendo os intervalos pertencentes ao estado.
 	 */
-	public ArrayList<Range> getListaIntervalos(){
-		return listaDeIntervalos;
-	}
+	public ArrayList<Range> getListaIntervalos(){ return listaDeIntervalos; }
 
 	/**
 	 * Adiciona uma lista de intervalos no estado.
 	 * @param array	ArrayList<Intervalo> contendo os intervalos que serão adicionados.
 	 */
-	public void addListaIntervalos(ArrayList<Range> array){
-		listaDeIntervalos.addAll(array);
-	}
+	public void addListaIntervalos(ArrayList<Range> array){ listaDeIntervalos.addAll(array); }
 
 	/**
 	 * Determina a representação do estado.
 	 */
-	public String toString(){
-		return nome;
-	}
+	public String toString(){ return nome; }
 
 	/**
 	 * Adiciona uma transição ao estado.
 	 * @param transicao		Uma Transicao que tem origem no estado.
 	 */
-	public void addTransicao(Transition transicao){
-		arrayTransicoes.add(transicao); 
-	}
+	public void addTransicao(Transition transicao){ arrayTransicoes.add(transicao); }
 
 	/**
 	 * Retorna a lista de transições que tem origem no estado.
 	 * @return	Um ArrayList<Transicao> com as transições pertencentes ao estado.
 	 */
-	public ArrayList<Transition> getTransicoes(){
-		return arrayTransicoes;
-	}
+	public ArrayList<Transition> getTransicoes(){ return arrayTransicoes; }
 
 	/**
 	 * Retorna a lista de Intervalo do estado.
 	 * @return	Um ArrayList<Intervalo> com os intervalos do estado.
 	 */
-	public ArrayList<Range> getIntervalos(){
-		return listaDeIntervalos;
-	}
+	public ArrayList<Range> getIntervalos(){ return listaDeIntervalos; }
 
 
 	/**
@@ -247,9 +227,8 @@ public class State {
 	 */
 	public boolean verificaIntervalos(HashMap<Integer, Float> map){
 		boolean result = true;
-		for (Range intervalo : listaDeIntervalos ){
-			result = result && (intervalo.verificaIntervalo(map));
-		}
+		for (Range intervalo : listaDeIntervalos)
+			result = result && (intervalo.verificaIntervalo(map)); //elthon .. improved!
 		return result;
 	}
 
@@ -279,11 +258,8 @@ public class State {
 	 * @return Uma String contendo o operador do valor mínimo.
 	 */
 	public String getOperadorValorMinimoString(){
-		if (this.listaDeIntervalos.get(0).getOperadorValorMinimo() == Range.MENOR_QUE ){
-			return "(";
-		} else {
-			return "[";
-		}
+		if (this.listaDeIntervalos.get(0).getOperadorValorMinimo() == Range.MENOR_QUE) return "(";
+		else return "[";
 	}
 
 	/**
@@ -291,11 +267,8 @@ public class State {
 	 * @return Uma String contendo o operador do valor máximo.
 	 */
 	public String getOperadorValorMaximoString(){
-		if (this.listaDeIntervalos.get(0).getOperadorValorMaximo() == Range.MENOR_QUE ){
-			return ")";
-		} else {
-			return "]";
-		}
+		if (this.listaDeIntervalos.get(0).getOperadorValorMaximo() == Range.MENOR_QUE) return ")";
+		else return "]";
 	}
 
 	/**
@@ -322,8 +295,5 @@ public class State {
 		this.listaDeIntervalos.get(0).setOperadorValorMaximo(operador);
 	}
 	
-	public void addRange(Range r){
-		this.listaDeIntervalos.add(r);
-	}
-	
+	public void addRange(Range r){ this.listaDeIntervalos.add(r); }
 }

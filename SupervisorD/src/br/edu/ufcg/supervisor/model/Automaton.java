@@ -52,9 +52,7 @@ public class Automaton {
 	/**
 	 * Construtor padrão.
 	 */
-	public Automaton(){
-		init();
-	}
+	public Automaton(){ init(); }
 
 	//TODO SAIR
 	@SuppressWarnings("unchecked")
@@ -200,9 +198,7 @@ public class Automaton {
 	 * Adiciona um estado no automato.
 	 * @param estado	Um Estado pertencente ao automato.
 	 */
-	public void addEstado(State estado){
-		vectorEstados.add(estado);
-	}
+	public void addEstado(State estado){ vectorEstados.add(estado); }
 
 	/**
 	 * Adiciona uma transição ao atomato.
@@ -211,9 +207,8 @@ public class Automaton {
 	public void addTransicao(Transition transicao){
 		if (!arrayTransicoes.contains(transicao)){
 			arrayTransicoes.add(transicao);
-			if (!arrayRotulos.contains(transicao.getRotulo())){
+			if (!arrayRotulos.contains(transicao.getRotulo()))
 				arrayRotulos.add(transicao.getRotulo());
-			}
 		}
 	}
 
@@ -221,25 +216,19 @@ public class Automaton {
 	 * Seta o nome do automato.
 	 * @param nome	Uma String contendo o nome do automato.
 	 */
-	public void setNome(String nome){
-		this.nome = nome;
-	}
+	public void setNome(String nome){ this.nome = nome; }
 
 	/**
 	 * Retorna o nome do automato.
 	 * @return	Uma String contendo o nome do estado.
 	 */
-	public String getNome(){
-		return nome;
-	}
+	public String getNome(){ return nome; }
 
 	/**
 	 * Retorna a lista de rótulos.
 	 * @return	Um ArrayList<String> contendo os rótulos das transições.
 	 */
-	public ArrayList<String> getListaDeRotulos(){
-		return arrayRotulos;
-	}
+	public ArrayList<String> getListaDeRotulos(){ return arrayRotulos; }
 
 	/**
 	 * Busca o estado correspondente aos valores das variáveis monitoradas.

@@ -32,7 +32,6 @@ public class Attribute {
 	public static final int FISIOLOGICO = 1;
 	public static final int COMPORTAMENTAL = 2;
 	
-
 	public static final int ID_HEART_RATE 					= 1;
 	public static final int ID_RESPIRATORY_EXCHANGE_RATIO 	= 2;
 	public static final int ID_SYSTOLIC_BLOOD_PRESSURE 		= 3;
@@ -44,9 +43,7 @@ public class Attribute {
 	public static final int ID_AMBIENT_PRESSURE				= 9;
 	public static final int ID_AIR_RELATIVE_HUMIDITY 		= 10;
 	public static final int ID_SPEED						= 11;
-	
 	public static final int ID_ENVIRONMENTAL_TEMPERATURE	= 12;
-
 	public static final int ID_VELOCITY 					= 13;
 	
 	private Automaton automato;
@@ -79,17 +76,13 @@ public class Attribute {
 	 * Seta o automato do atribito.
 	 * @param automato	Um automato contendo a especificação.
 	 */
-	public void setAutomato(Automaton automat) {
-		this.automato = automat;
-	}
+	public void setAutomato(Automaton automat) { this.automato = automat; }
 
 	/**
 	 * Retorna o nome do atributo. 
 	 * @return	Uma String contendo o nome.
 	 */
-	public String getNome() {
-		return this.nome;
-	}
+	public String getNome() { return this.nome; }
 
 	/**
 	 * Seta o nome do atributo.
@@ -104,25 +97,19 @@ public class Attribute {
 	 * Retorna a unidade de medida do atributo.
 	 * @return	Uma String contendo a unidade de medida.
 	 */
-	public String getUnidadeDeMedida() {
-		return unidadeDeMedida;
-	}
+	public String getUnidadeDeMedida() { return unidadeDeMedida; }
 
 	/**
 	 * Seta a unidade de medida.
 	 * @param unidadeDeMedida	Uma String contendo a unidade de medida. 
 	 */
-	public void setUnidadeDeMedida(String unidadeDeMedida) {
-		this.unidadeDeMedida = unidadeDeMedida;
-	}
+	public void setUnidadeDeMedida(String unidadeDeMedida) { this.unidadeDeMedida = unidadeDeMedida; }
 
 	/**
 	 * Retorna a frequência de leitura.
 	 * @return	Um int contendo a frequência de leitura.
 	 */
-	public int getFrequenciaDeLeitura() {
-		return frequenciaDeLeitura;
-	}
+	public int getFrequenciaDeLeitura() { return frequenciaDeLeitura; }
 
 	/**
 	 * Seta a frequência de leitura.
@@ -136,16 +123,11 @@ public class Attribute {
 	 * Retorna o tipo do atributo.
 	 * @return	Um int contendo o tipo do atributo.
 	 */
-	public int getTipo() {
-		return tipo;
-	}
+	public int getTipo() { return tipo; }
 	
 	/**
 	 * Seta o tipo do atributo.
 	 * @param tipo	Um int representando o tipo do atributo.
 	 */
-	public void setTipo(int tipo) {
-		this.tipo = tipo;
-	}
-	
+	public void setTipo(int tipo) { this.tipo = tipo; }
 }	

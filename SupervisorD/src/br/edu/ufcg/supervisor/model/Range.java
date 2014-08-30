@@ -60,8 +60,7 @@ public class Range {
 	 * @param identificador	Um int contendo um identificador 
 	 * para relacionar o intervalo com um evento.
 	 */
-	public Range(float valorMinimo, float valorMaximo, int identificador, 
-			int operadorValorMinimo, int operadorValorMaximo){ 
+	public Range(float valorMinimo, float valorMaximo, int identificador, int operadorValorMinimo, int operadorValorMaximo){ 
 		this.identificadorEvento = identificador;
 		this.valorMinimo = valorMinimo;
 		this.valorMaximo = valorMaximo;
@@ -86,82 +85,62 @@ public class Range {
 	 * Retorna o valor mínimo do intervalo. 
 	 * @return	Um float contendo o valor mínimo do intervalo. 
 	 */
-	public float getValorMinimo() {
-		return valorMinimo;
-	}
+	public float getValorMinimo() { return valorMinimo; }
 
 	/**
 	 * Seta o valor mínimo do intervalo.
 	 * @param valorMinimo	Um float contendo o valor mínimo do intervalo.
 	 */
-	public void setValorMinimo(float valorMinimo) {
-		this.valorMinimo = valorMinimo;
-	}
+	public void setValorMinimo(float valorMinimo) { this.valorMinimo = valorMinimo; }
 
 	/**
 	 * Retorna o valor máximo do intervalo.
 	 * @return	Um float contendo o valor máximo do intervalo.
 	 */
-	public float getValorMaximo() {
-		return valorMaximo;
-	}
+	public float getValorMaximo() { return valorMaximo; }
 
 	/**
 	 * Seta o valor máximo do intervalo.
 	 * @param valorMaximo	Um float contendo o valor máximo do intervalo.
 	 */
-	public void setValorMaximo(float valorMaximo) {
-		this.valorMaximo = valorMaximo;
-	}
+	public void setValorMaximo(float valorMaximo) { this.valorMaximo = valorMaximo; }
 
 	/**
 	 * Retorna um int que identifica o evento que o intervalo está relacionado.
 	 * @return Um int contendo o identificador do evento que o intervalo está relacionado.
 	 */
-	public int getIdentificadorEvento() {
-		return identificadorEvento;
-	}
+	public int getIdentificadorEvento() { return identificadorEvento; }
 
 	/**
 	 * Retorna o operador mínimo.
 	 * @return	Um int reprensentando o operador do valor mínimo. 
 	 */
-	public int getOperadorValorMinimo(){
-		return this.operadorValorMinimo;
-	}
+	public int getOperadorValorMinimo(){ return this.operadorValorMinimo; }
 	
 	/**
 	 * Seta o identificador do evento que o intervalo está relacionaldo.
 	 * @param identificadorEvento	Um int que identifica a qual evento o intervalo está relacionado.
 	 */
-	public void setIdentificadorEvento(int identificadorEvento) {
-		this.identificadorEvento = identificadorEvento;
-	}
+	public void setIdentificadorEvento(int identificadorEvento){ this.identificadorEvento = identificadorEvento; }
 	
 	
 	/**
 	 * Retorna o operador máximo.
 	 * @return	Um int reprensentando o operador do valor máximo. 
 	 */
-	public int getOperadorValorMaximo(){
-		return this.operadorValorMaximo;
-	}
+	public int getOperadorValorMaximo(){ return this.operadorValorMaximo; }
 	
 	/**
 	 * Seta o operador do valor mínimo.
 	 * @param operador	Um int contendo a posição do operador.
 	 */
-	public void setOperadorValorMinimo(int operador){
-		this.operadorValorMinimo = operador;//getOperador(operador); 
-	}
+	public void setOperadorValorMinimo(int operador){ this.operadorValorMinimo = operador; }
 	
 	/**
 	 * Seta o operador do valor máximo.
 	 * @param operador	Um int contendo a posição do operador.
 	 */
-	public void setOperadorValorMaximo(int operador){
-		this.operadorValorMaximo = operador;//getOperador(operador); 
-	}
+	public void setOperadorValorMaximo(int operador){ this.operadorValorMaximo = operador; }
 	
 
 	/**
@@ -181,9 +160,7 @@ public class Range {
 	/**
 	 * Retorna uma String que identifica o intervalo.
 	 */
-	public String toString(){
-		return identificadorEvento + " " + valorMinimo + " " + valorMaximo;
-	}
+	public String toString(){ return identificadorEvento + " " + valorMinimo + " " + valorMaximo; }
 	
 	/**
 	 * Verifica se o valor de determinada variável está dentro 

@@ -18,8 +18,10 @@
  *  
  *  Contact: el7hon at gmail dot com
  */
+//alert("id: "+e.value+", nome: "+e.options[e.selectedIndex].text+", valor: "+document.getElementById("_value").value);
+//document.getElementById("texto").innerHTML="Not developed.";
 
-//TODO: executa modelo.
+//executa chamada ao código java nativo que executa o modelo.
 function _simulate() {
 	var e = document.getElementById("id_of_select");
 	var _name = e.options[e.selectedIndex].text;
@@ -30,11 +32,9 @@ function _simulate() {
 			document.getElementById("rec").innerHTML=p.rec; },
 		function(p){ alert(p.error); document.getElementById("rec").innerHTML=p.rec; },
 		"SupervisorInterface","java_execute_model",[_name,_value,e.value]);	
-//alert("id: "+e.value+", nome: "+e.options[e.selectedIndex].text+", valor: "+document.getElementById("_value").value);
 }
-//	document.getElementById("texto").innerHTML="Not developed.";
 
-//atualiza lista de valores
+//atualiza na interface os valores dos atributos que estão sendo monitorados
 function _updateValues(_names){
 	var i, theContainer, theSelect, theOptions, numOptions, anOption;
 	_atts_names = _names.split(",");
@@ -48,16 +48,18 @@ function _updateValues(_names){
 	document.getElementById("att").innerHTML = currentState;
 }
 
+//TODO: implementar
 function _activate() {}
 function _export() { }
+function _exit() { }
 
-//salva dados javascript para carregar em outra tela
+//salva dados (coletados numa tela) na sessão para carregar em outra tela
 function saveData(ids,names){
    localStorage.setItem('ids', ids);
    localStorage.setItem('names', names);
    return;
 }
-//carrega dados javascript salvos
+//carrega dados da sessão no contexto da tela aberta
 function loadData(){
    var ids = localStorage.getItem('ids');
    var names = localStorage.getItem('names');
@@ -72,6 +74,7 @@ function loadData(){
    } else { alert("vazio"); }
 }
 
+//inicia a tela para executar o modelo
 function _start() { 
 	cordova.exec(
 		function(p){ saveData(p.ids,p.names); window.open("simulation.html"); },
@@ -79,27 +82,18 @@ function _start() {
 		"SupervisorInterface","java_start",[]);
 }
 
-//gera combo de atributos dinamicamente a partir do modelo
+//gera combobox de atributos dinamicamente a partir do modelo
 var _atts_names;
 var _atts_ids;
 function _generateCombo(_ids,_names){
 	var i, theContainer, theSelect, theOptions, numOptions, anOption;
 	_atts_names = _names.split(",");//['pop','option 2','option 3'];
-	// Create the container <div>
 	theContainer = document.createElement('div');
 	theContainer.id = 'my_new_div';
-	// Create the <select>
 	theSelect = document.createElement('select');
-	// Give the <select> some attributes
 	theSelect.name = 'name_of_select';
 	theSelect.id = 'id_of_select';
 	theSelect.className = 'class_of_select';
-	// Define something to do onChange
-	//theSelect.onchange = function () {
-   // Do whatever you want to do when the select changes
-   //alert('You selected option '+this.selectedIndex);
-	//};
-	// Add some <option>s
 	currentState = "";
 	_atts_ids = _ids.split(",");
 	for (i = 0; i < _atts_names.length; i++) {
@@ -110,13 +104,12 @@ function _generateCombo(_ids,_names){
     	theSelect.appendChild(anOption);
     	currentState = currentState + "- " + _atts_names[i]+ ": no value.<br>";
 	}
-	// Add the <div> to the DOM, then add the <select> to the <div>
 	document.getElementById('combo').appendChild(theContainer);
 	theContainer.appendChild(theSelect);
 	document.getElementById("att").innerHTML = currentState;
 }
 
-//carega modelo do sdcard
+//carega modelo a partir de um cartão sdcard
 function _load() { 
 	_name = document.getElementById("filename").value.trim();
 	if (_name != ""){
@@ -129,7 +122,7 @@ function _load() {
 	}
 }
 
-//carrega modelo pre-definido.
+//carrega modelo a partir de uma lista de modelos pre-definidos.
 function _load2() { 
 	model = document.getElementById("models").value;
 	cordova.exec(
@@ -137,4 +130,3 @@ function _load2() {
 			function(p){ alert("Unknown error (elthon)"); },
 			"SupervisorInterface","java_load_pre_defined_model",[model]);
 }
-

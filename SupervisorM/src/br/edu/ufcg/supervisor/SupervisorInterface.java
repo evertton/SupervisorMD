@@ -24,7 +24,6 @@ package br.edu.ufcg.supervisor;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.TimeZone;
@@ -62,9 +61,8 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
      */
 	public void initialize(CordovaInterface cordova, CordovaWebView webView) { super.initialize(cordova, webView); }
 	
-		/**
+	/**
      * Executes the request and returns PluginResult.
-     *
      * @param action            The action to execute.
      * @param args              JSONArry of arguments for the plugin.
      * @param callbackContext   The callback id used when calling back into JavaScript.
@@ -86,6 +84,12 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 	    } else { return false; }
     }
 
+	/**
+	 * Executes the model with some data and extracts recommendations.
+	 * @param args Passed from Javascript interface.
+	 * @param callbackContext Used to return the result of processing.
+	 * @throws JSONException
+	 */
 	private void executeModel(JSONArray args, CallbackContext callbackContext) throws JSONException{
 		JSONObject r = new JSONObject();
 		String name = args.get(0).toString();
@@ -161,6 +165,11 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 		return array.get(indexMenorCaminho);
 	}
 
+	/**
+	 * Starts the process of executing the chosen model.
+	 * @param callbackContext Used to return the result of processing.
+	 * @throws JSONException
+	 */
 	private void start(CallbackContext callbackContext) throws JSONException{
 		JSONObject r = new JSONObject();
 		if (SupervisorInterface.model==null){
@@ -188,6 +197,12 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 		}		
 	}
 	
+	/**
+	 * Loads model from a given name of a file. If it does not exist, loads a pre-defined simple one.
+	 * @param args Passed from Javascript interface.
+	 * @param callbackContext Used to return the result of processing.
+	 * @throws JSONException
+	 */
 	private void loadModelFromFile(JSONArray args, CallbackContext callbackContext) throws JSONException{
 		JSONObject r = new JSONObject();
 		String fileName = args.get(0).toString()+".sup";
@@ -210,7 +225,13 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 			callbackContext.success(r);
 		}
 	}
-
+	
+	/**
+	 * Loads model from a pre-defined list.
+	 * @param args Passed from Javascript interface.
+	 * @param callbackContext Used to return the result of processing.
+	 * @throws JSONException
+	 */
 	private void loadPreDefinedModel(JSONArray args, CallbackContext callbackContext) throws JSONException{
 		String fileName = args.get(0).toString();
 		if (fileName.equals("sm")){
@@ -228,7 +249,6 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 	//--------------------------------------------------------------------------
     // Cordova METHODS
     //--------------------------------------------------------------------------
-
     /**
      * Get the device's Universally Unique Identifier (UUID).
      *
@@ -238,59 +258,13 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
         String uuid = Settings.Secure.getString(this.cordova.getActivity().getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
         return uuid;
     }
-
-    public String getModel() {
-        String model = android.os.Build.MODEL;
-        return model;
-    }
-
-    public String getProductName() {
-        String productname = android.os.Build.PRODUCT;
-        return productname;
-    }
-
+    public String getModel() { String model = android.os.Build.MODEL; return model; }
+    public String getProductName() { String productname = android.os.Build.PRODUCT; return productname; }
     /**
      * Get the OS version.
      *
      * @return
      */
-    public String getOSVersion() {
-        String osversion = android.os.Build.VERSION.RELEASE;
-        return osversion;
-    }
-
-    public String getSDKVersion() {
-        @SuppressWarnings("deprecation")
-        String sdkversion = android.os.Build.VERSION.SDK;
-        return sdkversion;
-    }
-
-    public String getTimeZoneID() {
-        TimeZone tz = TimeZone.getDefault();
-        return (tz.getID());
-    }
+    public String getOSVersion() { String osversion = android.os.Build.VERSION.RELEASE; return osversion; }
+    public String getTimeZoneID() { TimeZone tz = TimeZone.getDefault(); return (tz.getID()); }
 }
-//dentro de java_start
-/*JSONObject r = new JSONObject();
-if (SupervisorInterface.model==null){
-	r.put("msg", "At first, you have to load a training.");
-	callbackContext.error(r);
-	return true;
-} else {
-	SupervisorInterface.model.setNome(SupervisorInterface.model.getNome());
-	LoadedModel.setModelo(SupervisorInterface.model);
-	int[] arrayIds = LoadedModel.getIdVariaveisMonitoradas();
-	ArrayList<String> arrayNames = LoadedModel.getNomesVariaveisMonitoradas();
-	String ids = "";
-	String names = "";
-	for(int i = 0; i<arrayNames.size();i++){
-		ids = ids + "," + arrayIds[i];
-		names = names + "," + arrayNames.get(i);
-		map.put(arrayNames.get(i), 0.f);
-	}
-	r.put("ids", ids.replaceFirst(",",""));
-	r.put("names", names.replaceFirst(",",""));
-	r.put("msg", SupervisorInterface.model.getNome());
-	callbackContext.success(r);
-	return true;
-}*/

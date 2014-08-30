@@ -104,9 +104,7 @@ public class Transition {
 	 * Seta o rôtulo da transição.
 	 * @param rotulo	Uma String contendo o rôtulo da transição.
 	 */
-	public void setRotulo(String rotulo) {
-		this.rotulo = rotulo;
-	}
+	public void setRotulo(String rotulo) { this.rotulo = rotulo; }
 
 	/**
 	 * Retorna a mensagem da transição.
@@ -118,9 +116,7 @@ public class Transition {
 	 * Seta a mensagem da transição.
 	 * @param mensagem	Uma String contendo a mensagem da transição.
 	 */
-	public void setMensagem(String mensagem){
-		this.mensagem = mensagem;
-	}
+	public void setMensagem(String mensagem){ this.mensagem = mensagem; }
 
 	/**
 	 * Retorna o estado de origem da transição.	 
@@ -132,9 +128,7 @@ public class Transition {
 	 * Seta o estado de origem da transição.	
 	 * @param estadoOrigem		O Estado origem da transição. 
 	 */
-	public void setEstadoOrigem(State estadoOrigem) {
-		this.estadoOrigem = estadoOrigem;
-	}
+	public void setEstadoOrigem(State estadoOrigem) { this.estadoOrigem = estadoOrigem; }
 
 	/**
 	 * Retorna o estado destino da transição.
@@ -146,23 +140,17 @@ public class Transition {
 	 * Seta o estado final da transição.
 	 * @param estadoDestino	O estado final da transição.
 	 */
-	public void setEstadoDestino(State estadoDestino) {
-		this.estadoDestino = estadoDestino;
-	}
+	public void setEstadoDestino(State estadoDestino) { this.estadoDestino = estadoDestino; }
 
 	/**
 	 * Utilizado para representar a transição.
 	 */
-	public String toString(){
-		return rotulo + " " + estadoOrigem.getNome() + " " + estadoDestino.getNome(); 
-	}
+	public String toString(){ return rotulo + " " + estadoOrigem.getNome() + " " + estadoDestino.getNome(); }
 	
 	/**
 	 * Vincula a transição com o estado de origem.
 	 */
-	public void addTransicaoNoEstadoOrigem(){
-		estadoOrigem.addTransicao(this);
-	}
+	public void addTransicaoNoEstadoOrigem(){ estadoOrigem.addTransicao(this); }
 
 	/*
 	 * Utilizado para iniciar os atributos da transição.
@@ -181,11 +169,8 @@ public class Transition {
 	public boolean equals(Object t){
 		if (rotulo.equals(((Transition)t).getRotulo()) && 
 				estadoOrigem.getNome().equals(((Transition)t).getEstadoOrigem().getNome()) &&
-				estadoDestino.getNome().equals(((Transition)t).getEstadoDestino().getNome())){
+				estadoDestino.getNome().equals(((Transition)t).getEstadoDestino().getNome()))
 			return true;
-		}
 		return false;
 	}
-
 }
-
