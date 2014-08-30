@@ -7,6 +7,6 @@
 	<classpathentry kind="lib" path="libs/cordova-2.9.1.jar" sourcepath="libs/cordova-2.9.1.jar"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
-	<classpathentry kind="lib" path="libs/model.jar"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/SupervisorD"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

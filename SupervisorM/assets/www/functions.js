@@ -24,15 +24,12 @@ function _simulate() {
 	var e = document.getElementById("id_of_select");
 	var _name = e.options[e.selectedIndex].text;
 	var _value = document.getElementById("_value").value;
-	var _curr, _rec;
 	cordova.exec(
 		function(p){
-			_curr = p.curSt; 
-			_rec = p.rec; 
-			document.getElementById("att").innerHTML=_curr;
-			document.getElementById("rec").innerHTML=_rec; },
-		function(p){ alert("pau!!"); },
-		"SupervisorInterface","java_execute_model",[_name,_value]);	
+			document.getElementById("att").innerHTML=p.cur;
+			document.getElementById("rec").innerHTML=p.rec; },
+		function(p){ alert(p.error); document.getElementById("rec").innerHTML=p.rec; },
+		"SupervisorInterface","java_execute_model",[_name,_value,e.value]);	
 //alert("id: "+e.value+", nome: "+e.options[e.selectedIndex].text+", valor: "+document.getElementById("_value").value);
 }
 //	document.getElementById("texto").innerHTML="Not developed.";

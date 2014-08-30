@@ -68,24 +68,27 @@ public class Simulation {
 	private void executa(){
 		String mensagem = "";
 		ArrayList<String> arrayMensagens = new ArrayList<String>();
-		State estado = automaton.buscaEstadoCorrespondente(map);
-		if (! (estado.getClassificacao() == State.INT_CL_ACEITACAO) ) {//verifica se E Qm, caso não chama o algoritmo
-			Search alg = new Search(automaton);
-			alg.execute(estado);
-			for (State estadoAceito : automaton.getArrayEstadosAceitos()){
-				LinkedList<State> caminho = alg.getPath(estadoAceito);
-				if (caminho != null){
-					for (int j=0; j<caminho.size()-1;j++) {
-						mensagem += (j+1)+ ". " + automaton.getMensagemDasTransicoesEntreDoisEstadosQuaisquer(caminho.get(j),caminho.get(j+1) )+ " ";
+		State estado;
+		try {
+			estado = automaton.buscaEstadoCorrespondente(map);
+			if (! (estado.getClassificacao() == State.INT_CL_ACEITACAO) ) {//verifica se E Qm, caso não chama o algoritmo
+				Search alg = new Search(automaton);
+				alg.execute(estado);
+				for (State estadoAceito : automaton.getArrayEstadosAceitos()){
+					LinkedList<State> caminho = alg.getPath(estadoAceito);
+					if (caminho != null){
+						for (int j=0; j<caminho.size()-1;j++) {
+							mensagem += (j+1)+ ". " + automaton.getMensagemDasTransicoesEntreDoisEstadosQuaisquer(caminho.get(j),caminho.get(j+1) )+ " ";
+						}
+						arrayMensagens.add(mensagem);
 					}
-					arrayMensagens.add(mensagem);
 				}
 			}
-		}
-		getCaminhoMaisCurto(arrayMensagens);
-		arrayMensagens.size();
-		estado.getNome();
-		estado.getClassificacaoString();
+			getCaminhoMaisCurto(arrayMensagens);
+			arrayMensagens.size();
+			estado.getNome();
+			estado.getClassificacaoString();
+		} catch (Exception e) { e.printStackTrace(); }
 	}
 
 	private String getCaminhoMaisCurto(ArrayList<String> array){
