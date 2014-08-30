@@ -75,12 +75,11 @@ public class Range {
 	 */
 	 //TODO COMPLETAR
 	public Range(StringMap<?> map){
-		//this.identificadorEvento = ((Double)map.get(IDENTIFICADOR) ).intValue();
-		this.identificadorEvento = (Integer.valueOf((String) map.get(IDENTIFICADOR)));
-		this.valorMinimo = ( (Double) map.get(VALOR_MINIMO) ).floatValue();
-		this.valorMaximo = ( (Double) map.get(VALOR_MAXIMO) ).floatValue();
-		this.operadorValorMinimo = ( (Double) map.get(OPERADOR_VALOR_MINIMO) ).intValue();//getOperador(MENOR_QUE);
-		this.operadorValorMaximo = ( (Double) map.get(OPERADOR_VALOR_MAXIMO) ).intValue();;//getOperador(MENOR_QUE);
+		this.identificadorEvento = ((Double) map.get(IDENTIFICADOR)).intValue();
+		this.valorMinimo = ((Double) map.get(VALOR_MINIMO)).floatValue();
+		this.valorMaximo = ((Double) map.get(VALOR_MAXIMO)).floatValue();
+		this.operadorValorMinimo = ((Double) map.get(OPERADOR_VALOR_MINIMO)).intValue();
+		this.operadorValorMaximo = ((Double) map.get(OPERADOR_VALOR_MAXIMO)).intValue();
 	}
 
 	/**
@@ -198,15 +197,15 @@ public class Range {
 		boolean ret = false;
 		boolean proposition1 = false;
 		boolean proposition2 = false;
-		float val = map.get(identificadorEvento).floatValue();
-		
-		if (operadorValorMinimo == MENOR_QUE) proposition1 = valorMinimo < val;
-		else proposition1 = valorMinimo <= val;
-		
-		if (operadorValorMaximo == MENOR_QUE) proposition2 = val < valorMaximo;
-		else proposition2 = val <= valorMaximo;
-		
-		ret = (proposition1 && proposition2);
-		return ret;
+		Float f = map.get(identificadorEvento);
+		if (f!= null){
+			float val = f.floatValue();
+			if (operadorValorMinimo == MENOR_QUE) proposition1 = valorMinimo < val;
+			else proposition1 = valorMinimo <= val;
+			if (operadorValorMaximo == MENOR_QUE) proposition2 = val < valorMaximo;
+			else proposition2 = val <= valorMaximo;
+			ret = (proposition1 && proposition2);
+			return ret;
+		} else return true;
 	}
 }

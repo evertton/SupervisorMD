@@ -246,11 +246,11 @@ public class State {
 	 * 					intervalo determinado ou false se não estiver.
 	 */
 	public boolean verificaIntervalos(HashMap<Integer, Float> map){
+		boolean result = true;
 		for (Range intervalo : listaDeIntervalos ){
-			if (intervalo.verificaIntervalo(map))
-				return true;
+			result = result && (intervalo.verificaIntervalo(map));
 		}
-		return false;
+		return result;
 	}
 
 	/**
