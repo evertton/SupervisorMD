@@ -43,7 +43,7 @@ public class Attribute {
 	public static final int ID_OXIGEN_CONSUMPTION 			= 8; 
 	public static final int ID_AMBIENT_PRESSURE				= 9;
 	public static final int ID_AIR_RELATIVE_HUMIDITY 		= 10;
-	public static final int ID_SPEED 						= 11;
+	public static final int ID_SPEED						= 11;
 	
 	public static final int ID_ENVIRONMENTAL_TEMPERATURE	= 12;
 
@@ -59,8 +59,8 @@ public class Attribute {
 	 * Construtor padrão.
 	 */
 	public Attribute(){
-		nome = new String();
-		unidadeDeMedida = new String();
+		nome = "";
+		unidadeDeMedida = "";
 		frequenciaDeLeitura = 12;
 		automato = new Automaton();
 		this.tipo = FISIOLOGICO;

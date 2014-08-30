@@ -37,12 +37,9 @@ public class Range {
 	public static final int MENOR_QUE = 1;//Operador.MenorQue.getNumero();
 	public static final int MENOR_OU_IGUAL_A = 0;//Operador.MenorOuIgual.getNumero();
 
-
 	private float valorMinimo;
 	private float valorMaximo;
 	private int identificadorEvento;
-//	private Operador operadorValorMinimo;
-//	private Operador operadorValorMaximo;
 	private int operadorValorMinimo;
 	private int operadorValorMaximo;
 	/**
@@ -52,10 +49,8 @@ public class Range {
 		this.identificadorEvento = -1;
 		this.valorMinimo = -1;
 		this.valorMaximo = -1;
-//		this.operadorValorMinimo = getOperador(MENOR_QUE);
-//		this.operadorValorMaximo = getOperador(MENOR_QUE);
-		this.operadorValorMinimo = MENOR_QUE;//getOperador(MENOR_QUE);
-		this.operadorValorMaximo = MENOR_QUE;//getOperador(MENOR_QUE);
+		this.operadorValorMinimo = MENOR_QUE;
+		this.operadorValorMaximo = MENOR_QUE;
 	}
 
 	/**
@@ -70,18 +65,18 @@ public class Range {
 		this.identificadorEvento = identificador;
 		this.valorMinimo = valorMinimo;
 		this.valorMaximo = valorMaximo;
-//		this.operadorValorMinimo = getOperador(operadorValorMinimo);
-//		this.operadorValorMaximo = getOperador(operadorValorMaximo);
-		this.operadorValorMinimo = operadorValorMinimo;//getOperador(MENOR_QUE);
-		this.operadorValorMaximo = operadorValorMaximo;//getOperador(MENOR_QUE);
+		this.operadorValorMinimo = operadorValorMinimo;
+		this.operadorValorMaximo = operadorValorMaximo;
 	}
 
 	/**
 	 * Construtor.
 	 * @param map	Uma StringMap contendo um intervalo no formato JSON.
 	 */
-	public Range(StringMap<?> map){ //TODO COMPLETAR
-		this.identificadorEvento = ( (Double) map.get(IDENTIFICADOR) ).intValue();
+	 //TODO COMPLETAR
+	public Range(StringMap<?> map){
+		//this.identificadorEvento = ((Double)map.get(IDENTIFICADOR) ).intValue();
+		this.identificadorEvento = (Integer.valueOf((String) map.get(IDENTIFICADOR)));
 		this.valorMinimo = ( (Double) map.get(VALOR_MINIMO) ).floatValue();
 		this.valorMaximo = ( (Double) map.get(VALOR_MAXIMO) ).floatValue();
 		this.operadorValorMinimo = ( (Double) map.get(OPERADOR_VALOR_MINIMO) ).intValue();//getOperador(MENOR_QUE);
@@ -179,10 +174,9 @@ public class Range {
 		map.put(IDENTIFICADOR, identificadorEvento);
 		map.put(VALOR_MAXIMO, valorMaximo);
 		map.put(VALOR_MINIMO, valorMinimo);
-		map.put(OPERADOR_VALOR_MINIMO, operadorValorMinimo);//.getNumero()
-		map.put(OPERADOR_VALOR_MAXIMO, operadorValorMaximo);//.getNumero()
+		map.put(OPERADOR_VALOR_MINIMO, operadorValorMinimo);
+		map.put(OPERADOR_VALOR_MAXIMO, operadorValorMaximo);
 		return map.toString();
-
 	}
 
 	/**
@@ -191,14 +185,6 @@ public class Range {
 	public String toString(){
 		return identificadorEvento + " " + valorMinimo + " " + valorMaximo;
 	}
-	
-	/* Verifica o tipo do operador para setar os atributos do intervalo */
-//	private Operador getOperador(int valorDoOperador){
-//		if (Operador.MenorQue.getNumero() == valorDoOperador){
-//			return Operador.MenorQue;
-//		} 
-//		return Operador.MenorOuIgual;
-//	}
 	
 	/**
 	 * Verifica se o valor de determinada variável está dentro 
@@ -209,77 +195,18 @@ public class Range {
 	 * intervalo determinado ou false se não estiver.
 	 */
 	public boolean verificaIntervalo(HashMap<Integer, Float> map){
-
-			if (operadorValorMinimo == MENOR_QUE 
-					&& operadorValorMaximo == MENOR_QUE ){//  
-			System.out.println (map.get(identificadorEvento));
-			System.out.println(1);
-			return ( valorMinimo < map.get(identificadorEvento) 
-					&& map.get(identificadorEvento) < valorMaximo ) ;
-			
-		} else if (operadorValorMinimo == MENOR_QUE  
-				&& operadorValorMaximo == MENOR_OU_IGUAL_A ){
-			System.out.println(2);
-			return ( valorMinimo < map.get(identificadorEvento) 
-					&& map.get(identificadorEvento) <= valorMaximo ) ;
-			
-		} else if (operadorValorMinimo == MENOR_OU_IGUAL_A 
-				&& operadorValorMaximo == MENOR_QUE  ){
-			System.out.println(3);
-			return ( valorMinimo <= map.get(identificadorEvento) 
-					&& map.get(identificadorEvento) < valorMaximo ) ;
-			
-		} else {//operadorValorMinimo == Operador.MenorOuIgual && operadorValorMaximo == Operador.MenorOuIgual
-			System.out.println(4);
-			return ( valorMinimo <= map.get(identificadorEvento) 
-					&& map.get(identificadorEvento) <= valorMaximo ) ;
-		}
-			
-//			if (operadorValorMinimo == Operador.MenorQue 
-//					&& operadorValorMaximo == Operador.MenorQue ){//  
-//			System.out.println (map.get(identificadorEvento));
-//			System.out.println(1);
-//			return ( valorMinimo < map.get(identificadorEvento) 
-//					&& map.get(identificadorEvento) < valorMaximo ) ;
-//			
-//		} else if (operadorValorMinimo == Operador.MenorQue 
-//				&& operadorValorMaximo == Operador.MenorOuIgual ){
-//			System.out.println(2);
-//			return ( valorMinimo < map.get(identificadorEvento) 
-//					&& map.get(identificadorEvento) <= valorMaximo ) ;
-//			
-//		} else if (operadorValorMinimo == Operador.MenorOuIgual 
-//				&& operadorValorMaximo == Operador.MenorQue ){
-//			System.out.println(3);
-//			return ( valorMinimo <= map.get(identificadorEvento) 
-//					&& map.get(identificadorEvento) < valorMaximo ) ;
-//			
-//		} else {//operadorValorMinimo == Operador.MenorOuIgual && operadorValorMaximo == Operador.MenorOuIgual
-//			System.out.println(4);
-//			return ( valorMinimo <= map.get(identificadorEvento) 
-//					&& map.get(identificadorEvento) <= valorMaximo ) ;
-//		}
-
+		boolean ret = false;
+		boolean proposition1 = false;
+		boolean proposition2 = false;
+		float val = map.get(identificadorEvento).floatValue();
+		
+		if (operadorValorMinimo == MENOR_QUE) proposition1 = valorMinimo < val;
+		else proposition1 = valorMinimo <= val;
+		
+		if (operadorValorMaximo == MENOR_QUE) proposition2 = val < valorMaximo;
+		else proposition2 = val <= valorMaximo;
+		
+		ret = (proposition1 && proposition2);
+		return ret;
 	}
-
-	/* Enum para determinar a operação */
-//	public enum Operador{
-//		MenorQue(0),  
-//		MenorOuIgual(1);
-//		
-//		private final int numero;
-//
-//		// métodos para acessar os valores
-//		public int getNumero() {
-//			return this.numero;
-//		}
-//
-//		
-//
-//		//método que define as constantes
-//		private Operador(int numero) {
-//			this.numero = numero;
-//		}
-//	}
-
 }

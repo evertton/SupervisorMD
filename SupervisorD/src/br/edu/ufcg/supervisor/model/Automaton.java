@@ -82,7 +82,7 @@ public class Automaton {
 		}
 		ArrayList<Double> arrayEstadosAceitosInteger = (ArrayList<Double>) map.get(ARRAY_ESTADOS_ACEITOS);
 		for (Double i : arrayEstadosAceitosInteger){
-			this.arrayEstadosAceitos.add( vectorEstados.get( i.intValue() ) );
+			this.arrayEstadosAceitos.add(vectorEstados.get(i.intValue()));
 		}
 		ArrayList<StringMap<Object>> arrayTransicoesMap = (ArrayList<StringMap<Object>>) map.get(ARRAY_TRANSICOES);
 		for (StringMap<Object> sm : arrayTransicoesMap){
@@ -104,7 +104,6 @@ public class Automaton {
 	public String getRotulosDasTransicoesEntreDoisEstadosQuaisquer(State origem, State destino){
 		String resultado = "";
 		String nomeDestino = destino.getNome();
-		
 		for (Transition t : origem.getTransicoes()) {
 			if ( (nomeDestino.equals(t.getEstadoDestino().getNome()))){
 				if (resultado.equals("")){
@@ -114,7 +113,6 @@ public class Automaton {
 			}
 		}
 		return resultado;
-		
 	}
 	
 	/**
@@ -139,9 +137,6 @@ public class Automaton {
 		return resultado;
 	}
 
-
-
-
 	/**
 	 * Retorna uma String que representa o automato.
 	 * @return	Uma String que representa o automato no formato JSON.
@@ -164,48 +159,6 @@ public class Automaton {
 		}
 		map.put(ARRAY_ESTADOS, arrayStringEstado.toString());
 		map.put(ARRAY_ESTADOS_ACEITOS, arrayStringEstadosAceitos.toString());
-
-//		//PARTE NOVA
-//		int meioArrayTrans = arrayTransicoes.size()/2;
-//		ArrayList<String> arrayStringTransicaoP1 = new ArrayList<String>();
-//		ArrayList<String> arrayStringTransicaoP2 = new ArrayList<String>();
-//		for(int i = 0; i < arrayTransicoes.size(); i++){
-//			if (i<meioArrayTrans){
-//				arrayStringTransicaoP1.add(arrayTransicoes.get(i).toJson(vectorEstados));
-//			} else {
-//				arrayStringTransicaoP2.add(arrayTransicoes.get(i).toJson(vectorEstados));
-//			}
-//		}
-//
-//		map.put(ARRAY_TRANSICOES_P1, arrayStringTransicaoP1.toString());
-//		map.put(ARRAY_TRANSICOES_P2, arrayStringTransicaoP2.toString());
-//		
-//		
-//		
-//		int meioArrayEst = vectorEstados.size()/2;
-//		ArrayList<String> arrayStringEstadoP1 = new ArrayList<String>();
-//		ArrayList<String> arrayStringEstadoP2 = new ArrayList<String>();
-//		ArrayList<Integer> arrayStringEstadosAceitos = new ArrayList<Integer>();
-//		Estado e;
-//		for(int i = 0; i < vectorEstados.size(); i++){
-//			e = vectorEstados.get(i);
-//			if (i<meioArrayEst){
-//				arrayStringEstadoP1.add(e.toJson());
-//			} else {
-//				arrayStringEstadoP2.add(e.toJson());
-//			}
-//			
-//			if (e.getClassificacao() == Estado.INT_CL_ACEITACAO){
-//				arrayStringEstadosAceitos.add(vectorEstados.indexOf(e));
-//			}
-//		}
-//
-//		map.put(ARRAY_ESTADOS_P1, arrayStringEstadoP1.toString());
-//		map.put(ARRAY_ESTADOS_P2, arrayStringEstadoP2.toString());
-//		map.put(ARRAY_ESTADOS_ACEITOS, arrayStringEstadosAceitos.toString());
-		
-	
-		
 		return map.toString();
 	}
 
@@ -236,7 +189,6 @@ public class Automaton {
 	public void setArrayTransicoes(ArrayList<Transition> arrayTransicoes) { 
 		this.arrayTransicoes = arrayTransicoes;
 	}
-
 
 	/**
 	 * Retorna os estados aceitos do automato.
@@ -294,14 +246,14 @@ public class Automaton {
 	 * @param map	Um HashMap<Integer, Float> contendo o identificador da 
 	 * 					variável e o seu valor, respectivamente.
 	 * @return 		O Estado correspondente para os valores das variáveis monitoradas. 
+	 * @throws Exception 
 	 */
-	public State buscaEstadoCorrespondente(HashMap<Integer, Float> map){
+	public State buscaEstadoCorrespondente(HashMap<Integer, Float> map) throws Exception{
 		for (State estado : vectorEstados ){
-			if (estado.verificaIntervalos(map)){
+			if (estado.verificaIntervalos(map))
 				return estado;
-			}//TODO LANCAR EXCEÇÃO ESTADO NAO ENCONTRADO
 		}
-		return null;
+		throw new Exception("Value not monitored");
 	}
 
 	/*Inicializa os atributos do automato */

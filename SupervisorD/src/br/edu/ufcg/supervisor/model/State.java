@@ -36,7 +36,7 @@ public class State {
 	public static final int INT_CL_ACEITACAO = 3;
 	public static final int INT_CL_PERIGOSO = 2;
 	public static final int INT_CL_TOLERAVEL = 1;
-	public static final int INT_CL_NENHUM = 0;
+	//public static final int INT_CL_NENHUM = 0;
 
 	public static final String NOME = "1";
 	public static final String VALOR_MAXIMO = "2";
@@ -56,6 +56,13 @@ public class State {
 		initAtributos();
 	}
 
+	private void initAtributos(){
+		this.nome = null;
+		this.listaDeIntervalos = new ArrayList<Range>();
+		this.arrayTransicoes = new ArrayList<Transition>();
+		this.classificacao = -1;
+	}
+	
 	/**
 	 * Construtor que recebe uma StringMap
 	 * @param map	Uma StringMap que contém um estado no formato JSON.
@@ -63,8 +70,7 @@ public class State {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public State(StringMap<?> map){
 		initAtributos();
-		listaDeIntervalos = new ArrayList<Range>();
-		this.nome = (String) map.get(NOME);//TODO COMPLICAR
+		this.nome = (String) map.get(NOME);
 		ArrayList<StringMap> arrayIntervalos = (ArrayList<StringMap>) map.get(LISTA_INTERVALOS);
 		for (StringMap<?> sm : arrayIntervalos){
 			Range e = new Range(sm);
@@ -79,15 +85,13 @@ public class State {
 	 */
 	public String toJson(){
 		HashMap<String, Object> map = new HashMap<String, Object>();
-
-		map.put(NOME, nome);//TODO COMPLICAR
+		map.put(NOME, nome);
 		map.put(CLASSIFICACAO, classificacao);
-
 		ArrayList<String> arrayStringIntervalo = new ArrayList<String>();
 		for(Range i : listaDeIntervalos){
+			//i.setIdentificadorEvento(this.getClassificacao());//elthon
 			arrayStringIntervalo.add(i.toJson());
 		}
-
 		map.put(LISTA_INTERVALOS, arrayStringIntervalo.toString());
 		return map.toString();
 	}
@@ -175,8 +179,6 @@ public class State {
 		default: return Internacionalizar.CL_NENHUM;
 		}
 	}
-
-
 	
 	/**
 	 * Seta a classificação do estado.
@@ -245,11 +247,10 @@ public class State {
 	 */
 	public boolean verificaIntervalos(HashMap<Integer, Float> map){
 		for (Range intervalo : listaDeIntervalos ){
-			if (!intervalo.verificaIntervalo(map)){
-				return false;
-			}
+			if (intervalo.verificaIntervalo(map))
+				return true;
 		}
-		return true;
+		return false;
 	}
 
 	/**
@@ -257,6 +258,11 @@ public class State {
 	 * @param identificador		Um int que representa um evento. 
 	 */
 	public void setIdentificador(int identificador){
+		this.listaDeIntervalos.get(0).setIdentificadorEvento(identificador);
+	}
+
+	
+	public void addIdentificador(int identificador){
 		this.listaDeIntervalos.get(0).setIdentificadorEvento(identificador);
 	}
 
@@ -292,7 +298,6 @@ public class State {
 		}
 	}
 
-
 	/**
 	 * Seta o operador do valor mínimo.
 	 * @param operador		Um int que representa o operador do valor mínimo.
@@ -316,12 +321,9 @@ public class State {
 	public void setOperadorValorMaximo(int operador){
 		this.listaDeIntervalos.get(0).setOperadorValorMaximo(operador);
 	}
-
-	private void initAtributos(){
-		this.nome = null;
-		this.listaDeIntervalos = new ArrayList<Range>();
-		this.arrayTransicoes = new ArrayList<Transition>();
-		this.classificacao = -1;
-
+	
+	public void addRange(Range r){
+		this.listaDeIntervalos.add(r);
 	}
+	
 }

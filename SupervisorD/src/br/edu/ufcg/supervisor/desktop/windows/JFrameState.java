@@ -18,11 +18,15 @@
  */
 package br.edu.ufcg.supervisor.desktop.windows;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 import br.edu.ufcg.supervisor.desktop.util.AttributeList;
+import br.edu.ufcg.supervisor.desktop.util.AutomataFiller;
 import br.edu.ufcg.supervisor.desktop.util.Constants;
 import br.edu.ufcg.supervisor.desktop.util.Internacionalizar;
+import br.edu.ufcg.supervisor.model.Attribute;
+import br.edu.ufcg.supervisor.model.Range;
 import br.edu.ufcg.supervisor.model.State;
 
 /**
@@ -124,15 +128,33 @@ public class JFrameState extends javax.swing.JFrame {
 	}
 
 	/* Preenche um estado com as informações da tela. */
-	private State preencheEstado(State estado){
+	/* bug do identificador -1 consertado*/
+	private void preencheEstado(State estado){
+		//////////////////
+		//this.indexAtributoSelecionado = indexAtributo;
+		String n = gerenciador.getAtributo(indexAtributoSelecionado).getAutomato().getNome();
+		System.out.println("---"+n);
+		//estado.setIdentificador(Integer.valueOf(n).intValue());
+		/////////////////
+		/*String nome = (jTextFieldNomeEstado.getText());
+		int classificacao = jComboBoxClassificacao.getSelectedIndex();*/
+		float maximo = Float.parseFloat(jTextFieldValorMaximo.getText());
+		float minimo = (Float.parseFloat(jTextFieldValorMinimo.getText()));
+		int operadorMaximo = (jComboBoxMarcadorMaximo.getSelectedIndex());
+		int operadorMinimo = (jComboBoxMarcadorMinimo.getSelectedIndex());
+		//ArrayList<Range> array = new ArrayList<Range>();
+		int identificador = AutomataFiller.getAttIdFromName(n);
+
+		Range r = new Range(minimo, maximo, identificador, operadorMinimo, operadorMaximo);
+	
 		estado.setNome(jTextFieldNomeEstado.getText());
-		estado.setValorMaximo(Float.parseFloat(jTextFieldValorMaximo.getText()));
-		estado.setValorMinimo(Float.parseFloat(jTextFieldValorMinimo.getText()));
-		int indexClassificacao = jComboBoxClassificacao.getSelectedIndex();
-		estado.setOperadorValorMaximo(jComboBoxMarcadorMaximo.getSelectedIndex());
+		estado.setClassificacao(jComboBoxClassificacao.getSelectedIndex());
+		estado.addRange(r);
+		estado.setIdentificador(AutomataFiller.getAttIdFromName(n));
+		/*estado.setOperadorValorMaximo(jComboBoxMarcadorMaximo.getSelectedIndex());
 		estado.setOperadorValorMinimo(jComboBoxMarcadorMinimo.getSelectedIndex());
-		estado.setClassificacao(indexClassificacao);
-		return estado;
+		estado.setValorMaximo(Float.parseFloat(jTextFieldValorMaximo.getText()));
+		estado.setValorMinimo(Float.parseFloat(jTextFieldValorMinimo.getText()));*/
 	}
 
 	/* Preenche um estado com as informações da tela e o adiciona na lista de estados. */

@@ -138,7 +138,7 @@ public class AutomataFiller {
 		arrayAtributos.add(atributo);
 	}
 	
-	private static State createEstado(String nome, Float minimo, int operadorMinimo, int operadorMaximo, Float maximo, int classificacao, int identificador ){
+	public static State createEstado(String nome, Float minimo, int operadorMinimo, int operadorMaximo, Float maximo, int classificacao, int identificador ){
 		State estado = new State();
 		estado.setNome(nome);
 		estado.setValorMaximo(maximo);
@@ -148,6 +148,32 @@ public class AutomataFiller {
 		estado.setOperadorValorMinimo(operadorMinimo);
 		estado.setOperadorValorMaximo(operadorMaximo);
 		return estado;
+	}
+	
+	public static int getAttIdFromName(String nome){
+		if (nome.equals(Internacionalizar.AT_HEART_RATE))
+			return Attribute.ID_HEART_RATE;
+		if (nome.equals(Internacionalizar.AT_RESPIRATORY_EXCHANGE_RATIO))
+			return Attribute.ID_RESPIRATORY_EXCHANGE_RATIO;
+		if (nome.equals(Internacionalizar.AT_SYSTOLIC_BLOOD_PRESSURE))
+			return Attribute.ID_SYSTOLIC_BLOOD_PRESSURE;
+		if (nome.equals(Internacionalizar.AT_DIASTOLIC_BLOOD_PRESSURE))
+			return Attribute.ID_DIASTOLIC_BLOOD_PRESSURE; 
+		if (nome.equals(Internacionalizar.AT_BODY_TEMPERATURE))
+			return Attribute.ID_BODY_TEMPERATURE;
+		if (nome.equals(Internacionalizar.AT_BLOOD_LACTATE))
+			return Attribute.ID_BLOOD_LACTATE;
+		if (nome.equals(Internacionalizar.AT_BLOOD_GLUCOSE))
+			return Attribute.ID_BLOOD_GLUCOSE;	
+		if (nome.equals(Internacionalizar.AT_OXIGEN_CONSUMPTION))
+			return Attribute.ID_OXIGEN_CONSUMPTION; 
+		if (nome.equals(Internacionalizar.AT_AMBIENT_PRESSURE))
+			return Attribute.ID_AMBIENT_PRESSURE;
+		if (nome.equals(Internacionalizar.AT_AIR_RELATIVE_HUMIDITY))
+			return Attribute.ID_AIR_RELATIVE_HUMIDITY; 	
+		if (nome.equals(Internacionalizar.AT_SPEED))
+			return Attribute.ID_SPEED;
+		return 0;
 	}
 
 	private  static Transition createTransicao(String nome, State estadoOrigem, State estadoDestino, String mensagem){
