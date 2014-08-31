@@ -116,7 +116,8 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 					LinkedList<State> caminho = alg.getPath(estadoAceito);
 					if (caminho != null){
 						for (int j=0; j<caminho.size()-1;j++) {
-							recommendation += (j+1)+ ". " + model.getMensagemDasTransicoesEntreDoisEstadosQuaisquer(caminho.get(j),caminho.get(j+1) )+ " ";
+							//recommendation += (j+1)+ ". " + model.getMensagemDasTransicoesEntreDoisEstadosQuaisquer(caminho.get(j),caminho.get(j+1) )+ " ";
+							recommendation += "."+model.getMensagemDasTransicoesEntreDoisEstadosQuaisquer(caminho.get(j),caminho.get(j+1));//elthon
 						}
 						arrayMensagens.add(recommendation);
 					}
@@ -136,8 +137,8 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 						x = recomen.toString();
 					}
 				}*/
-				
 				String x = getShortestPath(arrayMensagens);
+				x = eliminateReplicatedRecommendations(x);
 				r.put("rec",x);
 				callbackContext.success(r);
 			} else
@@ -163,6 +164,15 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 			}
 		}
 		return array.get(indexMenorCaminho);
+	}
+	private String eliminateReplicatedRecommendations(String rec){
+		String result = "";
+		rec = rec.replaceFirst(".", "");
+		String[] temp = rec.split("\\.");
+		for (int i = 0; i < temp.length; i++) {
+			if (!result.contains(temp[i])) result = result + ", " + temp[i];
+		}
+		return result.replaceFirst(", ","") +".";		
 	}
 
 	/**
