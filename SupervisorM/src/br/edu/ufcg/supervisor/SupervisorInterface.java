@@ -50,7 +50,7 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 	private static String pathToFile = "";
 	private static Automaton model = null;
 	private static HashMap<String, Float> map = new HashMap<String, Float>(); //nome - valor
-	HashMap<Integer, Float> map2 = new HashMap<Integer, Float>();
+	HashMap<Integer, Float> map2 = new HashMap<Integer, Float>();//mesmo que map, soh q com chave "integer"
 	
     /**
      * Sets the context of the Command. This can then be used to do things like
@@ -83,7 +83,7 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 	    	return true;  	
 	    } else { return false; }
     }
-
+	
 	/**
 	 * Executes the model with some data and extracts recommendations.
 	 * @param args Passed from Javascript interface.
@@ -109,7 +109,6 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 			Automaton a = LoadedModel.getModelo();
 			estado = a.buscaEstadoCorrespondente(map2);
 			if (!(estado.getClassificacao() == State.INT_CL_ACEITACAO) ) {//verifica se E Qm, caso não chama o algoritmo
-				
 				Search alg = new Search(model);
 				alg.execute(estado);
 				for (State estadoAceito : model.getArrayEstadosAceitos()){
@@ -196,9 +195,9 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 			map2.clear();
 			for(int i = 0; i<arrayNames.size();i++){
 				ids = ids + "," + arrayIds[i];
-				//map2.put(new Integer(arrayIds[i]), value);
 				names = names + "," + arrayNames.get(i);
 				map.put(arrayNames.get(i), 0.f);
+				//map2.put(Integer.valueOf(arrayIds[i]), 0.f);
 			}
 			r.put("ids", ids.replaceFirst(",",""));
 			r.put("names", names.replaceFirst(",",""));
