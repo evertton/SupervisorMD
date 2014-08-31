@@ -21,6 +21,15 @@
 //alert("id: "+e.value+", nome: "+e.options[e.selectedIndex].text+", valor: "+document.getElementById("_value").value);
 //document.getElementById("texto").innerHTML="Not developed.";
 
+
+
+function _exit_simulation(){
+	cordova.exec(
+		function(p){ },
+		function(p){ alert("Internal error occurred while trying to save log."); },
+		"SupervisorInterface","java_save_log",[]);
+}
+
 //executa chamada ao código java nativo que executa o modelo.
 function _simulate() {
 	var e = document.getElementById("id_of_select");
