@@ -36,18 +36,14 @@ public class JFrameModelGenerator extends javax.swing.JFrame {
 	private String automatoJson;
 	private WindowsManager gerenciador;
 
-	public JFrameModelGenerator() {
-		initComponents();
-	}
+	public JFrameModelGenerator(){ initComponents(); }
 
-	public JFrameModelGenerator(WindowsManager gerenciad) {
+	public JFrameModelGenerator(WindowsManager gerenciad){ 
 		this.gerenciador = gerenciad; 
 		initComponents();
 	}
 
-	public void setModeloJson(String automato){
-		this.automatoJson = automato;
-	}
+	public void setModeloJson(String automato){ this.automatoJson = automato; }
 
 	/*
 	 * Retorna a localidade do arquivo .jar executável.
@@ -56,9 +52,8 @@ public class JFrameModelGenerator extends javax.swing.JFrame {
 		String[] te = System.getProperty("user.dir").split("/");
 		StringBuffer sb = new StringBuffer();
 		sb.append(te[0]);
-		for (int i = 1; i <= (te.length -1); i++){//-2 para execução no eclipse
-			sb.append("/"+te[i]);
-		}
+		//-2 para execução no eclipse
+		for (int i = 1; i <= (te.length -1); i++) sb.append("/"+te[i]);
 		return sb.toString();
 	}
 
@@ -128,7 +123,7 @@ public class JFrameModelGenerator extends javax.swing.JFrame {
 		try {
 			String nomeArquivo = jTextField1.getText();
 			BufferedWriter writer = new BufferedWriter(new FileWriter(getLocalidadeDoJar()+"/"+nomeArquivo+".sup"));  
-			automatoJson.replaceAll("_null_", "_11_");
+			//automatoJson.replaceAll("_null_", "_11_");
 			writer.write( automatoJson );
 			writer.flush();  
 			writer.close();  

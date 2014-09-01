@@ -198,19 +198,13 @@ public class JFrameTransitionList extends javax.swing.JFrame {
     	if (indexTransicaoSelecionada>-1){
     		gerenciador.initEditarTransicao(indexAtributoSelecionado, indexTransicaoSelecionada);
     		this.setVisible(false);
-		} else {
-			JOptionPane.showMessageDialog(null,	Internacionalizar.MS_SELECIONE_UMA_TRANSICAO, "", 
-				JOptionPane.INFORMATION_MESSAGE);		
-		}
+		} else JOptionPane.showMessageDialog(null,Internacionalizar.MS_SELECIONE_UMA_TRANSICAO,"",JOptionPane.INFORMATION_MESSAGE);		
     }
 
     private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {                                               
     	int indexAtributoSelecionado = jTable1.getSelectedRow();
     	if (indexAtributoSelecionado>-1) removerLinha();
-    	else {
-			JOptionPane.showMessageDialog(null, Internacionalizar.MS_SELECIONE_UMA_TRANSICAO, "", 
-				JOptionPane.INFORMATION_MESSAGE);		
-		}
+    	else JOptionPane.showMessageDialog(null,Internacionalizar.MS_SELECIONE_UMA_TRANSICAO,"",JOptionPane.INFORMATION_MESSAGE);
     }
 
     private void jButtonRemoverTodasActionPerformed(java.awt.event.ActionEvent evt) {                                                    

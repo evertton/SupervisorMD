@@ -66,7 +66,7 @@ public class AttributeList {
 				Attribute.ID_AIR_RELATIVE_HUMIDITY,	Attribute.AMBIENTAL, "%");//10
 		preencherArrays(Internacionalizar.AT_SPEED, 				
 				Attribute.ID_SPEED, Attribute.COMPORTAMENTAL, "m/s");//11
-		arrayClassificacaoEstado.add(Internacionalizar.CL_NENHUM);	//posição 0 determinada na classe Estado 
+		//arrayClassificacaoEstado.add(Internacionalizar.CL_NENHUM);	//posição 0 determinada na classe Estado 
 		arrayClassificacaoEstado.add(Internacionalizar.CL_TOLERAVEL); //posição 1
 		arrayClassificacaoEstado.add(Internacionalizar.CL_PERIGOSO);	//posição 2
 		arrayClassificacaoEstado.add(Internacionalizar.CL_ACEITACAO);	//posição 3

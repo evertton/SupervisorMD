@@ -288,7 +288,7 @@ public class JFrameAttributeList extends javax.swing.JFrame {
 		*/
 		String automatoJson = automato.toJson();
 		if (!automatoValido(automatoJson) ){
-		JOptionPane.showMessageDialog(null, Internacionalizar.MS_MODELO_INVALIDO, "", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, Internacionalizar.MS_MODELO_INVALIDO, "", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		this.setVisible(false);

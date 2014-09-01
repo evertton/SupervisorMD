@@ -250,7 +250,7 @@ public class JFrameTransition extends javax.swing.JFrame {
 			java.util.logging.Logger.getLogger(JFrameTransition.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
 		java.awt.EventQueue.invokeLater(new Runnable() {
-			public void run() {	new JFrameTransition().setVisible(true);	}
+			public void run(){ new JFrameTransition().setVisible(true); }
 		});
 	}
 

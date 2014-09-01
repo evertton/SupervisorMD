@@ -170,7 +170,7 @@ public class State {
 		case INT_CL_PERIGOSO: return Internacionalizar.CL_PERIGOSO;
 		case INT_CL_ACEITACAO: return Internacionalizar.CL_ACEITACAO;
 		case INT_CL_TOLERAVEL: return Internacionalizar.CL_TOLERAVEL;
-		default: return Internacionalizar.CL_NENHUM;
+		default: return Internacionalizar.CL_TOLERAVEL;
 		}
 	}
 	

@@ -50,30 +50,22 @@ public class AutomataFiller {
 
 		Automaton aI  = new Automaton();
 		aI.setNome(Internacionalizar.AT_HEART_RATE);
-		State safe = createEstado("safe",  60f, Range.MENOR_OU_IGUAL_A, Range.MENOR_OU_IGUAL_A, 100f, State.INT_CL_ACEITACAO, identificador);
-		aI.addEstado(safe);
 
-		State tole = createEstado("tole",  100.0f, Range.MENOR_QUE, Range.MENOR_OU_IGUAL_A, 120.0f, State.INT_CL_TOLERAVEL, identificador);
+		State safe = createEstado("safe",  50f, Range.MENOR_OU_IGUAL_A, Range.MENOR_OU_IGUAL_A, 100f, State.INT_CL_ACEITACAO, identificador);
+		aI.addEstado(safe);
+		State tole = createEstado("tolerable",  100f, Range.MENOR_QUE, Range.MENOR_OU_IGUAL_A, 130f, State.INT_CL_TOLERAVEL, identificador);
 		aI.addEstado(tole);
-		State dang = createEstado("dang",  120.0f,  Range.MENOR_QUE, Range.MENOR_OU_IGUAL_A, 140.0f, State.INT_CL_PERIGOSO, identificador);
+		State dang = createEstado("dangerous",  130f,  Range.MENOR_QUE, Range.MENOR_OU_IGUAL_A, 160f, State.INT_CL_PERIGOSO, identificador);
 		aI.addEstado(dang);
 	
-		Transition safe_tole = createTransicao("ihr", safe, tole, "IncreaseHeartRate");
+		Transition safe_tole = createTransicao("ihr", safe, tole, "Increase_heart-rate.(by_going_uphill_or_accelerating)");
 		aI.addTransicao(safe_tole);
-		Transition safe_tole2 = createTransicao("hu", safe, tole, "HurryUp");
-		aI.addTransicao(safe_tole2);
-		Transition tole_safe = createTransicao("dhr", tole, safe,  "DecreaseHeartRate");
+		Transition tole_safe = createTransicao("dhr", tole, safe,  "Decrease_heart-rate.(by_slowing_down)");
 		aI.addTransicao(tole_safe);
-		Transition tole_safe2 = createTransicao("sd", tole, safe,  "SlowDown");
-		aI.addTransicao(tole_safe2);
-		Transition tole_dang = createTransicao("ihr", tole, dang,  "IncreaseHeartRate");
+		Transition tole_dang = createTransicao("ihr", tole, dang,  "Increase_heart-rate.(by_going_uphill_or_accelerating)");
 		aI.addTransicao(tole_dang);
-		Transition tole_dang2 = createTransicao("hu", tole, dang,  "HurryUp");
-		aI.addTransicao(tole_dang2);
-		Transition dang_tole = createTransicao("dhr", dang, tole,  "DecreaseHeartRate");
+		Transition dang_tole = createTransicao("dhr", dang, tole,  "Decrease_heart-rate.(by_slowing_down)");
 		aI.addTransicao(dang_tole);
-		Transition dang_tole2 = createTransicao("sd", dang, tole,  "SlowDown");
-		aI.addTransicao(dang_tole2);
 		
 		atributo.setAutomato(aI);
 		arrayAtributos.add(atributo);
@@ -88,20 +80,20 @@ public class AutomataFiller {
 
 		Automaton aI  = new Automaton();
 		
-		State slow = createEstado("slow",  2f, Range.MENOR_QUE, Range.MENOR_OU_IGUAL_A, 5f, State.INT_CL_TOLERAVEL, identificador);
+		State slow = createEstado("slow",  0f, Range.MENOR_QUE, Range.MENOR_OU_IGUAL_A, 6f, State.INT_CL_TOLERAVEL, identificador);
 		aI.addEstado(slow);
-		State mode = createEstado("mode",  5f,Range.MENOR_QUE, Range.MENOR_OU_IGUAL_A, 9f, State.INT_CL_ACEITACAO, identificador);
+		State mode = createEstado("moderable",  6f,Range.MENOR_QUE, Range.MENOR_OU_IGUAL_A, 13f, State.INT_CL_ACEITACAO, identificador);
 		aI.addEstado(mode);
-		State fast = createEstado("fast",  9f, Range.MENOR_QUE, Range.MENOR_OU_IGUAL_A, 12f, State.INT_CL_PERIGOSO, identificador);
+		State fast = createEstado("fast",  13f, Range.MENOR_QUE, Range.MENOR_OU_IGUAL_A, 20f, State.INT_CL_PERIGOSO, identificador);
 		aI.addEstado(fast);
 		
-		Transition slow_mode = createTransicao("hu", slow, mode, "HurryUp");
+		Transition slow_mode = createTransicao("hu", slow, mode, "Hurry-up.");
 		aI.addTransicao(slow_mode);
-		Transition mode_slow = createTransicao("sd", mode, slow,  "SlowDown");
+		Transition mode_slow = createTransicao("sd", mode, slow,  "Slow_down.");
 		aI.addTransicao(mode_slow);
-		Transition mode_dang = createTransicao("hu", mode, fast,  "HurryUp");
+		Transition mode_dang = createTransicao("hu", mode, fast,  "Hurry-up.");
 		aI.addTransicao(mode_dang);
-		Transition dang_mode = createTransicao("sd", fast, mode,  "SlowDown");
+		Transition dang_mode = createTransicao("sd", fast, mode,  "Slow_down.");
 		aI.addTransicao(dang_mode);
 
 		atributo.setAutomato(aI);
@@ -117,21 +109,21 @@ public class AutomataFiller {
 
 		Automaton aI  = new Automaton();
 		aI.setNome(Internacionalizar.AT_ENVIRONMENTAL_TEMPERATURE);
-		State good = createEstado("good",  19f, Range.MENOR_OU_IGUAL_A, Range.MENOR_OU_IGUAL_A, 22f, State.INT_CL_ACEITACAO, identificador);
+		State good = createEstado("good",  19f, Range.MENOR_OU_IGUAL_A, Range.MENOR_OU_IGUAL_A, 29f, State.INT_CL_ACEITACAO, identificador);
 		aI.addEstado(good);
 		
-		State high = createEstado("high",  28f, Range.MENOR_QUE, Range.MENOR_OU_IGUAL_A, 30f, State.INT_CL_PERIGOSO, identificador);
+		State high = createEstado("high",  29f, Range.MENOR_QUE, Range.MENOR_OU_IGUAL_A, 34f, State.INT_CL_PERIGOSO, identificador);
 		aI.addEstado(high);
-		State vhig = createEstado("vhig",  30f, Range.MENOR_QUE, Range.MENOR_OU_IGUAL_A, 40f, State.INT_CL_PERIGOSO, identificador);
+		State vhig = createEstado("vhig",  34f, Range.MENOR_QUE, Range.MENOR_OU_IGUAL_A, 50f, State.INT_CL_PERIGOSO, identificador);
 		aI.addEstado(vhig);
 
-		Transition good_high = createTransicao("it", good, high, "IncreaseTemperature");//(e.g.,hydrate)
+		Transition good_high = createTransicao("it", good, high, "Increase_temperature.");
 		aI.addTransicao(good_high);
-		Transition high_good = createTransicao("dt", high, good,  "DecreaseTemperature");//(e.g.,don't hydrate)
+		Transition high_good = createTransicao("dt", high, good,  "Decrease_temperature.(or_hydrate!)");
 		aI.addTransicao(high_good);
-		Transition high_vhig = createTransicao("it", high, vhig,  "IncreaseTemperature");//(e.g.,hydrate)
+		Transition high_vhig = createTransicao("it", high, vhig,  "Increase_temperature.");
 		aI.addTransicao(high_vhig);
-		Transition vhig_high = createTransicao("dt", vhig, high,  "DecreaseTemperature");//(e.g.,don't hydrate)
+		Transition vhig_high = createTransicao("dt", vhig, high,  "Decrease_temperature.(or_hydrate!)");
 		aI.addTransicao(vhig_high);
 	
 		atributo.setAutomato(aI);
@@ -151,28 +143,17 @@ public class AutomataFiller {
 	}
 	
 	public static int getAttIdFromName(String nome){
-		if (nome.equals(Internacionalizar.AT_HEART_RATE))
-			return Attribute.ID_HEART_RATE;
-		if (nome.equals(Internacionalizar.AT_RESPIRATORY_EXCHANGE_RATIO))
-			return Attribute.ID_RESPIRATORY_EXCHANGE_RATIO;
-		if (nome.equals(Internacionalizar.AT_SYSTOLIC_BLOOD_PRESSURE))
-			return Attribute.ID_SYSTOLIC_BLOOD_PRESSURE;
-		if (nome.equals(Internacionalizar.AT_DIASTOLIC_BLOOD_PRESSURE))
-			return Attribute.ID_DIASTOLIC_BLOOD_PRESSURE; 
-		if (nome.equals(Internacionalizar.AT_BODY_TEMPERATURE))
-			return Attribute.ID_BODY_TEMPERATURE;
-		if (nome.equals(Internacionalizar.AT_BLOOD_LACTATE))
-			return Attribute.ID_BLOOD_LACTATE;
-		if (nome.equals(Internacionalizar.AT_BLOOD_GLUCOSE))
-			return Attribute.ID_BLOOD_GLUCOSE;	
-		if (nome.equals(Internacionalizar.AT_OXIGEN_CONSUMPTION))
-			return Attribute.ID_OXIGEN_CONSUMPTION; 
-		if (nome.equals(Internacionalizar.AT_AMBIENT_PRESSURE))
-			return Attribute.ID_AMBIENT_PRESSURE;
-		if (nome.equals(Internacionalizar.AT_AIR_RELATIVE_HUMIDITY))
-			return Attribute.ID_AIR_RELATIVE_HUMIDITY; 	
-		if (nome.equals(Internacionalizar.AT_SPEED))
-			return Attribute.ID_SPEED;
+		if (nome.equals(Internacionalizar.AT_HEART_RATE)) return Attribute.ID_HEART_RATE;
+		if (nome.equals(Internacionalizar.AT_RESPIRATORY_EXCHANGE_RATIO)) return Attribute.ID_RESPIRATORY_EXCHANGE_RATIO;
+		if (nome.equals(Internacionalizar.AT_SYSTOLIC_BLOOD_PRESSURE)) return Attribute.ID_SYSTOLIC_BLOOD_PRESSURE;
+		if (nome.equals(Internacionalizar.AT_DIASTOLIC_BLOOD_PRESSURE)) return Attribute.ID_DIASTOLIC_BLOOD_PRESSURE; 
+		if (nome.equals(Internacionalizar.AT_BODY_TEMPERATURE)) return Attribute.ID_BODY_TEMPERATURE;
+		if (nome.equals(Internacionalizar.AT_BLOOD_LACTATE)) return Attribute.ID_BLOOD_LACTATE;
+		if (nome.equals(Internacionalizar.AT_BLOOD_GLUCOSE)) return Attribute.ID_BLOOD_GLUCOSE;	
+		if (nome.equals(Internacionalizar.AT_OXIGEN_CONSUMPTION)) return Attribute.ID_OXIGEN_CONSUMPTION; 
+		if (nome.equals(Internacionalizar.AT_AMBIENT_PRESSURE)) return Attribute.ID_AMBIENT_PRESSURE;
+		if (nome.equals(Internacionalizar.AT_AIR_RELATIVE_HUMIDITY)) return Attribute.ID_AIR_RELATIVE_HUMIDITY; 	
+		if (nome.equals(Internacionalizar.AT_SPEED)) return Attribute.ID_SPEED;
 		return 0;
 	}
 

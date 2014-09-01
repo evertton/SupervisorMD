@@ -73,9 +73,8 @@ public class ParallelComposition {
 		}
 		//seta as transições
 		for(State eB : automatoB.getVectorEstados()){
-			for(State eA : automatoA.getVectorEstados()){
+			for(State eA : automatoA.getVectorEstados())
 				setTransicoesDaComposicao(eA, eB, automatoA, automatoB, resultado);
-			}
 		}
 		return resultado;
 	}
@@ -94,13 +93,11 @@ public class ParallelComposition {
 		ArrayList<Transition> arrayTransicoesEstadoAIguais = new ArrayList<Transition>();
 		//verifica se é uma transicao pertencente ao estado do automato A analisado
 		for (Transition tA : arrayTransicoesA){
-			if (tA.getEstadoOrigem().getNome().equals(estadoA.getNome()))
-				arrayTransicoesEstadoA.add(tA);
+			if (tA.getEstadoOrigem().getNome().equals(estadoA.getNome())) arrayTransicoesEstadoA.add(tA);
 		}
 		//verifica se é uma transicao pertencente ao estado do automato B analisado
 		for (Transition tB : arrayTransicoesB){
-			if (tB.getEstadoOrigem().getNome().equals(estadoB.getNome()))
-				arrayTransicoesEstadoB.add(tB);
+			if (tB.getEstadoOrigem().getNome().equals(estadoB.getNome())) arrayTransicoesEstadoB.add(tB);
 		}
 		//Verifica as transições dos estados A e B que tem o mesmo rótulo. 
 		//Caso tenha, adiciona no ArrayList de transições iguais.
@@ -113,11 +110,9 @@ public class ParallelComposition {
 			}
 		}
 		//Remove as transições iguais do arrayTransicoesEstadoA.
-		for (Transition tIgual : arrayTransicoesEstadoAIguais)
-			arrayTransicoesEstadoA.remove(tIgual);
+		for (Transition tIgual : arrayTransicoesEstadoAIguais) arrayTransicoesEstadoA.remove(tIgual);
 		//Remove as transições iguais do arrayTransicoesEstadoB.
-		for (Transition tIgual : arrayTransicoesEstadoBIguais)
-			arrayTransicoesEstadoB.remove(tIgual);
+		for (Transition tIgual : arrayTransicoesEstadoBIguais) arrayTransicoesEstadoB.remove(tIgual);
 		//Adiciona as transições iguais no automato produto fazendo a relação entre os estados.
 		for (Transition tAIgual : arrayTransicoesEstadoAIguais){
 			for (Transition tBIgual : arrayTransicoesEstadoBIguais){
@@ -144,10 +139,8 @@ public class ParallelComposition {
 		String nomeEstadoInicial = tA.getEstadoOrigem().getNome()+"."+tB.getEstadoOrigem().getNome();
 		String nomeEstadoFinal = tA.getEstadoDestino().getNome()+"."+tB.getEstadoDestino().getNome();
 		for (State e : produto.getVectorEstados()){
-			if (e.getNome().equals(nomeEstadoFinal))
-				transicao.setEstadoDestino(e);
-			if (e.getNome().equals(nomeEstadoInicial))
-				transicao.setEstadoOrigem(e);
+			if (e.getNome().equals(nomeEstadoFinal)) transicao.setEstadoDestino(e);
+			if (e.getNome().equals(nomeEstadoInicial)) transicao.setEstadoOrigem(e);
 		}
 		return transicao;
 	}
@@ -160,10 +153,8 @@ public class ParallelComposition {
 		String nomeEstadoFinal = tA.getEstadoDestino().getNome()+"."+nomeEstadoB;
 		String nomeEstadoInicial = tA.getEstadoOrigem().getNome()+"."+nomeEstadoB;
 		for (State e : produto.getVectorEstados()){
-			if (e.getNome().equals(nomeEstadoFinal))
-				transicao.setEstadoDestino(e);
-			if (e.getNome().equals(nomeEstadoInicial))
-				transicao.setEstadoOrigem(e);
+			if (e.getNome().equals(nomeEstadoFinal)) transicao.setEstadoDestino(e);
+			if (e.getNome().equals(nomeEstadoInicial)) transicao.setEstadoOrigem(e);
 		}
 		return transicao;
 	}
@@ -176,10 +167,8 @@ public class ParallelComposition {
 		String nomeEstadoInicial = nomeEstadoA +"."+ tB.getEstadoOrigem().getNome();
 		String nomeEstadoFinal = nomeEstadoA +"."+ tB.getEstadoDestino().getNome();
 		for (State e : produto.getVectorEstados()){
-			if (e.getNome().equals(nomeEstadoFinal))
-				transicao.setEstadoDestino(e);
-			if (e.getNome().equals(nomeEstadoInicial))
-				transicao.setEstadoOrigem(e);
+			if (e.getNome().equals(nomeEstadoFinal)) transicao.setEstadoDestino(e);
+			if (e.getNome().equals(nomeEstadoInicial)) transicao.setEstadoOrigem(e);
 		}
 		return transicao;
 	}

@@ -26,7 +26,6 @@ package br.edu.ufcg.supervisor.desktop.util;
  * @author Marcos José, Elthon Oliveira
  */
 public class Constants {
-
 	public static final int OP_CRIAR = 1; //"criar";
 	public static final int OP_ALTERAR = 2; //"alterar";
 		

@@ -125,7 +125,7 @@ public class Internacionalizar {
 	public static String AT_SPEED 						= "Speed";
 
 	public static String CL_TOLERAVEL 				= "Tolerable";
-	public static String CL_NENHUM 				    = "None";
+	public static String CL_NENHU 				    = "None";
 	public static String CL_PERIGOSO 				= "Dangerous";
 	public static String CL_ACEITACAO 				= "Acceptable";
 }

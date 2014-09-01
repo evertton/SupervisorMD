@@ -128,9 +128,6 @@ public static String MS_MODELO_INVALIDO = "O modelo gerado é inválido!";
 	public static String AT_AIR_RELATIVE_HUMIDITY		= "Humidade relativa do ar";
 	public static String AT_SPEED 						= "Velocidade";
 	
-	
-	
-	
 	public static String CL_TOLERAVEL 				= "Tolerável";
 	public static String CL_NENHUM 				    = "Nenhum";
 	public static String CL_PERIGOSO 				= "Perigoso";
