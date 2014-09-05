@@ -296,4 +296,5 @@ public class State {
 	}
 	
 	public void addRange(Range r){ this.listaDeIntervalos.add(r); }
+	public void removeAllRanges(){ this.listaDeIntervalos.clear(); }
 }

@@ -94,6 +94,24 @@ public class JFrameState extends javax.swing.JFrame {
      * @param indexEstado	Um int contendo a posição do estado que será alterado.
      */
     public void setAlterarEstado(int indexAtributo, int indexEstado){
+    	/*marcos
+    	this.indexAtributoSelecionado = indexAtributo;
+    	jLabelNomeDoAtributo.setText( gerenciador.getAtributo(indexAtributo).getNome() );
+    	State estado = gerenciador.getAtributo(indexAtributo).getAutomato().getVectorEstados().get(indexEstado);
+		String unidade = gerenciador.getAtributo(indexAtributo).getUnidadeDeMedida();
+		jTextFieldNomeEstado.setText(estado.getNome());
+		jTextFieldValorMaximo.setText(""+estado.getValorMaximo());
+		jTextFieldValorMinimo.setText(""+estado.getValorMinimo());
+		jComboBoxMarcadorMaximo.setSelectedIndex(estado.getOperadorValorMaximo());
+		jComboBoxMarcadorMinimo.setSelectedIndex(estado.getOperadorValorMinimo());
+		jComboBoxClassificacao.setSelectedIndex(estado.getClassificacao());
+		jLabelUnidadeDeMedida1.setText("("+unidade+")");
+		jLabelUnidadeDeMedida2.setText("("+unidade+")");
+		this.indexEstado = indexEstado;
+		operacao = Constants.OP_ALTERAR;
+		setTitle(Internacionalizar.TITULO_TL_ALTERAR_ESTADO+" - "+gerenciador.getAtributo(indexAtributoSelecionado).getNome());//+"/"+estado.getNome()
+		*/
+    	//elthon
     	this.indexAtributoSelecionado = indexAtributo;
     	jLabelNomeDoAtributo.setText( gerenciador.getAtributo(indexAtributo).getNome() );
     	State estado = gerenciador.getAtributo(indexAtributo).getAutomato().getVectorEstados().get(indexEstado);
@@ -116,7 +134,7 @@ public class JFrameState extends javax.swing.JFrame {
  */
 	public void setCriarEstado(int indexAtributo){//seta vazio para o usuário escolher
 		this.indexAtributoSelecionado = indexAtributo;
-		jLabelNomeDoAtributo.setText( gerenciador.getAtributo(indexAtributoSelecionado).getNome() );
+		jLabelNomeDoAtributo.setText(gerenciador.getAtributo(indexAtributoSelecionado).getNome());
 		jTextFieldNomeEstado.setText("");
 		jTextFieldValorMaximo.setText("");
 		jTextFieldValorMinimo.setText("");	
@@ -149,6 +167,7 @@ public class JFrameState extends javax.swing.JFrame {
 	
 		estado.setNome(jTextFieldNomeEstado.getText());
 		estado.setClassificacao(jComboBoxClassificacao.getSelectedIndex());
+		estado.removeAllRanges();
 		estado.addRange(r);
 		estado.setIdentificador(AutomataFiller.getAttIdFromName(n));
 		/*estado.setOperadorValorMaximo(jComboBoxMarcadorMaximo.getSelectedIndex());
