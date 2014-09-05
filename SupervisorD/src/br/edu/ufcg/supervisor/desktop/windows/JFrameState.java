@@ -94,25 +94,7 @@ public class JFrameState extends javax.swing.JFrame {
      * @param indexEstado	Um int contendo a posição do estado que será alterado.
      */
     public void setAlterarEstado(int indexAtributo, int indexEstado){
-    	/*marcos
-    	this.indexAtributoSelecionado = indexAtributo;
-    	jLabelNomeDoAtributo.setText( gerenciador.getAtributo(indexAtributo).getNome() );
-    	State estado = gerenciador.getAtributo(indexAtributo).getAutomato().getVectorEstados().get(indexEstado);
-		String unidade = gerenciador.getAtributo(indexAtributo).getUnidadeDeMedida();
-		jTextFieldNomeEstado.setText(estado.getNome());
-		jTextFieldValorMaximo.setText(""+estado.getValorMaximo());
-		jTextFieldValorMinimo.setText(""+estado.getValorMinimo());
-		jComboBoxMarcadorMaximo.setSelectedIndex(estado.getOperadorValorMaximo());
-		jComboBoxMarcadorMinimo.setSelectedIndex(estado.getOperadorValorMinimo());
-		jComboBoxClassificacao.setSelectedIndex(estado.getClassificacao());
-		jLabelUnidadeDeMedida1.setText("("+unidade+")");
-		jLabelUnidadeDeMedida2.setText("("+unidade+")");
-		this.indexEstado = indexEstado;
-		operacao = Constants.OP_ALTERAR;
-		setTitle(Internacionalizar.TITULO_TL_ALTERAR_ESTADO+" - "+gerenciador.getAtributo(indexAtributoSelecionado).getNome());//+"/"+estado.getNome()
-		*/
-    	//elthon
-    	this.indexAtributoSelecionado = indexAtributo;
+       	this.indexAtributoSelecionado = indexAtributo;
     	jLabelNomeDoAtributo.setText( gerenciador.getAtributo(indexAtributo).getNome() );
     	State estado = gerenciador.getAtributo(indexAtributo).getAutomato().getVectorEstados().get(indexEstado);
 		String unidade = gerenciador.getAtributo(indexAtributo).getUnidadeDeMedida();
