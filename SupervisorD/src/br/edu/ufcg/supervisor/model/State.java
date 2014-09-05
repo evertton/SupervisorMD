@@ -33,9 +33,9 @@ import com.google.gson.internal.StringMap;
  *
  */
 public class State {
-	public static final int INT_CL_ACEITACAO = 3;
-	public static final int INT_CL_PERIGOSO = 2;
-	public static final int INT_CL_TOLERAVEL = 1;
+	public static final int INT_CL_ACEITACAO = 2;
+	public static final int INT_CL_PERIGOSO = 1;
+	public static final int INT_CL_TOLERAVEL = 0;
 	//public static final int INT_CL_NENHUM = 0;
 
 	public static final String NOME = "1";
