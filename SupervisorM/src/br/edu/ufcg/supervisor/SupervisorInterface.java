@@ -97,7 +97,8 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 	private void saveLogTraining(String content){
 		try {
 			Time time = new Time();
-			String fileName = "supervisorM-"+time.year+time.month+time.weekDay+time.hour+time.minute+time.second+".log";
+			//String fileName = "supervisorM-"+time.year+time.month+time.weekDay+time.hour+time.minute+time.second+".log";
+			String fileName = "supervisorM-"+time.year+time.month+".log";
 			String folder = Environment.getExternalStorageDirectory().toString() + "/Download/";
 			BufferedWriter writer = new BufferedWriter(new FileWriter(folder+fileName));  
 			writer.write(content);
@@ -122,7 +123,7 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 		String recommendation = "";
 		ArrayList<String> arrayMensagens = new ArrayList<String>();
 		String currentState = "";
-		for (int i = 0; i < map.size(); i++) { currentState = currentState+"- "+names.get(i)+": "+map.get(names.get(i))+".<br>"; }
+		for (int i = 0; i < map.size(); i++) { currentState = currentState+"- "+names.get(i)+": "+map.get(names.get(i))+"."; }
 		logString = logString + currentState + "\n--\n";
 		r.put("cur",currentState);
 		State estado;
@@ -136,36 +137,23 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 					LinkedList<State> caminho = alg.getPath(estadoAceito);
 					if (caminho != null){
 						for (int j=0; j<caminho.size()-1;j++) {
-							//recommendation += (j+1)+ ". " + model.getMensagemDasTransicoesEntreDoisEstadosQuaisquer(caminho.get(j),caminho.get(j+1) )+ " ";
 							recommendation += "."+model.getMensagemDasTransicoesEntreDoisEstadosQuaisquer(caminho.get(j),caminho.get(j+1));//elthon
 						}
 						arrayMensagens.add(recommendation);
 					}
 				}
-				/*String x = "";
-				for (State estadoAceito : model.getArrayEstadosAceitos()){
-					LinkedList<State> caminho = alg.getPath(estadoAceito);
-					if (caminho != null){
-						Collection<String> recomen = null;
-						for (int j=0; j<caminho.size()-1;j++) {
-							String rectemp = model.getMensagemDasTransicoesEntreDoisEstadosQuaisquer(caminho.get(j),caminho.get(j+1));
-							if (!recomen.contains(rectemp))
-								recomen.add(rectemp);
-						}
-						arrayMensagens.add(recommendation);
-						x = recomen.toString();
-					}
-				}*/
 				String x = getShortestPath(arrayMensagens);
 				x = eliminateReplicatedRecommendations(x);
+				logString = logString + "^^^ - msg: "+ x +"\n";
 				r.put("rec",x);
 				callbackContext.success(r);
 			} else
+				logString = logString + "^^^ - msg: keep going!!\n";
 				r.put("rec","Keep going!");
 				r.put("cur",currentState);
 				callbackContext.success(r);
 		} catch (Exception e) {
-			logString = logString + "^^^^^^ - State not covered by exercise program.\n";
+			logString = logString + "^^^ - msg: Stop and verify your devices. If this appears again, call your healthcare professional.\n";
 			r.put("error","Value not monitored.");
 			r.put("rec","Stop and verify your devices. If this appears again, call your healthcare professional.");
 			callbackContext.error(r);
