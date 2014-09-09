@@ -59,8 +59,7 @@ function _updateValues(_names){
 
 //TODO: implementar
 function _activate() {}
-function _export() { }
-function _exit() { }
+function _exit() { window.history.close(); }
 
 //salva dados (coletados numa tela) na sessão para carregar em outra tela
 function saveData(ids,names){
@@ -138,4 +137,12 @@ function _load2() {
 			function(p){ window.open("index.html"); },
 			function(p){ alert("Unknown error (elthon)"); },
 			"SupervisorInterface","java_load_pre_defined_model",[model]);
+}
+
+var fig = 0;
+function _loadFig() {
+	 if (fig%2==0) {
+	 	fig++;
+	 	return "figs/bg1.jpg";
+	 } else return "figs/bg2.jpg";
 }
