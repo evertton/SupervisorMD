@@ -2,37 +2,53 @@
 display: inline-block;
 background-color: black;
 color: white;
-padding: 10px 50px;
-width: 285px;
-text-decoration: none;
+padding: 2px;
+width: 160px;
 box-sizing: border-box;
 font-family: Helvetica, Arial, sans-serif;
-font-size: 24px;
-border: 0px;
+font-size: 18px;
+}
+
+.but4 {
+display: inline-block;
+background-color: black;
+color: white;
+padding: 2px 0px;
+width: 80px;
+font-family: Helvetica, Arial, sans-serif;
+font-size: 16px;
 }
 
 .but2 {
 display: inline-block;
 background-color: gray;
 color: white;
-padding: 10px 50px;
-width: 140px;
-text-decoration: none;
+padding: 2px;
+width: 80px;
 box-sizing: border-box;
 font-family: Helvetica, Arial, sans-serif;
-font-size: 24px;
-border: 0px;
+font-size: 18px;
 }
 
 .but3 {
 display: inline-block;
 background-color: red;
 color: white;
-padding: 10px 50px;
-width: 140px;
-text-decoration: none;
+padding: 2px;
+width: 80px;
 box-sizing: border-box;
 font-family: Helvetica, Arial, sans-serif;
-font-size: 24px;
-border: 0px;
+font-size: 18px;
+}
+
+.combo {
+display: inline-block;
+background-color: gray;
+color: white;
+padding: 2px 2px;
+width: 240px;
+high: 15px;
+box-sizing: border-box;
+font-family: Helvetica, Arial, sans-serif;
+font-size: 14px;
 }

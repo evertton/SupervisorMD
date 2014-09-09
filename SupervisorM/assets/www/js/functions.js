@@ -102,7 +102,7 @@ function _generateCombo(_ids,_names){
 	theSelect = document.createElement('select');
 	theSelect.name = 'name_of_select';
 	theSelect.id = 'id_of_select';
-	theSelect.className = 'class_of_select';
+	theSelect.className = 'combo';
 	currentState = "";
 	_atts_ids = _ids.split(",");
 	for (i = 0; i < _atts_names.length; i++) {

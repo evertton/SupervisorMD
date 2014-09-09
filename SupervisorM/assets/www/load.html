@@ -11,18 +11,18 @@
 		<h2>SupervisorM</h2>
 		<h3>Reference model</h3>
 		<hr>
-		Enter the name of the file (without '.sup'):
+		Enter the name of the file (without '.sup'):<br>
 		<input type="text" id="filename" maxlength="15" size="15">.sup
-		<input type="submit" id="ok_load" value="Load" onclick="_load();">
+		<input  class="but4" type="submit" id="ok_load" value="Load" onclick="_load();">
 		<hr>
-		Select a pre-defined model:
-		<select id="models">
+		Select a pre-defined model:<br>
+		<select class="combo" id="models">
 			<option value="sm">Speed Model</option>
 			<option value="shm">Speed/Heart-rate Model</option>
 			<option value="shtm">Speed/Heart-rate/Temperature Model</option>
 		</select>
-		<button id="ok_models" onclick="_load2();">Load</button><p>
+		<button class="but4" id="ok_models" onclick="_load2();">Load</button><p>
 		<hr>
-		<button id="go_back" onclick="window.open('index.html');"><< Back</button>
+		<button class="but4" id="go_back" onclick="window.open('index.html');"><< Back</button>
 	</body>
 </html>
