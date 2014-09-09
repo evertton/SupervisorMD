@@ -55,7 +55,7 @@ public class AutomataFiller {
 		aI.addEstado(safe);
 		State tole = createEstado("tolerable",  100f, Range.MENOR_QUE, Range.MENOR_OU_IGUAL_A, 130f, State.INT_CL_TOLERAVEL, identificador);
 		aI.addEstado(tole);
-		State dang = createEstado("dangerous",  130f,  Range.MENOR_QUE, Range.MENOR_OU_IGUAL_A, 160f, State.INT_CL_PERIGOSO, identificador);
+		State dang = createEstado("dangerous",  130f,  Range.MENOR_QUE, Range.MENOR_OU_IGUAL_A, 200f, State.INT_CL_PERIGOSO, identificador);
 		aI.addEstado(dang);
 	
 		Transition safe_tole = createTransicao("ihr", safe, tole, "Increase_heart-rate.(by_going_uphill_or_accelerating)");
@@ -109,12 +109,12 @@ public class AutomataFiller {
 
 		Automaton aI  = new Automaton();
 		aI.setNome(Internacionalizar.AT_ENVIRONMENTAL_TEMPERATURE);
-		State good = createEstado("good",  19f, Range.MENOR_OU_IGUAL_A, Range.MENOR_OU_IGUAL_A, 29f, State.INT_CL_ACEITACAO, identificador);
+		State good = createEstado("good",  10f, Range.MENOR_OU_IGUAL_A, Range.MENOR_OU_IGUAL_A, 29f, State.INT_CL_ACEITACAO, identificador);
 		aI.addEstado(good);
 		
-		State high = createEstado("high",  29f, Range.MENOR_QUE, Range.MENOR_OU_IGUAL_A, 34f, State.INT_CL_PERIGOSO, identificador);
+		State high = createEstado("high",  29f, Range.MENOR_QUE, Range.MENOR_OU_IGUAL_A, 35f, State.INT_CL_PERIGOSO, identificador);
 		aI.addEstado(high);
-		State vhig = createEstado("vhig",  34f, Range.MENOR_QUE, Range.MENOR_OU_IGUAL_A, 50f, State.INT_CL_PERIGOSO, identificador);
+		State vhig = createEstado("vhig",  35f, Range.MENOR_QUE, Range.MENOR_OU_IGUAL_A, 50f, State.INT_CL_PERIGOSO, identificador);
 		aI.addEstado(vhig);
 
 		Transition good_high = createTransicao("it", good, high, "Increase_temperature.");
@@ -130,7 +130,8 @@ public class AutomataFiller {
 		arrayAtributos.add(atributo);
 	}
 	
-	public static State createEstado(String nome, Float minimo, int operadorMinimo, int operadorMaximo, Float maximo, int classificacao, int identificador ){
+	public static State createEstado(String nome, Float minimo, int operadorMinimo, 
+			int operadorMaximo, Float maximo, int classificacao, int identificador){
 		State estado = new State();
 		estado.setNome(nome);
 		estado.setValorMaximo(maximo);
