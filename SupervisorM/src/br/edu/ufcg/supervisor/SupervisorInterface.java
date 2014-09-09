@@ -86,7 +86,6 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 	    	executeModel(args, callbackContext);
 	    	return true;  	
 	    } else if(action.equals("java_save_log")){
-	    	logString.replaceAll("<br>","");
 	    	saveLogTraining(logString);
 	    	return true;  	
 	    } else { return false; }
@@ -95,10 +94,12 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 
 	
 	private void saveLogTraining(String content){
+    	logString.replaceAll("<br>","");
 		try {
 			Time time = new Time();
 			//String fileName = "supervisorM-"+time.year+time.month+time.weekDay+time.hour+time.minute+time.second+".log";
-			String fileName = "supervisorM-"+time.year+time.month+".log";
+			@SuppressWarnings("static-access")
+			String fileName = "supervisorM-"+time.YEAR+time.MONTH+time.HOUR+time.MINUTE+time.SECOND+".log";
 			String folder = Environment.getExternalStorageDirectory().toString() + "/Download/";
 			BufferedWriter writer = new BufferedWriter(new FileWriter(folder+fileName));  
 			writer.write(content);
@@ -124,7 +125,7 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 		ArrayList<String> arrayMensagens = new ArrayList<String>();
 		String currentState = "";
 		for (int i = 0; i < map.size(); i++) { currentState = currentState+"- "+names.get(i)+": "+map.get(names.get(i))+".<br>"; }
-		logString = logString + currentState + "\n--\n";
+		logString = logString + currentState + " - ";
 		r.put("cur",currentState);
 		State estado;
 		try {
@@ -144,16 +145,16 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 				}
 				String x = getShortestPath(arrayMensagens);
 				x = eliminateReplicatedRecommendations(x);
-				logString = logString + "^^^ - msg: "+ x +"\n";
+				logString = logString + x +"\n";
 				r.put("rec",x);
 				callbackContext.success(r);
 			} else
-				logString = logString + "^^^ - msg: keep going!!\n";
+				logString = logString + "(keep going)\n";
 				r.put("rec","Keep going!");
 				r.put("cur",currentState);
 				callbackContext.success(r);
 		} catch (Exception e) {
-			logString = logString + "^^^ - msg: Stop and verify your devices. If this appears again, call your healthcare professional.\n";
+			logString = logString + "(state not covered)\n";
 			r.put("error","Value not monitored.");
 			r.put("rec","Stop and verify your devices. If this appears again, call your healthcare professional.");
 			callbackContext.error(r);
