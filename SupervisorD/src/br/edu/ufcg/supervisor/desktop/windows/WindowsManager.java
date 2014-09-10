@@ -138,11 +138,11 @@ public class WindowsManager {
 
 	//LISTA ESTADOS
 	public void removeTodosEstados(int indexAtributo){
-		arrayAtributos.get(indexAtributo).getAutomato().getVectorEstados().clear();
+		arrayAtributos.get(indexAtributo).getAutomaton().getVectorEstados().clear();
 	}
 
 	public void removeTodasTransicoes(int indexAtributo){
-		arrayAtributos.get(indexAtributo).getAutomato().getArrayTransicoes().clear();
+		arrayAtributos.get(indexAtributo).getAutomaton().getArrayTransicoes().clear();
 	}
 
 	public Attribute getAtributo(int indexAtributo) {

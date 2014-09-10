@@ -43,13 +43,13 @@ public class AutomataFiller {
 
 	private static void preencheFrequenciaCardiaca(ArrayList<Attribute> arrayAtributos){
 		Attribute atributo = new Attribute();
-		atributo.setNome(Internacionalizar.AT_HEART_RATE);
-		atributo.setTipo(Attribute.FISIOLOGICO);
-		atributo.setUnidadeDeMedida("bpm");
+		atributo.setName(Internationalization.AT_HEART_RATE);
+		atributo.setType(Attribute.PHYSIOLOGICAL);
+		atributo.setUnitOfMeasure("bpm");
 		int identificador = Attribute.ID_HEART_RATE;
 
 		Automaton aI  = new Automaton();
-		aI.setNome(Internacionalizar.AT_HEART_RATE);
+		aI.setNome(Internationalization.AT_HEART_RATE);
 
 		State safe = createEstado("safe",  50f, Range.MENOR_OU_IGUAL_A, Range.MENOR_OU_IGUAL_A, 100f, State.INT_CL_ACEITACAO, identificador);
 		aI.addEstado(safe);
@@ -67,15 +67,15 @@ public class AutomataFiller {
 		Transition dang_tole = createTransicao("dhr", dang, tole,  "Decrease_heart-rate.(by_slowing_down)");
 		aI.addTransicao(dang_tole);
 		
-		atributo.setAutomato(aI);
+		atributo.setAutomaton(aI);
 		arrayAtributos.add(atributo);
 	}
 	
 	private static void preencheVelocidade(ArrayList<Attribute> arrayAtributos){
 		Attribute atributo = new Attribute();
-		atributo.setNome(Internacionalizar.AT_SPEED);
-		atributo.setTipo(Attribute.FISIOLOGICO);
-		atributo.setUnidadeDeMedida("m/s");
+		atributo.setName(Internationalization.AT_SPEED);
+		atributo.setType(Attribute.PHYSIOLOGICAL);
+		atributo.setUnitOfMeasure("m/s");
 		int identificador = Attribute.ID_SPEED;
 
 		Automaton aI  = new Automaton();
@@ -96,19 +96,19 @@ public class AutomataFiller {
 		Transition dang_mode = createTransicao("sd", fast, mode,  "Slow_down.");
 		aI.addTransicao(dang_mode);
 
-		atributo.setAutomato(aI);
+		atributo.setAutomaton(aI);
 		arrayAtributos.add(atributo);
 	}
 	
 	private static void preencheTemperatura(ArrayList<Attribute> arrayAtributos){
 		Attribute atributo = new Attribute();
-		atributo.setNome(Internacionalizar.AT_ENVIRONMENTAL_TEMPERATURE);
-		atributo.setTipo(Attribute.AMBIENTAL);
-		atributo.setUnidadeDeMedida("°C");
+		atributo.setName(Internationalization.AT_ENVIRONMENTAL_TEMPERATURE);
+		atributo.setType(Attribute.ENVIRONMENTAL);
+		atributo.setUnitOfMeasure("°C");
 		int identificador = Attribute.ID_ENVIRONMENTAL_TEMPERATURE;
 
 		Automaton aI  = new Automaton();
-		aI.setNome(Internacionalizar.AT_ENVIRONMENTAL_TEMPERATURE);
+		aI.setNome(Internationalization.AT_ENVIRONMENTAL_TEMPERATURE);
 		State good = createEstado("good",  10f, Range.MENOR_OU_IGUAL_A, Range.MENOR_OU_IGUAL_A, 29f, State.INT_CL_ACEITACAO, identificador);
 		aI.addEstado(good);
 		
@@ -126,7 +126,7 @@ public class AutomataFiller {
 		Transition vhig_high = createTransicao("dt", vhig, high,  "Decrease_temperature.(or_hydrate!)");
 		aI.addTransicao(vhig_high);
 	
-		atributo.setAutomato(aI);
+		atributo.setAutomaton(aI);
 		arrayAtributos.add(atributo);
 	}
 	
@@ -144,17 +144,17 @@ public class AutomataFiller {
 	}
 	
 	public static int getAttIdFromName(String nome){
-		if (nome.equals(Internacionalizar.AT_HEART_RATE)) return Attribute.ID_HEART_RATE;
-		if (nome.equals(Internacionalizar.AT_RESPIRATORY_EXCHANGE_RATIO)) return Attribute.ID_RESPIRATORY_EXCHANGE_RATIO;
-		if (nome.equals(Internacionalizar.AT_SYSTOLIC_BLOOD_PRESSURE)) return Attribute.ID_SYSTOLIC_BLOOD_PRESSURE;
-		if (nome.equals(Internacionalizar.AT_DIASTOLIC_BLOOD_PRESSURE)) return Attribute.ID_DIASTOLIC_BLOOD_PRESSURE; 
-		if (nome.equals(Internacionalizar.AT_BODY_TEMPERATURE)) return Attribute.ID_BODY_TEMPERATURE;
-		if (nome.equals(Internacionalizar.AT_BLOOD_LACTATE)) return Attribute.ID_BLOOD_LACTATE;
-		if (nome.equals(Internacionalizar.AT_BLOOD_GLUCOSE)) return Attribute.ID_BLOOD_GLUCOSE;	
-		if (nome.equals(Internacionalizar.AT_OXIGEN_CONSUMPTION)) return Attribute.ID_OXIGEN_CONSUMPTION; 
-		if (nome.equals(Internacionalizar.AT_AMBIENT_PRESSURE)) return Attribute.ID_AMBIENT_PRESSURE;
-		if (nome.equals(Internacionalizar.AT_AIR_RELATIVE_HUMIDITY)) return Attribute.ID_AIR_RELATIVE_HUMIDITY; 	
-		if (nome.equals(Internacionalizar.AT_SPEED)) return Attribute.ID_SPEED;
+		if (nome.equals(Internationalization.AT_HEART_RATE)) return Attribute.ID_HEART_RATE;
+		if (nome.equals(Internationalization.AT_RESPIRATORY_EXCHANGE_RATIO)) return Attribute.ID_RESPIRATORY_EXCHANGE_RATIO;
+		if (nome.equals(Internationalization.AT_SYSTOLIC_BLOOD_PRESSURE)) return Attribute.ID_SYSTOLIC_BLOOD_PRESSURE;
+		if (nome.equals(Internationalization.AT_DIASTOLIC_BLOOD_PRESSURE)) return Attribute.ID_DIASTOLIC_BLOOD_PRESSURE; 
+		if (nome.equals(Internationalization.AT_BODY_TEMPERATURE)) return Attribute.ID_BODY_TEMPERATURE;
+		if (nome.equals(Internationalization.AT_BLOOD_LACTATE)) return Attribute.ID_BLOOD_LACTATE;
+		if (nome.equals(Internationalization.AT_BLOOD_GLUCOSE)) return Attribute.ID_BLOOD_GLUCOSE;	
+		if (nome.equals(Internationalization.AT_OXIGEN_CONSUMPTION)) return Attribute.ID_OXIGEN_CONSUMPTION; 
+		if (nome.equals(Internationalization.AT_AMBIENT_PRESSURE)) return Attribute.ID_AMBIENT_PRESSURE;
+		if (nome.equals(Internationalization.AT_AIR_RELATIVE_HUMIDITY)) return Attribute.ID_AIR_RELATIVE_HUMIDITY; 	
+		if (nome.equals(Internationalization.AT_SPEED)) return Attribute.ID_SPEED;
 		return 0;
 	}
 

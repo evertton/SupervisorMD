@@ -35,18 +35,18 @@ import com.google.gson.internal.StringMap;
  */
 public class Automaton {
 	public static final String NOME = "1";//"nome";
-	public static final String ARRAY_TRANSICOES = "2";//"arrayTransicoes";
-	public static final String ARRAY_TRANSICOES_P1 = "5";//"arrayTransicoes";
-	public static final String ARRAY_TRANSICOES_P2 = "6";//"arrayTransicoes";
+	public static final String ARRAY_TRANSICOES = "2";//"transitionsArray";
+	public static final String ARRAY_TRANSICOES_P1 = "5";//"transitionsArray";
+	public static final String ARRAY_TRANSICOES_P2 = "6";//"transitionsArray";
 	public static final String ARRAY_ESTADOS = "3";//"arrayEstados";
 	public static final String ARRAY_ESTADOS_P1 = "7";
 	public static final String ARRAY_ESTADOS_P2 = "8";
-	public static final String ARRAY_ESTADOS_ACEITOS = "4";// "arrayEstadosAceitos";
+	public static final String ARRAY_ESTADOS_ACEITOS = "4";// "acceptableStatesArray";
 
-	private Vector<State> vectorEstados;
-	private ArrayList<State> arrayEstadosAceitos;
-	private ArrayList<String> arrayRotulos;
-	private ArrayList<Transition> arrayTransicoes;
+	private Vector<State> statesVector;
+	private ArrayList<State> acceptableStatesArray;
+	private ArrayList<String> labelsArray;
+	private ArrayList<Transition> transitionsArray;
 	private String nome;
 
 	/**
@@ -58,9 +58,9 @@ public class Automaton {
 	@SuppressWarnings("unchecked")
 	public Automaton (Automaton a){
 		init();
-		vectorEstados = (Vector<State>) a.getVectorEstados().clone();
-		arrayTransicoes = (ArrayList<Transition>) a.getArrayTransicoes().clone();
-		arrayRotulos = (ArrayList<String>) a.getListaDeRotulos().clone();
+		statesVector = (Vector<State>) a.getVectorEstados().clone();
+		transitionsArray = (ArrayList<Transition>) a.getArrayTransicoes().clone();
+		labelsArray = (ArrayList<String>) a.getListaDeRotulos().clone();
 		nome = a.getNome();
 	}
 
@@ -76,16 +76,16 @@ public class Automaton {
 		ArrayList<StringMap<String>> arrayEstadosMap = (ArrayList<StringMap<String>>) map.get(ARRAY_ESTADOS);
 		for (StringMap<String> sm : arrayEstadosMap){
 			State e = new State(sm);
-			this.vectorEstados.add(e);
+			this.statesVector.add(e);
 		}
 		ArrayList<Double> arrayEstadosAceitosInteger = (ArrayList<Double>) map.get(ARRAY_ESTADOS_ACEITOS);
-		for (Double i : arrayEstadosAceitosInteger) this.arrayEstadosAceitos.add(vectorEstados.get(i.intValue()));
+		for (Double i : arrayEstadosAceitosInteger) this.acceptableStatesArray.add(statesVector.get(i.intValue()));
 		ArrayList<StringMap<Object>> arrayTransicoesMap = (ArrayList<StringMap<Object>>) map.get(ARRAY_TRANSICOES);
 		for (StringMap<Object> sm : arrayTransicoesMap){
-			Transition t = new Transition(vectorEstados, sm);
-			this.arrayTransicoes.add(t);
+			Transition t = new Transition(statesVector, sm);
+			this.transitionsArray.add(t);
 		}
-		for (Transition transicao : arrayTransicoes) transicao.addTransicaoNoEstadoOrigem();
+		for (Transition transicao : transitionsArray) transicao.addTransicaoNoEstadoOrigem();
 	}
 
 	
@@ -135,14 +135,14 @@ public class Automaton {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put(NOME, nome); 
 		ArrayList<String> arrayStringTransicao = new ArrayList<String>();
-		for(Transition t : arrayTransicoes) arrayStringTransicao.add(t.toJson(vectorEstados));//TO)DO MODIFICADO
+		for(Transition t : transitionsArray) arrayStringTransicao.add(t.toJson(statesVector));//TO)DO MODIFICADO
 		map.put(ARRAY_TRANSICOES, arrayStringTransicao.toString());
 		ArrayList<Integer> arrayStringEstadosAceitos = new ArrayList<Integer>();
 		ArrayList<String> arrayStringEstado = new ArrayList<String>();
-		for(State e : vectorEstados){
+		for(State e : statesVector){
 			arrayStringEstado.add(e.toJson());
 			if (e.getClassificacao() == State.INT_CL_ACEITACAO)
-				arrayStringEstadosAceitos.add(vectorEstados.indexOf(e));
+				arrayStringEstadosAceitos.add(statesVector.indexOf(e));
 		}
 		map.put(ARRAY_ESTADOS, arrayStringEstado.toString());
 		map.put(ARRAY_ESTADOS_ACEITOS, arrayStringEstadosAceitos.toString());
@@ -153,48 +153,48 @@ public class Automaton {
 	 * Retorna os estados do automato.
 	 * @return	Um Vector<Estado> contendo todos os estados do automato.
 	 */
-	public Vector<State> getVectorEstados(){ return vectorEstados; }
+	public Vector<State> getVectorEstados(){ return statesVector; }
 
 	/**
 	 * Seta uma lista com os estados do automato. 
 	 * @param arrayEstados	Um Vector<Estado> contendo os estados do automato.
 	 */
-	public void setVectorEstados(Vector<State> arrayEstados){ this.vectorEstados = arrayEstados; }
+	public void setVectorEstados(Vector<State> arrayEstados){ this.statesVector = arrayEstados; }
 
 	/**
 	 * Retorna as transições do automato.
 	 * @return	Um ArrayList<Transicao> contendo todas as transições do automato.
 	 */
-	public ArrayList<Transition> getArrayTransicoes(){ return arrayTransicoes; }
+	public ArrayList<Transition> getArrayTransicoes(){ return transitionsArray; }
 
 	/**
 	 * Seta a lista de transições do automato.
-	 * @param arrayTransicoes	Um ArrayList<Transicao> contendo as transições do automato.
+	 * @param transitionsArray	Um ArrayList<Transicao> contendo as transições do automato.
 	 */
 	public void setArrayTransicoes(ArrayList<Transition> arrayTransicoes){ 
-		this.arrayTransicoes = arrayTransicoes;
+		this.transitionsArray = arrayTransicoes;
 	}
 
 	/**
 	 * Retorna os estados aceitos do automato.
 	 * @return	Um ArrayList<Estado> contendo todos os estados de aceitação.
 	 */
-	public ArrayList<State> getArrayEstadosAceitos() { return arrayEstadosAceitos; }
+	public ArrayList<State> getArrayEstadosAceitos() { return acceptableStatesArray; }
 
 	/**
 	 * Adiciona um estado no automato.
 	 * @param estado	Um Estado pertencente ao automato.
 	 */
-	public void addEstado(State estado){ vectorEstados.add(estado); }
+	public void addEstado(State estado){ statesVector.add(estado); }
 
 	/**
 	 * Adiciona uma transição ao atomato.
 	 * @param transicao	Uma Transicao pertencente ao automato.
 	 */
 	public void addTransicao(Transition transicao){
-		if (!arrayTransicoes.contains(transicao)){
-			arrayTransicoes.add(transicao);
-			if (!arrayRotulos.contains(transicao.getRotulo())) arrayRotulos.add(transicao.getRotulo());
+		if (!transitionsArray.contains(transicao)){
+			transitionsArray.add(transicao);
+			if (!labelsArray.contains(transicao.getRotulo())) labelsArray.add(transicao.getRotulo());
 		}
 	}
 
@@ -214,7 +214,7 @@ public class Automaton {
 	 * Retorna a lista de rótulos.
 	 * @return	Um ArrayList<String> contendo os rótulos das transições.
 	 */
-	public ArrayList<String> getListaDeRotulos(){ return arrayRotulos; }
+	public ArrayList<String> getListaDeRotulos(){ return labelsArray; }
 
 	/**
 	 * Busca o estado correspondente aos valores das variáveis monitoradas.
@@ -224,7 +224,7 @@ public class Automaton {
 	 * @throws Exception 
 	 */
 	public State buscaEstadoCorrespondente(HashMap<Integer, Float> map) throws Exception{
-		for (State estado : vectorEstados ){
+		for (State estado : statesVector ){
 			if (estado.verificaIntervalos(map)) return estado;
 		}
 		throw new Exception("Value not monitored");
@@ -232,10 +232,10 @@ public class Automaton {
 
 	/*Inicializa os atributos do automato */
 	private void init(){
-		vectorEstados = new Vector<State>();
-		arrayTransicoes = new ArrayList<Transition>();
-		arrayRotulos = new ArrayList<String>();
-		arrayEstadosAceitos = new ArrayList<State>();
+		statesVector = new Vector<State>();
+		transitionsArray = new ArrayList<Transition>();
+		labelsArray = new ArrayList<String>();
+		acceptableStatesArray = new ArrayList<State>();
 		nome = "";
 	}
 }

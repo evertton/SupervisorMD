@@ -24,7 +24,7 @@ import java.util.Vector;
 import br.edu.ufcg.supervisor.desktop.util.AttributeList;
 import br.edu.ufcg.supervisor.desktop.util.AutomataFiller;
 import br.edu.ufcg.supervisor.desktop.util.Constants;
-import br.edu.ufcg.supervisor.desktop.util.Internacionalizar;
+import br.edu.ufcg.supervisor.desktop.util.Internationalization;
 import br.edu.ufcg.supervisor.model.Attribute;
 import br.edu.ufcg.supervisor.model.Range;
 import br.edu.ufcg.supervisor.model.State;
@@ -95,9 +95,9 @@ public class JFrameState extends javax.swing.JFrame {
      */
     public void setAlterarEstado(int indexAtributo, int indexEstado){
        	this.indexAtributoSelecionado = indexAtributo;
-    	jLabelNomeDoAtributo.setText( gerenciador.getAtributo(indexAtributo).getNome() );
-    	State estado = gerenciador.getAtributo(indexAtributo).getAutomato().getVectorEstados().get(indexEstado);
-		String unidade = gerenciador.getAtributo(indexAtributo).getUnidadeDeMedida();
+    	jLabelNomeDoAtributo.setText( gerenciador.getAtributo(indexAtributo).getName() );
+    	State estado = gerenciador.getAtributo(indexAtributo).getAutomaton().getVectorEstados().get(indexEstado);
+		String unidade = gerenciador.getAtributo(indexAtributo).getUnitOfMeasure();
 		jTextFieldNomeEstado.setText(estado.getNome());
 		jTextFieldValorMaximo.setText(""+estado.getValorMaximo());
 		jTextFieldValorMinimo.setText(""+estado.getValorMinimo());
@@ -108,7 +108,7 @@ public class JFrameState extends javax.swing.JFrame {
 		jLabelUnidadeDeMedida2.setText("("+unidade+")");
 		this.indexEstado = indexEstado;
 		operacao = Constants.OP_ALTERAR;
-		setTitle(Internacionalizar.TITULO_TL_ALTERAR_ESTADO+" - "+gerenciador.getAtributo(indexAtributoSelecionado).getNome());//+"/"+estado.getNome()
+		setTitle(Internationalization.TITULO_TL_ALTERAR_ESTADO+" - "+gerenciador.getAtributo(indexAtributoSelecionado).getName());//+"/"+estado.getNome()
 	}
     
 /**
@@ -116,15 +116,15 @@ public class JFrameState extends javax.swing.JFrame {
  */
 	public void setCriarEstado(int indexAtributo){//seta vazio para o usuário escolher
 		this.indexAtributoSelecionado = indexAtributo;
-		jLabelNomeDoAtributo.setText(gerenciador.getAtributo(indexAtributoSelecionado).getNome());
+		jLabelNomeDoAtributo.setText(gerenciador.getAtributo(indexAtributoSelecionado).getName());
 		jTextFieldNomeEstado.setText("");
 		jTextFieldValorMaximo.setText("");
 		jTextFieldValorMinimo.setText("");	
-		String unidade = gerenciador.getAtributo(indexAtributoSelecionado).getUnidadeDeMedida();
+		String unidade = gerenciador.getAtributo(indexAtributoSelecionado).getUnitOfMeasure();
 		jLabelUnidadeDeMedida1.setText("("+unidade+")");
 		jLabelUnidadeDeMedida2.setText("("+unidade+")");
 		operacao = Constants.OP_CRIAR;
-		setTitle(Internacionalizar.TITULO_TL_CRIAR_ESTADO+" - "+gerenciador.getAtributo(indexAtributoSelecionado).getNome());//+"/Novo Estado"
+		setTitle(Internationalization.TITULO_TL_CRIAR_ESTADO+" - "+gerenciador.getAtributo(indexAtributoSelecionado).getName());//+"/Novo Estado"
 	}
 
 	/* Preenche um estado com as informações da tela. */
@@ -132,7 +132,7 @@ public class JFrameState extends javax.swing.JFrame {
 	private void preencheEstado(State estado){
 		//////////////////
 		//this.indexAtributoSelecionado = indexAtributo;
-		String n = gerenciador.getAtributo(indexAtributoSelecionado).getAutomato().getNome();
+		String n = gerenciador.getAtributo(indexAtributoSelecionado).getAutomaton().getNome();
 		System.out.println("---"+n);
 		//estado.setIdentificador(Integer.valueOf(n).intValue());
 		/////////////////
@@ -162,12 +162,12 @@ public class JFrameState extends javax.swing.JFrame {
 	private void preencheEstado_Criar(){
 		State estado = new State();
 		preencheEstado(estado);
-		gerenciador.getAtributo(indexAtributoSelecionado).getAutomato().addEstado(estado);
+		gerenciador.getAtributo(indexAtributoSelecionado).getAutomaton().addEstado(estado);
 	}
 
 	/* Preenche um estado com as informações da tela para atualizá-lo . */
 	private void preencheEstado_Atualizar(){
-		State estado = gerenciador.getAtributo(indexAtributoSelecionado).getAutomato().getVectorEstados().get(indexEstado);//().get(linhaAtributo);//new Estado();
+		State estado = gerenciador.getAtributo(indexAtributoSelecionado).getAutomaton().getVectorEstados().get(indexEstado);//().get(linhaAtributo);//new Estado();
 		preencheEstado(estado);
 	}
        
@@ -191,32 +191,32 @@ public class JFrameState extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jTextFieldNomeEstado = new javax.swing.JTextField();
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        jLabelAtributo.setText(Internacionalizar.CP_ATRIBUTO+":");
+        jLabelAtributo.setText(Internationalization.CP_ATRIBUTO+":");
         jLabelNomeDoAtributo.setText("--");
-        jLabel1.setText(Internacionalizar.CP_VALOR_MINIMO+":");
-        jLabel2.setText(Internacionalizar.CP_VALOR_MAXIMO+":");
+        jLabel1.setText(Internationalization.CP_VALOR_MINIMO+":");
+        jLabel2.setText(Internationalization.CP_VALOR_MAXIMO+":");
         jTextFieldValorMinimo.setText("97");
         jComboBoxMarcadorMinimo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "[", "(" }));
         jTextFieldValorMaximo.setText("156");
         jComboBoxMarcadorMaximo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "]", ")" }));
-        jLabelUnidadeDeMedida1.setText(Internacionalizar.CP_UNIDADE);
-        jLabelUnidadeDeMedida2.setText(Internacionalizar.CP_UNIDADE);
-        jLabelValorMedido.setText(Internacionalizar.CP_INTERVALO_DE_MEDICAO);
-        jButtonSalvar.setText(Internacionalizar.BT_SALVAR);
+        jLabelUnidadeDeMedida1.setText(Internationalization.CP_UNIDADE);
+        jLabelUnidadeDeMedida2.setText(Internationalization.CP_UNIDADE);
+        jLabelValorMedido.setText(Internationalization.CP_INTERVALO_DE_MEDICAO);
+        jButtonSalvar.setText(Internationalization.BT_SALVAR);
         jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSalvarActionPerformed(evt);
             }
         });
-        jButtonCancelar.setText(Internacionalizar.BT_CANCELAR);
+        jButtonCancelar.setText(Internationalization.BT_CANCELAR);
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCancelarActionPerformed(evt);
             }
         });
         jComboBoxClassificacao.setModel(new javax.swing.DefaultComboBoxModel<String>(arrayClassificacaoEstado));
-        jLabel4.setText(Internacionalizar.CP_CLASSIFICACAO+":");
-        jLabel5.setText(Internacionalizar.CP_NOME+":");
+        jLabel4.setText(Internationalization.CP_CLASSIFICACAO+":");
+        jLabel5.setText(Internationalization.CP_NOME+":");
         jTextFieldNomeEstado.setText("---");
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

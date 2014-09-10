@@ -22,7 +22,7 @@ import java.util.Vector;
 
 import br.edu.ufcg.supervisor.desktop.util.AttributeList;
 import br.edu.ufcg.supervisor.desktop.util.Constants;
-import br.edu.ufcg.supervisor.desktop.util.Internacionalizar;
+import br.edu.ufcg.supervisor.desktop.util.Internationalization;
 import br.edu.ufcg.supervisor.model.Attribute;
 
 /**
@@ -81,10 +81,10 @@ public class JFrameAttributeSelector extends javax.swing.JFrame {
 	public void setAlterarAtributo(int linhaAtributo, Attribute atributo){
 		this.atributoSelecionado = atributo;
 		addAtributoNaListaDoComboBox(atributo);
-		jLabelTipoAtributo.setText(AttributeList.getTipoAtributoString(atributo.getTipo()));
-		jLabelUnidadeAtributo.setText(atributo.getUnidadeDeMedida());
-		jTextFieldFrequencia.setText(""+atributo.getFrequenciaDeLeitura());
-		setTitle(Internacionalizar.TITULO_TL_ALTERAR_ATRIBUTO);
+		jLabelTipoAtributo.setText(AttributeList.getTipoAtributoString(atributo.getType()));
+		jLabelUnidadeAtributo.setText(atributo.getUnitOfMeasure());
+		jTextFieldFrequencia.setText(""+atributo.getReadingRate());
+		setTitle(Internationalization.TITULO_TL_ALTERAR_ATRIBUTO);
 		this.indexAtributo = linhaAtributo;
 		operacao = Constants.OP_ALTERAR;
 	}
@@ -96,7 +96,7 @@ public class JFrameAttributeSelector extends javax.swing.JFrame {
 		jLabelTipoAtributo.setText( getStringTipoAtributo( arrayTipoAtributo.get(0) ) );
 		jLabelUnidadeAtributo.setText(arrayUnidadeAtributo.get(0));
 		jTextFieldFrequencia.setText(""+12);
-		setTitle(Internacionalizar.TITULO_TL_SELECIONAR_ATRIBUTO);
+		setTitle(Internationalization.TITULO_TL_SELECIONAR_ATRIBUTO);
 		operacao = Constants.OP_CRIAR;
 	}
 
@@ -105,9 +105,9 @@ public class JFrameAttributeSelector extends javax.swing.JFrame {
 	 * @param atributo	Um Atributo excluido da lista de atributos selecionados.
 	 */
 	public void addAtributoNaListaDoComboBox(Attribute atributo){
-		arrayNomeAtributo.add(0, atributo.getNome());//0 é a posição em que o atributo deve ser colocado para edição
-		arrayTipoAtributo.add(0, atributo.getTipo());
-		arrayUnidadeAtributo.add(0, atributo.getUnidadeDeMedida());
+		arrayNomeAtributo.add(0, atributo.getName());//0 é a posição em que o atributo deve ser colocado para edição
+		arrayTipoAtributo.add(0, atributo.getType());
+		arrayUnidadeAtributo.add(0, atributo.getUnitOfMeasure());
 		jComboBoxOpcoesAtributos.setModel(new javax.swing.DefaultComboBoxModel<String>(arrayNomeAtributo));
 	}
 
@@ -133,7 +133,7 @@ public class JFrameAttributeSelector extends javax.swing.JFrame {
 	private void atualizarAtributo(){
 		int index = jComboBoxOpcoesAtributos.getSelectedIndex();
 		if (index == 0){ //0 corresponde ao atributo que foi passado para edição
-			atributoSelecionado.setFrequenciaDeLeitura(Integer.parseInt(jTextFieldFrequencia.getText().toString()));
+			atributoSelecionado.setReadingRate(Integer.parseInt(jTextFieldFrequencia.getText().toString()));
 			gerenciador.atualizaAtributo(indexAtributo, atributoSelecionado);
 			removerAtributoDaListaDoComboBox(index);
 		} else {
@@ -151,10 +151,10 @@ public class JFrameAttributeSelector extends javax.swing.JFrame {
 
 	/* Preenche um atributo a partir das informações dos campos da tela. */
 	private void preencheAtributo(Attribute atributo, int index){
-		atributo.setNome(arrayNomeAtributo.get(index));//TODO MODIFICADO
-		atributo.setTipo(arrayTipoAtributo.get(index));
-		atributo.setUnidadeDeMedida(arrayUnidadeAtributo.get(index));
-		atributo.setFrequenciaDeLeitura(Integer.parseInt(jTextFieldFrequencia.getText().toString()));
+		atributo.setName(arrayNomeAtributo.get(index));//TODO MODIFICADO
+		atributo.setType(arrayTipoAtributo.get(index));
+		atributo.setUnitOfMeasure(arrayUnidadeAtributo.get(index));
+		atributo.setReadingRate(Integer.parseInt(jTextFieldFrequencia.getText().toString()));
 	}
 
 	/* Remove um atributo já selecionado da lista de atributos disponíveis. */
@@ -168,12 +168,12 @@ public class JFrameAttributeSelector extends javax.swing.JFrame {
 	/* Retorna a String contendo o atributo. */
 	private String getStringTipoAtributo(int tipo){
 		switch (tipo){
-		case Attribute.AMBIENTAL: 
-			return Internacionalizar.TIPO_ATRIBUTO_AMBIENTAL;
-		case Attribute.COMPORTAMENTAL: 
-			return Internacionalizar.TIPO_ATRIBUTO_COMPORTAMENTAL;
+		case Attribute.ENVIRONMENTAL: 
+			return Internationalization.TIPO_ATRIBUTO_AMBIENTAL;
+		case Attribute.BEHAVIORAL: 
+			return Internationalization.TIPO_ATRIBUTO_COMPORTAMENTAL;
 		default: 
-			return Internacionalizar.TIPO_ATRIBUTO_FISIOLOGICO;
+			return Internationalization.TIPO_ATRIBUTO_FISIOLOGICO;
 		}
 	}
 
@@ -201,7 +201,7 @@ public class JFrameAttributeSelector extends javax.swing.JFrame {
 		jLabel7 = new javax.swing.JLabel();
 		jButtonCancelar = new javax.swing.JButton();
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-		jLabel1.setText(Internacionalizar.CP_NOME_DO_ATRIBUTO+":");
+		jLabel1.setText(Internationalization.CP_NOME_DO_ATRIBUTO+":");
 		jComboBoxOpcoesAtributos.setModel(new javax.swing.DefaultComboBoxModel<String>(arrayNomeAtributo));
 		jComboBoxOpcoesAtributos.setSelectedIndex(1);
 		jComboBoxOpcoesAtributos.addActionListener(new java.awt.event.ActionListener() {
@@ -209,17 +209,17 @@ public class JFrameAttributeSelector extends javax.swing.JFrame {
 				jComboBoxOpcoesAtributosActionPerformed(evt);
 			}
 		});
-		jLabel2.setText(Internacionalizar.CP_FREQUENCIA+":");
-		jLabel3.setText(Internacionalizar.CP_UNIDADE_DE_MEDIDA+":");
+		jLabel2.setText(Internationalization.CP_FREQUENCIA+":");
+		jLabel3.setText(Internationalization.CP_UNIDADE_DE_MEDIDA+":");
 		jTextFieldFrequencia.setText("12");
 		jLabelTipoAtributo.setText("--------");
-		jButtonSalvar.setText(Internacionalizar.BT_SALVAR);
+		jButtonSalvar.setText(Internationalization.BT_SALVAR);
 		jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) { jButtonSalvarActionPerformed(evt); }
 		});
 		jLabelUnidadeAtributo.setText("bpm");
-		jLabel7.setText("("+Internacionalizar.CP_LEITURA_POR_MIN+")");
-		jButtonCancelar.setText(Internacionalizar.BT_CANCELAR);
+		jLabel7.setText("("+Internationalization.CP_LEITURA_POR_MIN+")");
+		jButtonCancelar.setText(Internationalization.BT_CANCELAR);
 		jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) { jButtonCancelarActionPerformed(evt); }
 		});

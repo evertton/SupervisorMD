@@ -41,16 +41,16 @@ public class ParallelComposition {
 	 * @return		Um Automato resultado da composição paralela.
 	 */
 	public Automaton executaComposicao(ArrayList<Attribute> array){
-		Automaton automato_composicao = new Automaton(array.get(0).getAutomato());
+		Automaton automato_composicao = new Automaton(array.get(0).getAutomaton());
 		int size = array.size();
 		for (int i = 1; i < size; i++){
-			Automaton automatoB = array.get(i).getAutomato();
+			Automaton automatoB = array.get(i).getAutomaton();
 			automato_composicao = compoe2Automatos(automato_composicao, automatoB);
 		}
-		String nome = AttributeList.getIdDoAtributo( array.get(0).getAutomato().getNome() ).toString();
+		String nome = AttributeList.getIdDoAtributo( array.get(0).getAutomaton().getNome() ).toString();
 		StringBuffer sbNome = new StringBuffer(nome+"_");
 		for (int i = 1; i < size; i++){
-			nome = array.get(i).getAutomato().getNome();
+			nome = array.get(i).getAutomaton().getNome();
 			sbNome.append(AttributeList.getIdDoAtributo(nome)+"_"); 
 		}
 		automato_composicao.setNome(sbNome.toString());

@@ -25,7 +25,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import br.edu.ufcg.supervisor.desktop.util.AttributeList;
-import br.edu.ufcg.supervisor.desktop.util.Internacionalizar;
+import br.edu.ufcg.supervisor.desktop.util.Internationalization;
 import br.edu.ufcg.supervisor.model.Attribute;
 import br.edu.ufcg.supervisor.model.Automaton;
 import br.edu.ufcg.supervisor.model.ParallelComposition;
@@ -48,7 +48,7 @@ public class JFrameAttributeList extends javax.swing.JFrame {
 		initComponents();
 		this.model = (DefaultTableModel) jTable1.getModel();
 		gerenciador = new WindowsManager(this);
-		setTitle(Internacionalizar.TITULO_TL_LISTA_ATRIBUTOS);
+		setTitle(Internationalization.TITULO_TL_LISTA_ATRIBUTOS);
 		this.setVisible(false);
 		gerenciador.initListaAtributos();
 	}*/
@@ -58,7 +58,7 @@ public class JFrameAttributeList extends javax.swing.JFrame {
 		initComponents();
 		this.gerenciador = gerenciador;  
 		this.model = (DefaultTableModel) jTable1.getModel();
-		setTitle(Internacionalizar.TITULO_TL_LISTA_ATRIBUTOS);
+		setTitle(Internationalization.TITULO_TL_LISTA_ATRIBUTOS);
 	}
 
 	public void listarAtributos(ArrayList<Attribute> arrayAtributos){
@@ -73,8 +73,8 @@ public class JFrameAttributeList extends javax.swing.JFrame {
 	 */
 	public void addLinha(Attribute atributo) {
 		Object[] linha = new Object[] {
-				atributo.getNome(), AttributeList.getTipoAtributoString(atributo.getTipo()), 
-				atributo.getUnidadeDeMedida(), atributo.getFrequenciaDeLeitura()};
+				atributo.getName(), AttributeList.getTipoAtributoString(atributo.getType()), 
+				atributo.getUnitOfMeasure(), atributo.getReadingRate()};
 		model.addRow(linha);
 	}
 
@@ -136,7 +136,7 @@ public class JFrameAttributeList extends javax.swing.JFrame {
 		jTable1 = new javax.swing.JTable();
 		jButtonFinalizar = new javax.swing.JButton();
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-		jButtonAdicionar.setText(Internacionalizar.BT_ADICIONAR);
+		jButtonAdicionar.setText(Internationalization.BT_ADICIONAR);
 		jButtonAdicionar.addActionListener(
 			new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,7 +144,7 @@ public class JFrameAttributeList extends javax.swing.JFrame {
 				}
 			}
 		);
-		jButtonEditar.setText(Internacionalizar.BT_EDITAR);
+		jButtonEditar.setText(Internationalization.BT_EDITAR);
 		jButtonEditar.addActionListener(
 			new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,19 +152,19 @@ public class JFrameAttributeList extends javax.swing.JFrame {
 				}
 			}
 		);
-		jButtonRemover.setText(Internacionalizar.BT_REMOVER);
+		jButtonRemover.setText(Internationalization.BT_REMOVER);
 		jButtonRemover.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButtonRemoverActionPerformed(evt);
 			}
 		});
-		jButtonEstados.setText(Internacionalizar.BT_ESTADOS);
+		jButtonEstados.setText(Internationalization.BT_ESTADOS);
 		jButtonEstados.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButtonEstadosActionPerformed(evt);
 			}
 		});
-		jButtonRemoverTodos.setText(Internacionalizar.BT_REMOVER_TUDO);
+		jButtonRemoverTodos.setText(Internationalization.BT_REMOVER_TUDO);
 		jButtonRemoverTodos.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButtonRemoverTodosActionPerformed(evt);
@@ -199,7 +199,7 @@ public class JFrameAttributeList extends javax.swing.JFrame {
 		);
 		jTable1.setModel(new javax.swing.table.DefaultTableModel( new Object [][] { },
 			new String [] {
-				Internacionalizar.CP_NOME_DO_ATRIBUTO, Internacionalizar.CP_TIPO, Internacionalizar.CP_UNIDADE_DE_MEDIDA, Internacionalizar.CP_LEITURA_POR_MIN
+				Internationalization.CP_NOME_DO_ATRIBUTO, Internationalization.CP_TIPO, Internationalization.CP_UNIDADE_DE_MEDIDA, Internationalization.CP_LEITURA_POR_MIN
 			}
 		) {
 			private static final long serialVersionUID = -6767734492939939382L;
@@ -227,7 +227,7 @@ public class JFrameAttributeList extends javax.swing.JFrame {
 			.addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
 			.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
-		jButtonFinalizar.setText(Internacionalizar.BT_FINALIZAR);
+		jButtonFinalizar.setText(Internationalization.BT_FINALIZAR);
 		jButtonFinalizar.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButtonFinalizarActionPerformed(evt);
@@ -265,7 +265,7 @@ public class JFrameAttributeList extends javax.swing.JFrame {
 		if (index>-1) removerLinha();
 		else {
 			JOptionPane.showMessageDialog(null, 
-				Internacionalizar.MS_SELECIONE_UM_ATRIBUTO, "", 
+				Internationalization.MS_SELECIONE_UM_ATRIBUTO, "", 
 				JOptionPane.INFORMATION_MESSAGE);		
 		}
 	}
@@ -275,7 +275,7 @@ public class JFrameAttributeList extends javax.swing.JFrame {
 		ParallelComposition composicao = new ParallelComposition();
 		ArrayList<Attribute> arrayAtributos = gerenciador.getArrayAtributos();
 		if (arrayAtributos.size() == 0){
-			JOptionPane.showMessageDialog(null, Internacionalizar.MS_MODELO_INVALIDO,"", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, Internationalization.MS_MODELO_INVALIDO,"", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		Automaton automato = composicao.executaComposicao(arrayAtributos);
@@ -288,7 +288,7 @@ public class JFrameAttributeList extends javax.swing.JFrame {
 		*/
 		String automatoJson = automato.toJson();
 		if (!automatoValido(automatoJson) ){
-			JOptionPane.showMessageDialog(null, Internacionalizar.MS_MODELO_INVALIDO, "", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, Internationalization.MS_MODELO_INVALIDO, "", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		this.setVisible(false);
@@ -303,7 +303,7 @@ public class JFrameAttributeList extends javax.swing.JFrame {
 			gerenciador.initListaEstado(index);
 		} else {
 			JOptionPane.showMessageDialog(null,
-					Internacionalizar.MS_SELECIONE_UM_ATRIBUTO, "",	JOptionPane.INFORMATION_MESSAGE);
+					Internationalization.MS_SELECIONE_UM_ATRIBUTO, "",	JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 
@@ -315,7 +315,7 @@ public class JFrameAttributeList extends javax.swing.JFrame {
 			this.setVisible(false);
 		} else {
 			JOptionPane.showMessageDialog(null, 
-					Internacionalizar.MS_SELECIONE_UM_ATRIBUTO, "", 
+					Internationalization.MS_SELECIONE_UM_ATRIBUTO, "", 
 					JOptionPane.INFORMATION_MESSAGE);					
 		}
 	}
@@ -326,7 +326,7 @@ public class JFrameAttributeList extends javax.swing.JFrame {
 			gerenciador.initCriarAtributo();
 			this.setVisible(false);
 		} catch (ArrayIndexOutOfBoundsException e){
-			JOptionPane.showMessageDialog(null, Internacionalizar.MS_TODOS_OS_ATRIBUTOS_FORAM_ADICIONADOS);
+			JOptionPane.showMessageDialog(null, Internationalization.MS_TODOS_OS_ATRIBUTOS_FORAM_ADICIONADOS);
 		}
 	}
 

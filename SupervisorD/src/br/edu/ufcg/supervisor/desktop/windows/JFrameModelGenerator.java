@@ -25,7 +25,7 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 
 //import br.edu.ufcg.supervisor.base.util.BaseUtil;
-import br.edu.ufcg.supervisor.desktop.util.Internacionalizar;
+import br.edu.ufcg.supervisor.desktop.util.Internationalization;
 
 /**
  * Tela salvar modelo de referência. 
@@ -70,13 +70,13 @@ public class JFrameModelGenerator extends javax.swing.JFrame {
 		jLabel2 = new javax.swing.JLabel();
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		setMaximumSize(new java.awt.Dimension(353, 133));
-		jButtonCancelar.setText("Cancel");
+		jButtonCancelar.setText(Internationalization.BT_CANCELAR);
 		jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButtonCancelarActionPerformed(evt);
 			}
 		});
-		jButtonSalvar.setText("Salvar");
+		jButtonSalvar.setText(Internationalization.BT_SALVAR);
 		jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButtonSalvarActionPerformed(evt);
@@ -128,11 +128,11 @@ public class JFrameModelGenerator extends javax.swing.JFrame {
 			writer.flush();  
 			writer.close();  
 			JOptionPane.showMessageDialog(null,
-				Internacionalizar.MS_OPERACAO_REALIZADA_COM_SUCESSO+"!\n"+ 
-				Internacionalizar.MS_ARQUIVO_SALVO_EM+": "+getLocalidadeDoJar(), "",
+				Internationalization.MS_OPERACAO_REALIZADA_COM_SUCESSO+"!\n"+ 
+				Internationalization.MS_ARQUIVO_SALVO_EM+": "+getLocalidadeDoJar(), "",
 				JOptionPane.INFORMATION_MESSAGE, null);
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null,	Internacionalizar.MS_MODELO_NAO_SALVO, "", 
+			JOptionPane.showMessageDialog(null,	Internationalization.MS_MODELO_NAO_SALVO, "", 
 					JOptionPane.ERROR_MESSAGE, null );
 			//e.printStackTrace();//TODO GERAR
 		}

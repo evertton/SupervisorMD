@@ -28,9 +28,9 @@ package br.edu.ufcg.supervisor.model;
 public class Attribute {
 	
 	//TODO ESSES VALORES SÃO DETERMINADOS PELA POSIÇÃO DESSES CAMPOS NA GUI
-	public static final int AMBIENTAL = 0; 
-	public static final int FISIOLOGICO = 1;
-	public static final int COMPORTAMENTAL = 2;
+	public static final int ENVIRONMENTAL = 0; 
+	public static final int PHYSIOLOGICAL = 1;
+	public static final int BEHAVIORAL = 2;
 	
 	public static final int ID_HEART_RATE 					= 1;
 	public static final int ID_RESPIRATORY_EXCHANGE_RATIO 	= 2;
@@ -46,88 +46,88 @@ public class Attribute {
 	public static final int ID_ENVIRONMENTAL_TEMPERATURE	= 12;
 	public static final int ID_VELOCITY 					= 13;
 	
-	private Automaton automato;
-	private String nome;
-	private String unidadeDeMedida;
-	private int tipo;
-	private int frequenciaDeLeitura;
+	private Automaton automaton;
+	private String name;
+	private String unitOfMeasure;
+	private int type;
+	private int readingRate;
 	
 	/**
 	 * Construtor padrão.
 	 */
 	public Attribute(){
-		nome = "";
-		unidadeDeMedida = "";
-		frequenciaDeLeitura = 12;
-		automato = new Automaton();
-		this.tipo = FISIOLOGICO;
+		name = "";
+		unitOfMeasure = "";
+		readingRate = 12;
+		automaton = new Automaton();
+		this.type = PHYSIOLOGICAL;
 	}
 
 	/**
-	 * Retorna o automato.
+	 * Retorna o automaton.
 	 * @return	Um Automato.
 	 */
-	public Automaton getAutomato() {
-		this.automato.setNome(this.nome);
-		return this.automato;
+	public Automaton getAutomaton() {
+		this.automaton.setNome(this.name);
+		return this.automaton;
 	}
 
 	/**
-	 * Seta o automato do atribito.
-	 * @param automato	Um automato contendo a especificação.
+	 * Seta o automaton do atribito.
+	 * @param automaton	Um automaton contendo a especificação.
 	 */
-	public void setAutomato(Automaton automat) { this.automato = automat; }
+	public void setAutomaton(Automaton automat) { this.automaton = automat; }
 
 	/**
-	 * Retorna o nome do atributo. 
-	 * @return	Uma String contendo o nome.
+	 * Retorna o name do atributo. 
+	 * @return	Uma String contendo o name.
 	 */
-	public String getNome() { return this.nome; }
+	public String getName() { return this.name; }
 
 	/**
-	 * Seta o nome do atributo.
-	 * @param nome	Uma String contendo o nome do atributo. 
+	 * Seta o name do atributo.
+	 * @param name	Uma String contendo o name do atributo. 
 	 */
-	public void setNome(String nome) {
-		this.nome = nome;
-		this.automato.setNome(nome);
+	public void setName(String nome) {
+		this.name = nome;
+		this.automaton.setNome(nome);
 	}
 
 	/**
 	 * Retorna a unidade de medida do atributo.
 	 * @return	Uma String contendo a unidade de medida.
 	 */
-	public String getUnidadeDeMedida() { return unidadeDeMedida; }
+	public String getUnitOfMeasure() { return unitOfMeasure; }
 
 	/**
 	 * Seta a unidade de medida.
-	 * @param unidadeDeMedida	Uma String contendo a unidade de medida. 
+	 * @param unitOfMeasure	Uma String contendo a unidade de medida. 
 	 */
-	public void setUnidadeDeMedida(String unidadeDeMedida) { this.unidadeDeMedida = unidadeDeMedida; }
+	public void setUnitOfMeasure(String unidadeDeMedida) { this.unitOfMeasure = unidadeDeMedida; }
 
 	/**
 	 * Retorna a frequência de leitura.
 	 * @return	Um int contendo a frequência de leitura.
 	 */
-	public int getFrequenciaDeLeitura() { return frequenciaDeLeitura; }
+	public int getReadingRate() { return readingRate; }
 
 	/**
 	 * Seta a frequência de leitura.
-	 * @param frequenciaDeLeitura	Um int contendo a frequência de leitura.
+	 * @param readingRate	Um int contendo a frequência de leitura.
 	 */
-	public void setFrequenciaDeLeitura(int frequenciaDeLeitura) {
-		this.frequenciaDeLeitura = frequenciaDeLeitura;
+	public void setReadingRate(int frequenciaDeLeitura) {
+		this.readingRate = frequenciaDeLeitura;
 	}
 
 	/**
-	 * Retorna o tipo do atributo.
-	 * @return	Um int contendo o tipo do atributo.
+	 * Retorna o type do atributo.
+	 * @return	Um int contendo o type do atributo.
 	 */
-	public int getTipo() { return tipo; }
+	public int getType() { return type; }
 	
 	/**
-	 * Seta o tipo do atributo.
-	 * @param tipo	Um int representando o tipo do atributo.
+	 * Seta o type do atributo.
+	 * @param type	Um int representando o type do atributo.
 	 */
-	public void setTipo(int tipo) { this.tipo = tipo; }
+	public void setType(int tipo) { this.type = tipo; }
 }	

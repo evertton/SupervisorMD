@@ -42,34 +42,34 @@ public class AttributeList {
 	private static HashMap<String,String > mapIDAtributo  = new HashMap<String,String>(); 
 	
 	static {
-		preencherArrays(Internacionalizar.AT_HEART_RATE, 
-				Attribute.ID_HEART_RATE, Attribute.FISIOLOGICO, "bpm");//0
-		preencherArrays(Internacionalizar.AT_RESPIRATORY_EXCHANGE_RATIO, 				
-				Attribute.ID_RESPIRATORY_EXCHANGE_RATIO, Attribute.FISIOLOGICO, "VCO2/VO2");//1
-		preencherArrays(Internacionalizar.AT_SYSTOLIC_BLOOD_PRESSURE, 				
-				Attribute.ID_SYSTOLIC_BLOOD_PRESSURE, Attribute.FISIOLOGICO, "mmHg");//2
-		preencherArrays(Internacionalizar.AT_DIASTOLIC_BLOOD_PRESSURE, 				
-				Attribute.ID_DIASTOLIC_BLOOD_PRESSURE, Attribute.FISIOLOGICO, "mmHg");//3
-		preencherArrays(Internacionalizar.AT_BODY_TEMPERATURE, 				
-				Attribute.ID_BODY_TEMPERATURE, Attribute.FISIOLOGICO, "ºC");//4
-		preencherArrays(Internacionalizar.AT_BLOOD_LACTATE, 				
-				Attribute.ID_BLOOD_LACTATE, Attribute.FISIOLOGICO, "[La-]b");//5
-		preencherArrays(Internacionalizar.AT_BLOOD_GLUCOSE, 				
-				Attribute.ID_BLOOD_GLUCOSE,	Attribute.FISIOLOGICO, "md/dl");//6
-		preencherArrays(Internacionalizar.AT_OXIGEN_CONSUMPTION,				
-				Attribute.ID_OXIGEN_CONSUMPTION, Attribute.FISIOLOGICO,	"VO2");//7
-		preencherArrays(Internacionalizar.AT_AMBIENT_PRESSURE, 
-				Attribute.ID_AMBIENT_PRESSURE, Attribute.AMBIENTAL,	"atm");//8
-		preencherArrays(Internacionalizar.AT_ENVIRONMENTAL_TEMPERATURE, 	
-				Attribute.ID_ENVIRONMENTAL_TEMPERATURE,	Attribute.AMBIENTAL, "ºC");//9
-		preencherArrays(Internacionalizar.AT_AIR_RELATIVE_HUMIDITY, 				
-				Attribute.ID_AIR_RELATIVE_HUMIDITY,	Attribute.AMBIENTAL, "%");//10
-		preencherArrays(Internacionalizar.AT_SPEED, 				
-				Attribute.ID_SPEED, Attribute.COMPORTAMENTAL, "m/s");//11
-		//arrayClassificacaoEstado.add(Internacionalizar.CL_NENHUM);	//posição 0 determinada na classe Estado 
-		arrayClassificacaoEstado.add(Internacionalizar.CL_TOLERAVEL); //posição 1
-		arrayClassificacaoEstado.add(Internacionalizar.CL_PERIGOSO);	//posição 2
-		arrayClassificacaoEstado.add(Internacionalizar.CL_ACEITACAO);	//posição 3
+		preencherArrays(Internationalization.AT_HEART_RATE, 
+				Attribute.ID_HEART_RATE, Attribute.PHYSIOLOGICAL, "bpm");//0
+		preencherArrays(Internationalization.AT_RESPIRATORY_EXCHANGE_RATIO, 				
+				Attribute.ID_RESPIRATORY_EXCHANGE_RATIO, Attribute.PHYSIOLOGICAL, "VCO2/VO2");//1
+		preencherArrays(Internationalization.AT_SYSTOLIC_BLOOD_PRESSURE, 				
+				Attribute.ID_SYSTOLIC_BLOOD_PRESSURE, Attribute.PHYSIOLOGICAL, "mmHg");//2
+		preencherArrays(Internationalization.AT_DIASTOLIC_BLOOD_PRESSURE, 				
+				Attribute.ID_DIASTOLIC_BLOOD_PRESSURE, Attribute.PHYSIOLOGICAL, "mmHg");//3
+		preencherArrays(Internationalization.AT_BODY_TEMPERATURE, 				
+				Attribute.ID_BODY_TEMPERATURE, Attribute.PHYSIOLOGICAL, "ºC");//4
+		preencherArrays(Internationalization.AT_BLOOD_LACTATE, 				
+				Attribute.ID_BLOOD_LACTATE, Attribute.PHYSIOLOGICAL, "[La-]b");//5
+		preencherArrays(Internationalization.AT_BLOOD_GLUCOSE, 				
+				Attribute.ID_BLOOD_GLUCOSE,	Attribute.PHYSIOLOGICAL, "md/dl");//6
+		preencherArrays(Internationalization.AT_OXIGEN_CONSUMPTION,				
+				Attribute.ID_OXIGEN_CONSUMPTION, Attribute.PHYSIOLOGICAL,	"VO2");//7
+		preencherArrays(Internationalization.AT_AMBIENT_PRESSURE, 
+				Attribute.ID_AMBIENT_PRESSURE, Attribute.ENVIRONMENTAL,	"atm");//8
+		preencherArrays(Internationalization.AT_ENVIRONMENTAL_TEMPERATURE, 	
+				Attribute.ID_ENVIRONMENTAL_TEMPERATURE,	Attribute.ENVIRONMENTAL, "ºC");//9
+		preencherArrays(Internationalization.AT_AIR_RELATIVE_HUMIDITY, 				
+				Attribute.ID_AIR_RELATIVE_HUMIDITY,	Attribute.ENVIRONMENTAL, "%");//10
+		preencherArrays(Internationalization.AT_SPEED, 				
+				Attribute.ID_SPEED, Attribute.BEHAVIORAL, "m/s");//11
+		//arrayClassificacaoEstado.add(Internationalization.CL_NENHUM);	//posição 0 determinada na classe Estado 
+		arrayClassificacaoEstado.add(Internationalization.CL_TOLERAVEL); //posição 1
+		arrayClassificacaoEstado.add(Internationalization.CL_PERIGOSO);	//posição 2
+		arrayClassificacaoEstado.add(Internationalization.CL_ACEITACAO);	//posição 3
 	}
 	
 	public static String getAtributoDoId(String sId){
@@ -102,12 +102,12 @@ public class AttributeList {
 	 */
 	public static String getTipoAtributoString(int tipoAtributo) {
 		switch (tipoAtributo){
-			case (Attribute.AMBIENTAL):
-				return Internacionalizar.TIPO_ATRIBUTO_AMBIENTAL;
-			case (Attribute.COMPORTAMENTAL):
-				return Internacionalizar.TIPO_ATRIBUTO_COMPORTAMENTAL;
+			case (Attribute.ENVIRONMENTAL):
+				return Internationalization.TIPO_ATRIBUTO_AMBIENTAL;
+			case (Attribute.BEHAVIORAL):
+				return Internationalization.TIPO_ATRIBUTO_COMPORTAMENTAL;
 			default:
-				return Internacionalizar.TIPO_ATRIBUTO_FISIOLOGICO;
+				return Internationalization.TIPO_ATRIBUTO_FISIOLOGICO;
 			}
 	}
 }

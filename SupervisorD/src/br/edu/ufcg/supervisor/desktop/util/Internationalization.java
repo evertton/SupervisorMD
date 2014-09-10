@@ -21,7 +21,7 @@
 
 package br.edu.ufcg.supervisor.desktop.util;
 
-public class Internacionalizar {
+public class Internationalization {
 	//public static String x = "x";
 	//TITULOS
 	public static String TITULO_TL_LISTA_ATRIBUTOS = "Attributes";
