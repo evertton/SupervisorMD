@@ -42,43 +42,26 @@ public class AttributeList {
 	private static HashMap<String,String > mapIDAtributo  = new HashMap<String,String>(); 
 	
 	static {
-		preencherArrays(Internationalization.AT_HEART_RATE, 
-				Attribute.ID_HEART_RATE, Attribute.PHYSIOLOGICAL, "bpm");//0
-		preencherArrays(Internationalization.AT_RESPIRATORY_EXCHANGE_RATIO, 				
-				Attribute.ID_RESPIRATORY_EXCHANGE_RATIO, Attribute.PHYSIOLOGICAL, "VCO2/VO2");//1
-		preencherArrays(Internationalization.AT_SYSTOLIC_BLOOD_PRESSURE, 				
-				Attribute.ID_SYSTOLIC_BLOOD_PRESSURE, Attribute.PHYSIOLOGICAL, "mmHg");//2
-		preencherArrays(Internationalization.AT_DIASTOLIC_BLOOD_PRESSURE, 				
-				Attribute.ID_DIASTOLIC_BLOOD_PRESSURE, Attribute.PHYSIOLOGICAL, "mmHg");//3
-		preencherArrays(Internationalization.AT_BODY_TEMPERATURE, 				
-				Attribute.ID_BODY_TEMPERATURE, Attribute.PHYSIOLOGICAL, "ºC");//4
-		preencherArrays(Internationalization.AT_BLOOD_LACTATE, 				
-				Attribute.ID_BLOOD_LACTATE, Attribute.PHYSIOLOGICAL, "[La-]b");//5
-		preencherArrays(Internationalization.AT_BLOOD_GLUCOSE, 				
-				Attribute.ID_BLOOD_GLUCOSE,	Attribute.PHYSIOLOGICAL, "md/dl");//6
-		preencherArrays(Internationalization.AT_OXIGEN_CONSUMPTION,				
-				Attribute.ID_OXIGEN_CONSUMPTION, Attribute.PHYSIOLOGICAL,	"VO2");//7
-		preencherArrays(Internationalization.AT_AMBIENT_PRESSURE, 
-				Attribute.ID_AMBIENT_PRESSURE, Attribute.ENVIRONMENTAL,	"atm");//8
-		preencherArrays(Internationalization.AT_ENVIRONMENTAL_TEMPERATURE, 	
-				Attribute.ID_ENVIRONMENTAL_TEMPERATURE,	Attribute.ENVIRONMENTAL, "ºC");//9
-		preencherArrays(Internationalization.AT_AIR_RELATIVE_HUMIDITY, 				
-				Attribute.ID_AIR_RELATIVE_HUMIDITY,	Attribute.ENVIRONMENTAL, "%");//10
-		preencherArrays(Internationalization.AT_SPEED, 				
-				Attribute.ID_SPEED, Attribute.BEHAVIORAL, "m/s");//11
-		//arrayClassificacaoEstado.add(Internationalization.CL_NENHUM);	//posição 0 determinada na classe Estado 
-		arrayClassificacaoEstado.add(Internationalization.CL_TOLERAVEL); //posição 1
-		arrayClassificacaoEstado.add(Internationalization.CL_PERIGOSO);	//posição 2
-		arrayClassificacaoEstado.add(Internationalization.CL_ACEITACAO);	//posição 3
+		preencherArrays(i16o.label("AT_HEART_RATE"),Attribute.ID_HEART_RATE, Attribute.PHYSIOLOGICAL,"bpm");
+		preencherArrays(i16o.label("AT_RESPIRATORY_EXCHANGE_RATIO"),Attribute.ID_RESPIRATORY_EXCHANGE_RATIO,Attribute.PHYSIOLOGICAL,"VCO2/VO2");
+		preencherArrays(i16o.label("AT_SYSTOLIC_BLOOD_PRESSURE"),Attribute.ID_SYSTOLIC_BLOOD_PRESSURE,Attribute.PHYSIOLOGICAL,"mmHg");
+		preencherArrays(i16o.label("AT_DIASTOLIC_BLOOD_PRESSURE"),Attribute.ID_DIASTOLIC_BLOOD_PRESSURE,Attribute.PHYSIOLOGICAL,"mmHg");
+		preencherArrays(i16o.label("AT_BODY_TEMPERATURE"),Attribute.ID_BODY_TEMPERATURE,Attribute.PHYSIOLOGICAL, "ºC");
+		preencherArrays(i16o.label("AT_BLOOD_LACTATE"),Attribute.ID_BLOOD_LACTATE,Attribute.PHYSIOLOGICAL,"[La-]b");
+		preencherArrays(i16o.label("AT_BLOOD_GLUCOSE"),Attribute.ID_BLOOD_GLUCOSE,Attribute.PHYSIOLOGICAL,"md/dl");
+		preencherArrays(i16o.label("AT_OXIGEN_CONSUMPTION"),Attribute.ID_OXIGEN_CONSUMPTION, Attribute.PHYSIOLOGICAL,"VO2");
+		preencherArrays(i16o.label("AT_AMBIENT_PRESSURE"),Attribute.ID_AMBIENT_PRESSURE,Attribute.ENVIRONMENTAL,"atm");
+		preencherArrays(i16o.label("AT_ENVIRONMENTAL_TEMPERATURE"),Attribute.ID_ENVIRONMENTAL_TEMPERATURE,Attribute.ENVIRONMENTAL,"ºC");
+		preencherArrays(i16o.label("AT_AIR_RELATIVE_HUMIDITY"),Attribute.ID_AIR_RELATIVE_HUMIDITY,Attribute.ENVIRONMENTAL,"%");
+		preencherArrays(i16o.label("AT_SPEED"),Attribute.ID_SPEED,Attribute.BEHAVIORAL,"m/s");
+		arrayClassificacaoEstado.add(i16o.label("CL_TOLERAVEL"));//posição 1
+		arrayClassificacaoEstado.add(i16o.label("CL_PERIGOSO"));//posição 2
+		arrayClassificacaoEstado.add(i16o.label("CL_ACEITACAO"));//posição 3
 	}
 	
-	public static String getAtributoDoId(String sId){
-		return mapIDAtributo.get(sId);
-	}
+	public static String getAtributoDoId(String sId){ return mapIDAtributo.get(sId); }
 	
-	public static Integer getIdDoAtributo(String nomeAtributo){
-		return mapAtributoID.get(nomeAtributo);
-	}
+	public static Integer getIdDoAtributo(String nomeAtributo){ return mapAtributoID.get(nomeAtributo);	}
 	
 	public static Vector<String> getArrayNomeAtributo(){ return arrayNomeAtributo; }
 	
@@ -103,11 +86,11 @@ public class AttributeList {
 	public static String getTipoAtributoString(int tipoAtributo) {
 		switch (tipoAtributo){
 			case (Attribute.ENVIRONMENTAL):
-				return Internationalization.TIPO_ATRIBUTO_AMBIENTAL;
+				return i16o.label("TIPO_ATRIBUTO_AMBIENTAL");
 			case (Attribute.BEHAVIORAL):
-				return Internationalization.TIPO_ATRIBUTO_COMPORTAMENTAL;
+				return i16o.label("TIPO_ATRIBUTO_COMPORTAMENTAL");
 			default:
-				return Internationalization.TIPO_ATRIBUTO_FISIOLOGICO;
+				return i16o.label("TIPO_ATRIBUTO_FISIOLOGICO");
 			}
 	}
 }

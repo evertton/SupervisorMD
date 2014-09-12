@@ -21,7 +21,7 @@ package br.edu.ufcg.supervisor.desktop.windows;
 import java.util.Vector;
 
 import br.edu.ufcg.supervisor.desktop.util.Constants;
-import br.edu.ufcg.supervisor.desktop.util.Internationalization;
+import br.edu.ufcg.supervisor.desktop.util.i16o;
 import br.edu.ufcg.supervisor.model.Automaton;
 import br.edu.ufcg.supervisor.model.State;
 import br.edu.ufcg.supervisor.model.Transition;
@@ -65,7 +65,7 @@ public class JFrameTransition extends javax.swing.JFrame {
 		this.indexTransicao = indexTransicao;
 		this.indexAtributoSelecionado = indexAtributo;
 		this.operacao = Constants.OP_ALTERAR;
-		setTitle(Internationalization.TITULO_TL_ALTERAR_TRANSICAO+" - "+gerenciador.getAtributo(indexAtributo).getName());//+"/"+transicao.getNome());
+		setTitle(i16o.label("TITULO_ALTERAR_TRANSICAO")+" - "+gerenciador.getAtributo(indexAtributo).getName());//+"/"+transicao.getNome());
 		Automaton automato = gerenciador.getAtributo(indexAtributo).getAutomaton();
 		Transition transicao = automato.getArrayTransicoes().get(indexTransicao);
 		jTextFieldNome.setText(transicao.getRotulo());
@@ -91,7 +91,7 @@ public class JFrameTransition extends javax.swing.JFrame {
 	 * Ativa o modo criar transição.
 	 */
 	public void setModoCriarTransicao(int indexAtributo){//seta vazio para o usuário escolher
-		setTitle(Internationalization.TITULO_TL_CRIAR_TRANSICAO+" - "+gerenciador.getAtributo(indexAtributo).getName());
+		setTitle(i16o.label("TITULO_CRIAR_TRANSICAO")+" - "+gerenciador.getAtributo(indexAtributo).getName());
 		this.indexAtributoSelecionado = indexAtributo;
 		this.operacao = Constants.OP_CRIAR;
 		jTextFieldNome.setText("");
@@ -141,19 +141,19 @@ public class JFrameTransition extends javax.swing.JFrame {
         jButtonSalvar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        jLabel1.setText(Internationalization.CP_NOME_ACAO+":");
-        jLabel2.setText(Internationalization.CP_ESTADO_DE_ORIGEM+":");
-        jLabel3.setText(Internationalization.CP_ESTADO_DE_DESTINO+":");
-        jLabel4.setText(Internationalization.CP_MENSAGEM_AO_USUARIO+":");
+        jLabel1.setText(i16o.label("CP_NOME_ACAO")+":");
+        jLabel2.setText(i16o.label("CP_ESTADO_DE_ORIGEM")+":");
+        jLabel3.setText(i16o.label("CP_ESTADO_DE_DESTINO")+":");
+        jLabel4.setText(i16o.label("CP_MENSAGEM_AO_USUARIO")+":");
         jTextFieldNome.setText("");
         jTextAreaMensagem.setColumns(20);
         jTextAreaMensagem.setRows(5);
         jScrollPane1.setViewportView(jTextAreaMensagem);
-        jButtonSalvar.setText(Internationalization.BT_SALVAR);
+        jButtonSalvar.setText(i16o.label("BT_SALVAR"));
         jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) { jButtonSalvarActionPerformed(evt); }
         });
-        jButtonCancelar.setText(Internationalization.BT_CANCELAR);
+        jButtonCancelar.setText(i16o.label("BT_CANCELAR"));
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) { jButtonCancelarActionPerformed(evt); }
         });

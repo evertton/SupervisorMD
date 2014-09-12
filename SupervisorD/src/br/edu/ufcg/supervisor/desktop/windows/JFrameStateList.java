@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-import br.edu.ufcg.supervisor.desktop.util.Internationalization;
+import br.edu.ufcg.supervisor.desktop.util.i16o;
 import br.edu.ufcg.supervisor.model.Attribute;
 import br.edu.ufcg.supervisor.model.Automaton;
 import br.edu.ufcg.supervisor.model.State;
@@ -76,7 +76,7 @@ public class JFrameStateList extends javax.swing.JFrame {
 		this.atributo = gerenciador.getArrayAtributos().get(linha);
 		this.automato = this.atributo.getAutomaton();//automato;
 		for(State estado : automato.getVectorEstados()) addEstadoApenasNaTabela(estado);
-		setTitle(Internationalization.TITULO_TL_LISTA_ESTADOS + " - " + atributo.getName()); 
+		setTitle(i16o.label("TITULO_LISTA_ESTADOS") + " - " + atributo.getName()); 
 	}
 
 
@@ -174,19 +174,19 @@ public class JFrameStateList extends javax.swing.JFrame {
 		jButtonRemoverTodos = new javax.swing.JButton();
 		jButtonVoltar = new javax.swing.JButton();
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-		jButtonAdicionar.setText(Internationalization.BT_ADICIONAR);
+		jButtonAdicionar.setText(i16o.label("BT_ADICIONAR"));
 		jButtonAdicionar.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButtonAdicionarActionPerformed(evt);
 			}
 		});
-		jButtonEditar.setText(Internationalization.BT_EDITAR);
+		jButtonEditar.setText(i16o.label("BT_EDITAR"));
 		jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButtonEditarActionPerformed(evt);
 			}
 		});
-		jButtonRemover.setText(Internationalization.BT_REMOVER);
+		jButtonRemover.setText(i16o.label("BT_REMOVER"));
 		jButtonRemover.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButtonRemoverActionPerformed(evt);
@@ -195,8 +195,8 @@ public class JFrameStateList extends javax.swing.JFrame {
 		jTable1.setModel(new javax.swing.table.DefaultTableModel(
 			new Object [][] {},
 			new String [] {
-				Internationalization.CP_NOME_DO_ESTADO, "", Internationalization.CP_VALOR_MINIMO, 
-				Internationalization.CP_VALOR_MAXIMO, "", Internationalization.CP_CLASSIFICACAO
+				i16o.label("CP_NOME_DO_ESTADO"), "", i16o.label("CP_VALOR_MINIMO"), 
+				i16o.label("CP_VALOR_MAXIMO"), "", i16o.label("CP_CLASSIFICACAO")
 			}) {
 				private static final long serialVersionUID = -1790264732478081846L;
 				@SuppressWarnings("rawtypes")
@@ -212,13 +212,13 @@ public class JFrameStateList extends javax.swing.JFrame {
 		jTable1.getColumnModel().getColumn(1).setMaxWidth(15);
 		jTable1.getColumnModel().getColumn(4).setMinWidth(15);
 		jTable1.getColumnModel().getColumn(4).setMaxWidth(15);
-		jButtonTransicoes.setText(Internationalization.BT_TRANSICOES);
+		jButtonTransicoes.setText(i16o.label("BT_TRANSICOES"));
 		jButtonTransicoes.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButtonTransicoesActionPerformed(evt);
 			}
 		});
-		jButtonRemoverTodos.setText(Internationalization.BT_REMOVER_TUDO);
+		jButtonRemoverTodos.setText(i16o.label("BT_REMOVER_TUDO"));
 		jButtonRemoverTodos.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButtonRemoverTodosActionPerformed(evt);
@@ -252,7 +252,7 @@ public class JFrameStateList extends javax.swing.JFrame {
 			.addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
 			.addContainerGap())
 		);
-		jButtonVoltar.setText(Internationalization.BT_VOLTAR);
+		jButtonVoltar.setText(i16o.label("BT_VOLTAR"));
 		jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButtonVoltarActionPerformed(evt);
@@ -285,7 +285,7 @@ public class JFrameStateList extends javax.swing.JFrame {
 			gerenciador.initEditarEstado(indexAtributoSelecionado, indexEstado);
 			this.setVisible(false);
 		} else {
-			JOptionPane.showMessageDialog(null, Internationalization.MS_SELECIONE_UM_ESTADO,
+			JOptionPane.showMessageDialog(null, i16o.label("MS_SELECIONE_UM_ESTADO"),
 					"",JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
@@ -308,7 +308,7 @@ public class JFrameStateList extends javax.swing.JFrame {
 		if (indexEstado>-1){
 			removerEstado();
 		} else {
-			JOptionPane.showMessageDialog(null, Internationalization.MS_SELECIONE_UM_ESTADO, 
+			JOptionPane.showMessageDialog(null, i16o.label("MS_SELECIONE_UM_ESTADO"), 
 					"",	JOptionPane.INFORMATION_MESSAGE);
 		}
 	}

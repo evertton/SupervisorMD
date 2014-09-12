@@ -22,7 +22,7 @@ import java.util.Vector;
 
 import br.edu.ufcg.supervisor.desktop.util.AttributeList;
 import br.edu.ufcg.supervisor.desktop.util.Constants;
-import br.edu.ufcg.supervisor.desktop.util.Internationalization;
+import br.edu.ufcg.supervisor.desktop.util.i16o;
 import br.edu.ufcg.supervisor.model.Attribute;
 
 /**
@@ -84,7 +84,7 @@ public class JFrameAttributeSelector extends javax.swing.JFrame {
 		jLabelTipoAtributo.setText(AttributeList.getTipoAtributoString(atributo.getType()));
 		jLabelUnidadeAtributo.setText(atributo.getUnitOfMeasure());
 		jTextFieldFrequencia.setText(""+atributo.getReadingRate());
-		setTitle(Internationalization.TITULO_TL_ALTERAR_ATRIBUTO);
+		setTitle(i16o.label("TITULO_ALTERAR_ATRIBUTO"));
 		this.indexAtributo = linhaAtributo;
 		operacao = Constants.OP_ALTERAR;
 	}
@@ -96,7 +96,7 @@ public class JFrameAttributeSelector extends javax.swing.JFrame {
 		jLabelTipoAtributo.setText( getStringTipoAtributo( arrayTipoAtributo.get(0) ) );
 		jLabelUnidadeAtributo.setText(arrayUnidadeAtributo.get(0));
 		jTextFieldFrequencia.setText(""+12);
-		setTitle(Internationalization.TITULO_TL_SELECIONAR_ATRIBUTO);
+		setTitle(i16o.label("TITULO_SELECIONAR_ATRIBUTO"));
 		operacao = Constants.OP_CRIAR;
 	}
 
@@ -169,11 +169,11 @@ public class JFrameAttributeSelector extends javax.swing.JFrame {
 	private String getStringTipoAtributo(int tipo){
 		switch (tipo){
 		case Attribute.ENVIRONMENTAL: 
-			return Internationalization.TIPO_ATRIBUTO_AMBIENTAL;
+			return i16o.label("TIPO_ATRIBUTO_AMBIENTAL");
 		case Attribute.BEHAVIORAL: 
-			return Internationalization.TIPO_ATRIBUTO_COMPORTAMENTAL;
+			return i16o.label("TIPO_ATRIBUTO_COMPORTAMENTAL");
 		default: 
-			return Internationalization.TIPO_ATRIBUTO_FISIOLOGICO;
+			return i16o.label("TIPO_ATRIBUTO_FISIOLOGICO");
 		}
 	}
 
@@ -201,7 +201,7 @@ public class JFrameAttributeSelector extends javax.swing.JFrame {
 		jLabel7 = new javax.swing.JLabel();
 		jButtonCancelar = new javax.swing.JButton();
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-		jLabel1.setText(Internationalization.CP_NOME_DO_ATRIBUTO+":");
+		jLabel1.setText(i16o.label("CP_NOME_DO_ATRIBUTO")+":");
 		jComboBoxOpcoesAtributos.setModel(new javax.swing.DefaultComboBoxModel<String>(arrayNomeAtributo));
 		jComboBoxOpcoesAtributos.setSelectedIndex(1);
 		jComboBoxOpcoesAtributos.addActionListener(new java.awt.event.ActionListener() {
@@ -209,17 +209,17 @@ public class JFrameAttributeSelector extends javax.swing.JFrame {
 				jComboBoxOpcoesAtributosActionPerformed(evt);
 			}
 		});
-		jLabel2.setText(Internationalization.CP_FREQUENCIA+":");
-		jLabel3.setText(Internationalization.CP_UNIDADE_DE_MEDIDA+":");
+		jLabel2.setText(i16o.label("CP_FREQUENCIA")+":");
+		jLabel3.setText(i16o.label("CP_UNIDADE_DE_MEDIDA")+":");
 		jTextFieldFrequencia.setText("12");
 		jLabelTipoAtributo.setText("--------");
-		jButtonSalvar.setText(Internationalization.BT_SALVAR);
+		jButtonSalvar.setText(i16o.label("BT_SALVAR"));
 		jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) { jButtonSalvarActionPerformed(evt); }
 		});
 		jLabelUnidadeAtributo.setText("bpm");
-		jLabel7.setText("("+Internationalization.CP_LEITURA_POR_MIN+")");
-		jButtonCancelar.setText(Internationalization.BT_CANCELAR);
+		jLabel7.setText("("+i16o.label("CP_LEITURA_POR_MIN")+")");
+		jButtonCancelar.setText(i16o.label("BT_CANCELAR"));
 		jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) { jButtonCancelarActionPerformed(evt); }
 		});

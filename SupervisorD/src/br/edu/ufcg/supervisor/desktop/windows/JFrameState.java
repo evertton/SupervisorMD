@@ -18,14 +18,12 @@
  */
 package br.edu.ufcg.supervisor.desktop.windows;
 
-import java.util.ArrayList;
 import java.util.Vector;
 
 import br.edu.ufcg.supervisor.desktop.util.AttributeList;
 import br.edu.ufcg.supervisor.desktop.util.AutomataFiller;
 import br.edu.ufcg.supervisor.desktop.util.Constants;
-import br.edu.ufcg.supervisor.desktop.util.Internationalization;
-import br.edu.ufcg.supervisor.model.Attribute;
+import br.edu.ufcg.supervisor.desktop.util.i16o;
 import br.edu.ufcg.supervisor.model.Range;
 import br.edu.ufcg.supervisor.model.State;
 
@@ -108,7 +106,7 @@ public class JFrameState extends javax.swing.JFrame {
 		jLabelUnidadeDeMedida2.setText("("+unidade+")");
 		this.indexEstado = indexEstado;
 		operacao = Constants.OP_ALTERAR;
-		setTitle(Internationalization.TITULO_TL_ALTERAR_ESTADO+" - "+gerenciador.getAtributo(indexAtributoSelecionado).getName());//+"/"+estado.getNome()
+		setTitle(i16o.label("TITULO_ALTERAR_ESTADO")+" - "+gerenciador.getAtributo(indexAtributoSelecionado).getName());//+"/"+estado.getNome()
 	}
     
 /**
@@ -124,7 +122,7 @@ public class JFrameState extends javax.swing.JFrame {
 		jLabelUnidadeDeMedida1.setText("("+unidade+")");
 		jLabelUnidadeDeMedida2.setText("("+unidade+")");
 		operacao = Constants.OP_CRIAR;
-		setTitle(Internationalization.TITULO_TL_CRIAR_ESTADO+" - "+gerenciador.getAtributo(indexAtributoSelecionado).getName());//+"/Novo Estado"
+		setTitle(i16o.label("TITULO_CRIAR_ESTADO")+" - "+gerenciador.getAtributo(indexAtributoSelecionado).getName());//+"/Novo Estado"
 	}
 
 	/* Preenche um estado com as informações da tela. */
@@ -191,32 +189,32 @@ public class JFrameState extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jTextFieldNomeEstado = new javax.swing.JTextField();
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        jLabelAtributo.setText(Internationalization.CP_ATRIBUTO+":");
+        jLabelAtributo.setText(i16o.label("CP_ATRIBUTO")+":");
         jLabelNomeDoAtributo.setText("--");
-        jLabel1.setText(Internationalization.CP_VALOR_MINIMO+":");
-        jLabel2.setText(Internationalization.CP_VALOR_MAXIMO+":");
+        jLabel1.setText(i16o.label("CP_VALOR_MINIMO")+":");
+        jLabel2.setText(i16o.label("CP_VALOR_MAXIMO")+":");
         jTextFieldValorMinimo.setText("97");
         jComboBoxMarcadorMinimo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "[", "(" }));
         jTextFieldValorMaximo.setText("156");
         jComboBoxMarcadorMaximo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "]", ")" }));
-        jLabelUnidadeDeMedida1.setText(Internationalization.CP_UNIDADE);
-        jLabelUnidadeDeMedida2.setText(Internationalization.CP_UNIDADE);
-        jLabelValorMedido.setText(Internationalization.CP_INTERVALO_DE_MEDICAO);
-        jButtonSalvar.setText(Internationalization.BT_SALVAR);
+        jLabelUnidadeDeMedida1.setText(i16o.label("CP_UNIDADE"));
+        jLabelUnidadeDeMedida2.setText(i16o.label("CP_UNIDADE"));
+        jLabelValorMedido.setText(i16o.label("CP_INTERVALO_DE_MEDICAO"));
+        jButtonSalvar.setText(i16o.label("BT_SALVAR"));
         jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSalvarActionPerformed(evt);
             }
         });
-        jButtonCancelar.setText(Internationalization.BT_CANCELAR);
+        jButtonCancelar.setText(i16o.label("BT_CANCELAR"));
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCancelarActionPerformed(evt);
             }
         });
         jComboBoxClassificacao.setModel(new javax.swing.DefaultComboBoxModel<String>(arrayClassificacaoEstado));
-        jLabel4.setText(Internationalization.CP_CLASSIFICACAO+":");
-        jLabel5.setText(Internationalization.CP_NOME+":");
+        jLabel4.setText(i16o.label("CP_CLASSIFICACAO")+":");
+        jLabel5.setText(i16o.label("CP_NOME")+":");
         jTextFieldNomeEstado.setText("---");
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

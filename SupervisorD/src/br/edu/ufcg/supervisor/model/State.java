@@ -23,7 +23,7 @@ package br.edu.ufcg.supervisor.model;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import br.edu.ufcg.supervisor.desktop.util.Internationalization;
+import br.edu.ufcg.supervisor.desktop.util.i16o;
 
 import com.google.gson.internal.StringMap;
 
@@ -167,10 +167,10 @@ public class State {
 	 */
 	public String getClassificacaoString() { 
 		switch (classificacao){
-		case INT_CL_PERIGOSO: return Internationalization.CL_PERIGOSO;
-		case INT_CL_ACEITACAO: return Internationalization.CL_ACEITACAO;
-		case INT_CL_TOLERAVEL: return Internationalization.CL_TOLERAVEL;
-		default: return Internationalization.CL_TOLERAVEL;
+		case INT_CL_PERIGOSO: return i16o.label("CL_PERIGOSO");
+		case INT_CL_ACEITACAO: return i16o.label("CL_ACEITACAO");
+		case INT_CL_TOLERAVEL: return i16o.label("CL_TOLERAVEL");
+		default: return i16o.label("CL_TOLERAVEL");
 		}
 	}
 	

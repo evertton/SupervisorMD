@@ -1,5 +1,5 @@
 /**
- * Copyright 2013-2014 Elthon Oliveira and Marcos Ferreira
+ * Copyright 2013-2014 Elthon Oliveira
  * 
  * This file is part of SupervisorD for Healthcare Professional software.
  * 
@@ -18,22 +18,30 @@
  *  
  *  Contact: el7hon at gmail dot com
  */
-package br.edu.ufcg.supervisor.desktop;
+package br.edu.ufcg.supervisor.desktop.util;
 
-import br.edu.ufcg.supervisor.desktop.util.i16o;
-import br.edu.ufcg.supervisor.desktop.windows.WindowsManager;
-
+import java.text.MessageFormat;
 import java.util.Locale;
-/**
- * Class responsible for starting application. 
- * @author Marcos José, Elthon Oliveira
- *
- */
-public class Main {
-	public static void main(String[] args) {
-		Locale local = new Locale("en","US");
-		//Locale local = new Locale("pt","BR");
-		i16o.setLocale(local);
-		new WindowsManager().initListaAtributos();
-	}
+import java.util.ResourceBundle;
+
+public class i16o {
+	private static final String BUNDLE_NAME = "message";
+	private static Locale locale = null;
+	
+	public static void setLocale(Locale l){ locale = l; }
+	
+	public static String label(String s, Object... args ){
+		ResourceBundle resourceBundle = null;
+		if(locale!=null)
+			resourceBundle = ResourceBundle.getBundle(BUNDLE_NAME, locale);
+		else
+			resourceBundle = ResourceBundle.getBundle(BUNDLE_NAME);
+		String message = null;
+		if(resourceBundle!=null){
+			message = resourceBundle.getString(s);
+			if(message!=null && args.length > 0)
+				message = MessageFormat.format(message, args);
+		}           
+		return message;
+	}	
 }

@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 //import br.edu.ufcg.supervisor.base.model.Atributo;
-import br.edu.ufcg.supervisor.desktop.util.Internationalization;
+import br.edu.ufcg.supervisor.desktop.util.i16o;
 import br.edu.ufcg.supervisor.model.Automaton;
 import br.edu.ufcg.supervisor.model.State;
 import br.edu.ufcg.supervisor.model.Transition;
@@ -39,8 +39,8 @@ public class JFrameTransitionList extends javax.swing.JFrame {
 	private WindowsManager gerenciador;
 	
 	//private String[] colunas = new String [] {
-	//		Internationalization.CP_NOME_ACAO, Internationalization.CP_ESTADO_DE_ORIGEM, 
-	//		Internationalization.CP_ESTADO_DE_DESTINO, Internationalization.CP_MENSAGEM_AO_USUARIO
+	//		i16o.label("CP_NOME_ACAO, i16o.label("CP_ESTADO_DE_ORIGEM, 
+	//		i16o.label("CP_ESTADO_DE_DESTINO, i16o.label("CP_MENSAGEM_AO_USUARIO
 	//};
 	private int indexAtributoSelecionado;
     
@@ -83,7 +83,7 @@ public class JFrameTransitionList extends javax.swing.JFrame {
 		for (; qtd>=0; qtd--) model.removeRow(qtd);
 		this.automato = gerenciador.getAtributo(indexAtributo).getAutomaton();
 		for(Transition transicao : automato.getArrayTransicoes()) addLinha(transicao);
-		setTitle(Internationalization.TITULO_TL_LISTA_TRANSICOES+" - "
+		setTitle(i16o.label("TITULO_LISTA_TRANSICOES")+" - "
 			+gerenciador.getArrayAtributos().get(indexAtributoSelecionado).getName());
 	}
 
@@ -120,19 +120,19 @@ public class JFrameTransitionList extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jButtonVoltar = new javax.swing.JButton();
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        jButtonAdicionar.setText(Internationalization.BT_ADICIONAR);
+        jButtonAdicionar.setText(i16o.label("BT_ADICIONAR"));
         jButtonAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) { jButtonAdicionarActionPerformed(evt); }
         });
-        jButtonEditar.setText(Internationalization.BT_EDITAR);
+        jButtonEditar.setText(i16o.label("BT_EDITAR"));
         jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) { jButtonEditarActionPerformed(evt); }
         });
-        jButtonRemover.setText(Internationalization.BT_REMOVER);
+        jButtonRemover.setText(i16o.label("BT_REMOVER"));
         jButtonRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) { jButtonRemoverActionPerformed(evt); }
         });
-        jButtonRemoverTodas.setText(Internationalization.BT_REMOVER_TUDO);
+        jButtonRemoverTodas.setText(i16o.label("BT_REMOVER_TUDO"));
         jButtonRemoverTodas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) { jButtonRemoverTodasActionPerformed(evt); }
         });
@@ -143,8 +143,8 @@ public class JFrameTransitionList extends javax.swing.JFrame {
         		//            }
         		//colunas
        		new String [] {
-   				Internationalization.CP_NOME_ACAO, Internationalization.CP_ESTADO_DE_ORIGEM, 
-   				Internationalization.CP_ESTADO_DE_DESTINO, Internationalization.CP_MENSAGEM_AO_USUARIO
+   				i16o.label("CP_NOME_ACAO"), i16o.label("CP_ESTADO_DE_ORIGEM"), 
+   				i16o.label("CP_ESTADO_DE_DESTINO"), i16o.label("CP_MENSAGEM_AO_USUARIO")
        		}) {
 				private static final long serialVersionUID = 7717284260760453763L;
 				@SuppressWarnings("rawtypes")
@@ -155,7 +155,7 @@ public class JFrameTransitionList extends javax.swing.JFrame {
 			public Class getColumnClass(int columnIndex) { return types [columnIndex]; }
         });
         jScrollPane1.setViewportView(jTable1);
-        jButtonVoltar.setText(Internationalization.BT_VOLTAR);
+        jButtonVoltar.setText(i16o.label("BT_VOLTAR"));
         jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) { jButtonVoltarActionPerformed(evt); }
         });
@@ -198,13 +198,13 @@ public class JFrameTransitionList extends javax.swing.JFrame {
     	if (indexTransicaoSelecionada>-1){
     		gerenciador.initEditarTransicao(indexAtributoSelecionado, indexTransicaoSelecionada);
     		this.setVisible(false);
-		} else JOptionPane.showMessageDialog(null,Internationalization.MS_SELECIONE_UMA_TRANSICAO,"",JOptionPane.INFORMATION_MESSAGE);		
+		} else JOptionPane.showMessageDialog(null,i16o.label("MS_SELECIONE_UMA_TRANSICAO"),"",JOptionPane.INFORMATION_MESSAGE);		
     }
 
     private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {                                               
     	int indexAtributoSelecionado = jTable1.getSelectedRow();
     	if (indexAtributoSelecionado>-1) removerLinha();
-    	else JOptionPane.showMessageDialog(null,Internationalization.MS_SELECIONE_UMA_TRANSICAO,"",JOptionPane.INFORMATION_MESSAGE);
+    	else JOptionPane.showMessageDialog(null,i16o.label("MS_SELECIONE_UMA_TRANSICAO"),"",JOptionPane.INFORMATION_MESSAGE);
     }
 
     private void jButtonRemoverTodasActionPerformed(java.awt.event.ActionEvent evt) {                                                    

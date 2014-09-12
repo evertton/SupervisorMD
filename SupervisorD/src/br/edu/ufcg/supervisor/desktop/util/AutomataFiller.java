@@ -43,13 +43,13 @@ public class AutomataFiller {
 
 	private static void preencheFrequenciaCardiaca(ArrayList<Attribute> arrayAtributos){
 		Attribute atributo = new Attribute();
-		atributo.setName(Internationalization.AT_HEART_RATE);
+		atributo.setName(i16o.label("AT_HEART_RATE"));
 		atributo.setType(Attribute.PHYSIOLOGICAL);
 		atributo.setUnitOfMeasure("bpm");
 		int identificador = Attribute.ID_HEART_RATE;
 
 		Automaton aI  = new Automaton();
-		aI.setNome(Internationalization.AT_HEART_RATE);
+		aI.setNome(i16o.label("AT_HEART_RATE"));
 
 		State safe = createEstado("safe",  50f, Range.MENOR_OU_IGUAL_A, Range.MENOR_OU_IGUAL_A, 100f, State.INT_CL_ACEITACAO, identificador);
 		aI.addEstado(safe);
@@ -73,7 +73,7 @@ public class AutomataFiller {
 	
 	private static void preencheVelocidade(ArrayList<Attribute> arrayAtributos){
 		Attribute atributo = new Attribute();
-		atributo.setName(Internationalization.AT_SPEED);
+		atributo.setName(i16o.label("AT_SPEED"));
 		atributo.setType(Attribute.PHYSIOLOGICAL);
 		atributo.setUnitOfMeasure("m/s");
 		int identificador = Attribute.ID_SPEED;
@@ -102,13 +102,13 @@ public class AutomataFiller {
 	
 	private static void preencheTemperatura(ArrayList<Attribute> arrayAtributos){
 		Attribute atributo = new Attribute();
-		atributo.setName(Internationalization.AT_ENVIRONMENTAL_TEMPERATURE);
+		atributo.setName(i16o.label("AT_ENVIRONMENTAL_TEMPERATURE"));
 		atributo.setType(Attribute.ENVIRONMENTAL);
 		atributo.setUnitOfMeasure("°C");
 		int identificador = Attribute.ID_ENVIRONMENTAL_TEMPERATURE;
 
 		Automaton aI  = new Automaton();
-		aI.setNome(Internationalization.AT_ENVIRONMENTAL_TEMPERATURE);
+		aI.setNome(i16o.label("AT_ENVIRONMENTAL_TEMPERATURE"));
 		State good = createEstado("good",  10f, Range.MENOR_OU_IGUAL_A, Range.MENOR_OU_IGUAL_A, 29f, State.INT_CL_ACEITACAO, identificador);
 		aI.addEstado(good);
 		
@@ -144,17 +144,17 @@ public class AutomataFiller {
 	}
 	
 	public static int getAttIdFromName(String nome){
-		if (nome.equals(Internationalization.AT_HEART_RATE)) return Attribute.ID_HEART_RATE;
-		if (nome.equals(Internationalization.AT_RESPIRATORY_EXCHANGE_RATIO)) return Attribute.ID_RESPIRATORY_EXCHANGE_RATIO;
-		if (nome.equals(Internationalization.AT_SYSTOLIC_BLOOD_PRESSURE)) return Attribute.ID_SYSTOLIC_BLOOD_PRESSURE;
-		if (nome.equals(Internationalization.AT_DIASTOLIC_BLOOD_PRESSURE)) return Attribute.ID_DIASTOLIC_BLOOD_PRESSURE; 
-		if (nome.equals(Internationalization.AT_BODY_TEMPERATURE)) return Attribute.ID_BODY_TEMPERATURE;
-		if (nome.equals(Internationalization.AT_BLOOD_LACTATE)) return Attribute.ID_BLOOD_LACTATE;
-		if (nome.equals(Internationalization.AT_BLOOD_GLUCOSE)) return Attribute.ID_BLOOD_GLUCOSE;	
-		if (nome.equals(Internationalization.AT_OXIGEN_CONSUMPTION)) return Attribute.ID_OXIGEN_CONSUMPTION; 
-		if (nome.equals(Internationalization.AT_AMBIENT_PRESSURE)) return Attribute.ID_AMBIENT_PRESSURE;
-		if (nome.equals(Internationalization.AT_AIR_RELATIVE_HUMIDITY)) return Attribute.ID_AIR_RELATIVE_HUMIDITY; 	
-		if (nome.equals(Internationalization.AT_SPEED)) return Attribute.ID_SPEED;
+		if (nome.equals(i16o.label("AT_HEART_RATE"))) return Attribute.ID_HEART_RATE;
+		if (nome.equals(i16o.label("AT_RESPIRATORY_EXCHANGE_RATIO"))) return Attribute.ID_RESPIRATORY_EXCHANGE_RATIO;
+		if (nome.equals(i16o.label("AT_SYSTOLIC_BLOOD_PRESSURE"))) return Attribute.ID_SYSTOLIC_BLOOD_PRESSURE;
+		if (nome.equals(i16o.label("AT_DIASTOLIC_BLOOD_PRESSURE"))) return Attribute.ID_DIASTOLIC_BLOOD_PRESSURE; 
+		if (nome.equals(i16o.label("AT_BODY_TEMPERATURE"))) return Attribute.ID_BODY_TEMPERATURE;
+		if (nome.equals(i16o.label("AT_BLOOD_LACTATE"))) return Attribute.ID_BLOOD_LACTATE;
+		if (nome.equals(i16o.label("AT_BLOOD_GLUCOSE"))) return Attribute.ID_BLOOD_GLUCOSE;	
+		if (nome.equals(i16o.label("AT_OXIGEN_CONSUMPTION"))) return Attribute.ID_OXIGEN_CONSUMPTION; 
+		if (nome.equals(i16o.label("AT_AMBIENT_PRESSURE"))) return Attribute.ID_AMBIENT_PRESSURE;
+		if (nome.equals(i16o.label("AT_AIR_RELATIVE_HUMIDITY"))) return Attribute.ID_AIR_RELATIVE_HUMIDITY; 	
+		if (nome.equals(i16o.label("AT_SPEED"))) return Attribute.ID_SPEED;
 		return 0;
 	}
 
