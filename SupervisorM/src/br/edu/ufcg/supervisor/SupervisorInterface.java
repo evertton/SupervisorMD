@@ -145,6 +145,7 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 				}
 				String x = getShortestPath(arrayMensagens);
 				x = eliminateReplicatedRecommendations(x);
+				if (x.equals(".")) x = "Some variable has not been measured!";
 				logString = logString + x +"\n";
 				r.put("rec",x);
 				callbackContext.success(r);
@@ -255,9 +256,9 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 	private void loadPreDefinedModel(JSONArray args, CallbackContext callbackContext) throws JSONException{
 		String fileName = args.get(0).toString();
 		if (fileName.equals("sm")){
-			model = new Automaton("{1=11_, 2=[{0=HurryUp, 2=0, 3=1}, {0=SlowDown, 2=1, 3=0}, {0=HurryUp, 2=1, 3=2}, {0=SlowDown, 2=2, 3=1}, {0=HurryUp, 2=2, 3=3}, {0=SlowDown, 2=3, 3=2}], 3=[{1=slow, 4=1, 5=[{0=11, 1=7.0, 2=0.0, 3=0, 4=1}]}, {1=mode, 4=3, 5=[{0=11, 1=10.0, 2=7.0, 3=0, 4=1}]}, {1=fast, 4=3, 5=[{0=11, 1=14.0, 2=10.0, 3=0, 4=1}]}, {1=vfast, 4=2, 5=[{0=11, 1=20.0, 2=14.0, 3=0, 4=1}]}], 4=[1, 2]}");
+			model = new Automaton(TrainingLoader.model1);
 		} else if (fileName.equals("shm")){
-			model = new Automaton("{1=1_12_, 2=[{0=Increase_heart-rate.(by_going_uphill_or_accelerating), 2=0, 3=1}, {0=Increase_temperature., 2=0, 3=3}, {0=Decrease_heart-rate.(by_slowing_down), 2=1, 3=0}, {0=Increase_heart-rate.(by_going_uphill_or_accelerating), 2=1, 3=2}, {0=Increase_temperature., 2=1, 3=4}, {0=Decrease_heart-rate.(by_slowing_down), 2=2, 3=1}, {0=Increase_temperature., 2=2, 3=5}, {0=Increase_heart-rate.(by_going_uphill_or_accelerating), 2=3, 3=4}, {0=Decrease_temperature.(or_hydrate!), 2=3, 3=0}, {0=Increase_temperature., 2=3, 3=6}, {0=Decrease_heart-rate.(by_slowing_down), 2=4, 3=3}, {0=Increase_heart-rate.(by_going_uphill_or_accelerating), 2=4, 3=5}, {0=Decrease_temperature.(or_hydrate!), 2=4, 3=1}, {0=Increase_temperature., 2=4, 3=7}, {0=Decrease_heart-rate.(by_slowing_down), 2=5, 3=4}, {0=Decrease_temperature.(or_hydrate!), 2=5, 3=2}, {0=Increase_temperature., 2=5, 3=8}, {0=Increase_heart-rate.(by_going_uphill_or_accelerating), 2=6, 3=7}, {0=Decrease_temperature.(or_hydrate!), 2=6, 3=3}, {0=Decrease_heart-rate.(by_slowing_down), 2=7, 3=6}, {0=Increase_heart-rate.(by_going_uphill_or_accelerating), 2=7, 3=8}, {0=Decrease_temperature.(or_hydrate!), 2=7, 3=4}, {0=Decrease_heart-rate.(by_slowing_down), 2=8, 3=7}, {0=Decrease_temperature.(or_hydrate!), 2=8, 3=5}], 3=[{1=safe.good, 4=3, 5=[{0=1, 1=100.0, 2=50.0, 3=0, 4=0}, {0=12, 1=29.0, 2=19.0, 3=0, 4=0}]}, {1=tolerable.good, 4=1, 5=[{0=1, 1=130.0, 2=100.0, 3=0, 4=1}, {0=12, 1=29.0, 2=19.0, 3=0, 4=0}]}, {1=dangerous.good, 4=2, 5=[{0=1, 1=160.0, 2=130.0, 3=0, 4=1}, {0=12, 1=29.0, 2=19.0, 3=0, 4=0}]}, {1=safe.high, 4=2, 5=[{0=1, 1=100.0, 2=50.0, 3=0, 4=0}, {0=12, 1=34.0, 2=29.0, 3=0, 4=1}]}, {1=tolerable.high, 4=2, 5=[{0=1, 1=130.0, 2=100.0, 3=0, 4=1}, {0=12, 1=34.0, 2=29.0, 3=0, 4=1}]}, {1=dangerous.high, 4=2, 5=[{0=1, 1=160.0, 2=130.0, 3=0, 4=1}, {0=12, 1=34.0, 2=29.0, 3=0, 4=1}]}, {1=safe.vhig, 4=2, 5=[{0=1, 1=100.0, 2=50.0, 3=0, 4=0}, {0=12, 1=50.0, 2=34.0, 3=0, 4=1}]}, {1=tolerable.vhig, 4=2, 5=[{0=1, 1=130.0, 2=100.0, 3=0, 4=1}, {0=12, 1=50.0, 2=34.0, 3=0, 4=1}]}, {1=dangerous.vhig, 4=2, 5=[{0=1, 1=160.0, 2=130.0, 3=0, 4=1}, {0=12, 1=50.0, 2=34.0, 3=0, 4=1}]}], 4=[0]}");
+			model = new Automaton(TrainingLoader.model2);
 		} else if (fileName.equals("shtm")){
 			model = new Automaton(TrainingLoader.model3);
 		} else {
