@@ -25,6 +25,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import org.json.JSONObject;
+
 import br.edu.ufcg.supervisor.desktop.util.AttributeList;
 import br.edu.ufcg.supervisor.model.*;
 
@@ -34,25 +36,23 @@ import br.edu.ufcg.supervisor.model.*;
  *
  */
 public class Simulation {
-	private Automaton automaton;
-	private HashMap<Integer,Float> map;
-	private int[] arrayIds;
+	private static Automaton automaton;
+	private static HashMap<Integer,Float> map;
+	private static int[] arrayIds;
 	//private List<String> nomes;// = new ArrayList<String>();
+	private static String recommendation = "";
+	private static String currentState = "";
+	private static ArrayList<String> names;
+	private static ArrayList<String> arrayMensagens; 
+	private static String logString = "";
 
-	/** Chamado quando a activity é criada. */
-	public void onCreate() {
-		automaton = LoadedModel.getModelo();
+	public static void start() {
+		automaton = LoadedModel.getModel();
 		initMap();
+		names = LoadedModel.getNomesVariaveisMonitoradas();
+		arrayMensagens = new ArrayList<String>();
 	}
-
-	private void imprimeMap(){
-		StringBuffer sMap = new StringBuffer("");
-		for (int i : arrayIds){
-			sMap.append(AttributeList.getAtributoDoId("" + i)+ ": " + map.get(i) + "\n");
-		}
-	}	
-	
-	private void initMap(){
+	private static void initMap(){
 		map = new HashMap<Integer,Float>();
 		State e = automaton.getArrayEstadosAceitos().get(0);
 		for (Range i : e.getIntervalos()){
@@ -60,38 +60,45 @@ public class Simulation {
 		}
 		imprimeMap();
 	}
+	private static void imprimeMap(){
+		StringBuffer sMap = new StringBuffer("");
+		for (int i : arrayIds){
+			sMap.append(AttributeList.getAtributoDoId("" + i)+ ": " + map.get(i) + "\n");
+		}
+	}	
+	
 
-	private float getMediaDoIntervalo(Range i){
+	private static float getMediaDoIntervalo(Range i){
 		return ( i.getValorMaximo() + i.getValorMinimo() )/2;
 	}
 
-	private void executa(){
-		String mensagem = "";
-		ArrayList<String> arrayMensagens = new ArrayList<String>();
-		State estado;
-		try {
-			estado = automaton.buscaEstadoCorrespondente(map);
-			if (! (estado.getClassificacao() == State.INT_CL_ACEITACAO) ) {//verifica se E Qm, caso não chama o algoritmo
-				Search alg = new Search(automaton);
-				alg.execute(estado);
-				for (State estadoAceito : automaton.getArrayEstadosAceitos()){
-					LinkedList<State> caminho = alg.getPath(estadoAceito);
-					if (caminho != null){
-						for (int j=0; j<caminho.size()-1;j++) {
-							mensagem += (j+1)+ ". " + automaton.getMensagemDasTransicoesEntreDoisEstadosQuaisquer(caminho.get(j),caminho.get(j+1) )+ " ";
-						}
-						arrayMensagens.add(mensagem);
+	public static void executeModel(HashMap<Integer,Float> map2) throws Exception{
+		State estado = automaton.buscaEstadoCorrespondente(map2);
+		if (!(estado.getClassificacao() == State.INT_CL_ACEITACAO)){
+			Search alg = new Search(automaton);
+			alg.execute(estado);
+			for (State estadoAceito : automaton.getArrayEstadosAceitos()){
+				LinkedList<State> caminho = alg.getPath(estadoAceito);
+				if (caminho != null){
+					for (int j=0; j<caminho.size()-1;j++) {
+						recommendation += "."+automaton.getMensagemDasTransicoesEntreDoisEstadosQuaisquer(caminho.get(j),caminho.get(j+1));//elthon
 					}
+					arrayMensagens.add(recommendation);
 				}
 			}
-			getCaminhoMaisCurto(arrayMensagens);
-			arrayMensagens.size();
-			estado.getNome();
-			estado.getClassificacaoString();
-		} catch (Exception e) { e.printStackTrace(); }
+			recommendation = getShortestPath(arrayMensagens);
+			recommendation = eliminateReplicatedRecommendations(recommendation);
+			if (recommendation.equals(".")) recommendation = "Some variable has not been measured!";
+			logString = logString + recommendation +"\n";
+		} else {
+			logString = logString + "(keep going)\n";
+			recommendation = "Keep going!";
+		}
 	}
-
-	private String getCaminhoMaisCurto(ArrayList<String> array){
+	public static String getLogString() { return logString; }
+	public static String getRecommendation() { return recommendation; }
+	
+	private static String getShortestPath(ArrayList<String> array){
 		if (array.size() == 0){	return ""; }
 		int minimo = array.get(0).split(".").length;
 		int qtd;
@@ -104,5 +111,14 @@ public class Simulation {
 			}
 		}
 		return array.get(indexMenorCaminho);
+	}
+	private static String eliminateReplicatedRecommendations(String rec){
+		String result = "";
+		rec = rec.replaceFirst(".", "");
+		String[] temp = rec.split("\\.");
+		for (int i = 0; i < temp.length; i++) {
+			if (!result.contains(temp[i])) result = result + ", " + temp[i];
+		}
+		return result.replaceFirst(", ","") +".";		
 	}
 }

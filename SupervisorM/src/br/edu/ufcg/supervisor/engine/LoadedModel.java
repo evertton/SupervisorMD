@@ -27,7 +27,7 @@ import br.edu.ufcg.supervisor.desktop.util.*;
 public class LoadedModel {
 	private static Automaton modelo = null;
 	
-	public static Automaton getModelo() { return modelo; }
+	public static Automaton getModel() { return modelo; }
 
 	public static void setModelo(Automaton _modelo) { modelo = _modelo; }
 	

@@ -40,7 +40,7 @@ import br.edu.ufcg.supervisor.model.*;
  *
  */
 public class Search {
-	private final List<State> nodes;
+	//private final List<State> nodes; //elthon
 	private final List<Transition> edges;
 	private Set<State> settledNodes;
 	private Set<State> unSettledNodes;
@@ -48,7 +48,7 @@ public class Search {
 	private Map<State, Integer> distance;
 
 	public Search(Automaton a) {
-		this.nodes = new ArrayList<State>(a.getVectorEstados());
+		//this.nodes = new ArrayList<State>(a.getVectorEstados()); //elthon
 		this.edges = new ArrayList<Transition>(a.getArrayTransicoes());
 	}
 

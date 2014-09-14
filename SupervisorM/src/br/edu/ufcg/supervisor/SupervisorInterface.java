@@ -43,6 +43,7 @@ import br.edu.ufcg.supervisor.engine.TrainingLoader;
 import br.edu.ufcg.supervisor.model.Automaton;
 import br.edu.ufcg.supervisor.model.State;
 
+import android.annotation.SuppressLint;
 import android.os.Environment;
 import android.provider.Settings;
 import android.text.format.Time;
@@ -54,6 +55,7 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 	private static Automaton model = null;
 	private static String logString = "";
 	private static HashMap<String, Float> map = new HashMap<String, Float>(); //nome - valor
+	@SuppressLint("UseSparseArrays")
 	HashMap<Integer, Float> map2 = new HashMap<Integer, Float>();//mesmo que map, soh q com chave "integer"
 	
     /**
@@ -90,8 +92,6 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 	    	return true;  	
 	    } else { return false; }
     }
-		
-
 	
 	private void saveLogTraining(String content){
     	logString.replaceAll("<br>","");
@@ -118,6 +118,85 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 		JSONObject r = new JSONObject();
 		String name = args.get(0).toString();
 		Float value = Float.valueOf((String)args.get(1));
+		
+		map.put(name, value);
+		map2.put(Integer.valueOf((String)args.get(2)), value);
+		
+		String recommendation = "";
+		String currentState = "";
+		
+		ArrayList<String> names = LoadedModel.getNomesVariaveisMonitoradas();
+		ArrayList<String> arrayMensagens = new ArrayList<String>();
+		for (int i = 0; i < map.size(); i++) { currentState = currentState+"- "+names.get(i)+": "+map.get(names.get(i))+".<br>"; }
+
+		logString = logString + currentState + " - ";
+		r.put("cur",currentState);
+		
+		try {
+			State estado = model.buscaEstadoCorrespondente(map2);
+			if (!(estado.getClassificacao() == State.INT_CL_ACEITACAO)){
+				Search alg = new Search(model);
+				alg.execute(estado);
+				for (State estadoAceito : model.getArrayEstadosAceitos()){
+					LinkedList<State> caminho = alg.getPath(estadoAceito);
+					if (caminho != null){
+						for (int j=0; j<caminho.size()-1;j++) {
+							recommendation += "."+model.getMensagemDasTransicoesEntreDoisEstadosQuaisquer(caminho.get(j),caminho.get(j+1));//elthon
+						}
+						arrayMensagens.add(recommendation);
+					}
+				}
+				recommendation = getShortestPath(arrayMensagens);
+				recommendation = eliminateReplicatedRecommendations(recommendation);
+				if (recommendation.equals(".")) recommendation = "Some variable has not been measured!";
+				logString = logString + recommendation +"\n";
+			} else {
+				recommendation = "Keep going!";
+				logString = logString + "("+recommendation+")\n";
+			}
+			/*Simulation.start();
+			Simulation.executeModel(map2);
+			logString = logString + Simulation.getLogString();*/
+			r.put("rec",recommendation);
+			callbackContext.success(r);
+		} catch (Exception e) {
+			recommendation = "Value not monitored.";
+			logString = logString + "("+recommendation+")\n";
+			r.put("error",recommendation);
+			r.put("rec","Stop and verify your devices. If this appears again, call your healthcare professional.");
+			callbackContext.error(r);
+		}
+	}
+	private static String getShortestPath(ArrayList<String> array){
+		if (array.size() == 0){	return ""; }
+		int minimo = array.get(0).split(".").length;
+		int qtd;
+		int indexMenorCaminho = 0;
+		for(int i = 1; i < array.size(); i++){
+			qtd = array.get(i).split(".").length;
+			if (qtd < minimo){
+				minimo = qtd;
+				indexMenorCaminho = i;
+			}
+		}
+		return array.get(indexMenorCaminho);
+	}
+	private static String eliminateReplicatedRecommendations(String rec){
+		String result = "";
+		rec = rec.replaceFirst(".", "");
+		String[] temp = rec.split("\\.");
+		for (int i = 0; i < temp.length; i++) {
+			if (!result.contains(temp[i])) result = result + ", " + temp[i];
+		}
+		return result.replaceFirst(", ","") +".";		
+	}
+	
+	
+	/*
+	private void executeModel(JSONArray args, CallbackContext callbackContext) throws JSONException{
+		JSONObject r = new JSONObject();
+		String name = args.get(0).toString();
+		Float value = Float.valueOf((String)args.get(1));
 		map.put(name, value);
 		map2.put(Integer.valueOf((String)args.get(2)), value);
 		ArrayList<String> names = LoadedModel.getNomesVariaveisMonitoradas();
@@ -128,10 +207,10 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 		logString = logString + currentState + " - ";
 		r.put("cur",currentState);
 		State estado;
-		try {
-			Automaton a = LoadedModel.getModelo();
+		try {		
+			Automaton a = LoadedModel.getModel();
 			estado = a.buscaEstadoCorrespondente(map2);
-			if (!(estado.getClassificacao() == State.INT_CL_ACEITACAO) ) {//verifica se E Qm, caso não chama o algoritmo
+			if (!(estado.getClassificacao() == State.INT_CL_ACEITACAO)){
 				Search alg = new Search(model);
 				alg.execute(estado);
 				for (State estadoAceito : model.getArrayEstadosAceitos()){
@@ -160,32 +239,8 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 			r.put("rec","Stop and verify your devices. If this appears again, call your healthcare professional.");
 			callbackContext.error(r);
 		}
-	}
+	}*/
 	
-	private String getShortestPath(ArrayList<String> array){
-		if (array.size() == 0){	return ""; }
-		int minimo = array.get(0).split(".").length;
-		int qtd;
-		int indexMenorCaminho = 0;
-		for(int i = 1; i < array.size(); i++){
-			qtd = array.get(i).split(".").length;
-			if (qtd < minimo){
-				minimo = qtd;
-				indexMenorCaminho = i;
-			}
-		}
-		return array.get(indexMenorCaminho);
-	}
-	private String eliminateReplicatedRecommendations(String rec){
-		String result = "";
-		rec = rec.replaceFirst(".", "");
-		String[] temp = rec.split("\\.");
-		for (int i = 0; i < temp.length; i++) {
-			if (!result.contains(temp[i])) result = result + ", " + temp[i];
-		}
-		return result.replaceFirst(", ","") +".";		
-	}
-
 	/**
 	 * Starts the process of executing the chosen model.
 	 * @param callbackContext Used to return the result of processing.
