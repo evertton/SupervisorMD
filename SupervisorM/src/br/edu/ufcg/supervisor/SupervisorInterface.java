@@ -27,7 +27,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.TimeZone;
 
 import org.apache.cordova.CordovaWebView;
@@ -38,10 +37,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import br.edu.ufcg.supervisor.engine.LoadedModel;
-import br.edu.ufcg.supervisor.engine.Search;
+import br.edu.ufcg.supervisor.engine.Simulation;
 import br.edu.ufcg.supervisor.engine.TrainingLoader;
 import br.edu.ufcg.supervisor.model.Automaton;
-import br.edu.ufcg.supervisor.model.State;
 
 import android.annotation.SuppressLint;
 import android.os.Environment;
@@ -118,47 +116,12 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 		JSONObject r = new JSONObject();
 		String name = args.get(0).toString();
 		Float value = Float.valueOf((String)args.get(1));
-		
 		map.put(name, value);
 		map2.put(Integer.valueOf((String)args.get(2)), value);
-		
 		String recommendation = "";
 		String currentState = "";
-		
-		ArrayList<String> names = LoadedModel.getNomesVariaveisMonitoradas();
-		ArrayList<String> arrayMensagens = new ArrayList<String>();
-		for (int i = 0; i < map.size(); i++) { currentState = currentState+"- "+names.get(i)+": "+map.get(names.get(i))+".<br>"; }
-
-		logString = logString + currentState + " - ";
-		r.put("cur",currentState);
-		
 		try {
-			State estado = model.buscaEstadoCorrespondente(map2);
-			if (!(estado.getClassificacao() == State.INT_CL_ACEITACAO)){
-				Search alg = new Search(model);
-				alg.execute(estado);
-				for (State estadoAceito : model.getArrayEstadosAceitos()){
-					LinkedList<State> caminho = alg.getPath(estadoAceito);
-					if (caminho != null){
-						for (int j=0; j<caminho.size()-1;j++) {
-							recommendation += "."+model.getMensagemDasTransicoesEntreDoisEstadosQuaisquer(caminho.get(j),caminho.get(j+1));//elthon
-						}
-						arrayMensagens.add(recommendation);
-					}
-				}
-				recommendation = getShortestPath(arrayMensagens);
-				recommendation = eliminateReplicatedRecommendations(recommendation);
-				if (recommendation.equals(".")) recommendation = "Some variable has not been measured!";
-				logString = logString + recommendation +"\n";
-			} else {
-				recommendation = "Keep going!";
-				logString = logString + "("+recommendation+")\n";
-			}
-			/*Simulation.start();
-			Simulation.executeModel(map2);
-			logString = logString + Simulation.getLogString();*/
-			r.put("rec",recommendation);
-			callbackContext.success(r);
+			Simulation.executeModel(r,model,map,map2,currentState,recommendation,logString);
 		} catch (Exception e) {
 			recommendation = "Value not monitored.";
 			logString = logString + "("+recommendation+")\n";
@@ -166,31 +129,8 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 			r.put("rec","Stop and verify your devices. If this appears again, call your healthcare professional.");
 			callbackContext.error(r);
 		}
+		callbackContext.success(r);
 	}
-	private static String getShortestPath(ArrayList<String> array){
-		if (array.size() == 0){	return ""; }
-		int minimo = array.get(0).split(".").length;
-		int qtd;
-		int indexMenorCaminho = 0;
-		for(int i = 1; i < array.size(); i++){
-			qtd = array.get(i).split(".").length;
-			if (qtd < minimo){
-				minimo = qtd;
-				indexMenorCaminho = i;
-			}
-		}
-		return array.get(indexMenorCaminho);
-	}
-	private static String eliminateReplicatedRecommendations(String rec){
-		String result = "";
-		rec = rec.replaceFirst(".", "");
-		String[] temp = rec.split("\\.");
-		for (int i = 0; i < temp.length; i++) {
-			if (!result.contains(temp[i])) result = result + ", " + temp[i];
-		}
-		return result.replaceFirst(", ","") +".";		
-	}
-	
 	
 	/*
 	private void executeModel(JSONArray args, CallbackContext callbackContext) throws JSONException{
@@ -260,6 +200,7 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 			String names = "";
 			map.clear();//zera o map para limpar modelos carregados anteriormente.
 			map2.clear();
+			logString = "";
 			for(int i = 0; i<arrayNames.size();i++){
 				ids = ids + "," + arrayIds[i];
 				names = names + "," + arrayNames.get(i);

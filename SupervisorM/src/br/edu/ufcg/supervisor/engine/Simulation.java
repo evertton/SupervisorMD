@@ -40,17 +40,10 @@ public class Simulation {
 	private static HashMap<Integer,Float> map;
 	private static int[] arrayIds;
 	//private List<String> nomes;// = new ArrayList<String>();
-	private static String recommendation = "";
-	private static String currentState = "";
-	private static ArrayList<String> names;
-	private static ArrayList<String> arrayMensagens; 
-	private static String logString = "";
 
 	public static void start() {
 		automaton = LoadedModel.getModel();
 		initMap();
-		names = LoadedModel.getNomesVariaveisMonitoradas();
-		arrayMensagens = new ArrayList<String>();
 	}
 	private static void initMap(){
 		map = new HashMap<Integer,Float>();
@@ -72,17 +65,24 @@ public class Simulation {
 		return ( i.getValorMaximo() + i.getValorMinimo() )/2;
 	}
 
-	public static void executeModel(HashMap<Integer,Float> map2) throws Exception{
-		State estado = automaton.buscaEstadoCorrespondente(map2);
+	public static void executeModel(JSONObject r, Automaton model, HashMap<String, Float> map1, 
+			HashMap<Integer, Float> map2, String currentState, String recommendation, String logString) throws Exception{
+		ArrayList<String> names = LoadedModel.getNomesVariaveisMonitoradas();
+		ArrayList<String> arrayMensagens = new ArrayList<String>();
+		for (int i = 0; i < map1.size(); i++) { currentState = currentState+"- "+names.get(i)+": "+map1.get(names.get(i))+".<br>"; }
+
+		logString = logString + currentState + " - ";
+		r.put("cur",currentState);
+		
+		State estado = model.buscaEstadoCorrespondente(map2);
 		if (!(estado.getClassificacao() == State.INT_CL_ACEITACAO)){
-			Search alg = new Search(automaton);
+			Search alg = new Search(model);
 			alg.execute(estado);
-			for (State estadoAceito : automaton.getArrayEstadosAceitos()){
+			for (State estadoAceito : model.getArrayEstadosAceitos()){
 				LinkedList<State> caminho = alg.getPath(estadoAceito);
 				if (caminho != null){
-					for (int j=0; j<caminho.size()-1;j++) {
-						recommendation += "."+automaton.getMensagemDasTransicoesEntreDoisEstadosQuaisquer(caminho.get(j),caminho.get(j+1));//elthon
-					}
+					for (int j=0; j<caminho.size()-1;j++)
+						recommendation += "."+model.getMensagemDasTransicoesEntreDoisEstadosQuaisquer(caminho.get(j),caminho.get(j+1));//elthon
 					arrayMensagens.add(recommendation);
 				}
 			}
@@ -91,12 +91,11 @@ public class Simulation {
 			if (recommendation.equals(".")) recommendation = "Some variable has not been measured!";
 			logString = logString + recommendation +"\n";
 		} else {
-			logString = logString + "(keep going)\n";
 			recommendation = "Keep going!";
+			logString = logString + "("+recommendation+")\n";
 		}
+		r.put("rec",recommendation);
 	}
-	public static String getLogString() { return logString; }
-	public static String getRecommendation() { return recommendation; }
 	
 	private static String getShortestPath(ArrayList<String> array){
 		if (array.size() == 0){	return ""; }
