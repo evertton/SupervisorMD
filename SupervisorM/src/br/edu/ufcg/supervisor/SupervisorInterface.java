@@ -54,7 +54,7 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 	private static String logString = "";
 	private static HashMap<String, Float> map = new HashMap<String, Float>(); //nome - valor
 	@SuppressLint("UseSparseArrays")
-	HashMap<Integer, Float> map2 = new HashMap<Integer, Float>();//mesmo que map, soh q com chave "integer"
+	private static HashMap<Integer, Float> map2 = new HashMap<Integer, Float>();//mesmo que map, soh q com chave "integer"
 	
     /**
      * Sets the context of the Command. This can then be used to do things like
@@ -179,7 +179,33 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 			r.put("rec","Stop and verify your devices. If this appears again, call your healthcare professional.");
 			callbackContext.error(r);
 		}
-	}*/
+	}
+	
+	private static String getShortestPath(ArrayList<String> array){
+		if (array.size() == 0){	return ""; }
+		int minimo = array.get(0).split(".").length;
+		int qtd;
+		int indexMenorCaminho = 0;
+		for(int i = 1; i < array.size(); i++){
+			qtd = array.get(i).split(".").length;
+			if (qtd < minimo){
+				minimo = qtd;
+				indexMenorCaminho = i;
+			}
+		}
+		return array.get(indexMenorCaminho);
+	}
+	
+	private static String eliminateReplicatedRecommendations(String rec){
+		String result = "";
+		rec = rec.replaceFirst(".", "");
+		String[] temp = rec.split("\\.");
+		for (int i = 0; i < temp.length; i++) {
+			if (!result.contains(temp[i])) result = result + ", " + temp[i];
+		}
+		return result.replaceFirst(", ","") +".";		
+	}
+	*/
 	
 	/**
 	 * Starts the process of executing the chosen model.
@@ -193,7 +219,7 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 			callbackContext.error(r);
 		} else {
 			model.setNome(model.getNome());
-			LoadedModel.setModelo(model);
+			LoadedModel.setModel(model);
 			int[] arrayIds = LoadedModel.getIdVariaveisMonitoradas();
 			ArrayList<String> arrayNames = LoadedModel.getNomesVariaveisMonitoradas();
 			String ids = "";
@@ -227,7 +253,7 @@ public class SupervisorInterface extends org.apache.cordova.api.CordovaPlugin {
 		File file = new File(pathToFile);
 		if (!file.exists()){
 			model = null;
-			model = new Automaton("{1=11_, 2=[{0=HurryUp, 2=0, 3=1}, {0=SlowDown, 2=1, 3=0}, {0=HurryUp, 2=1, 3=2}, {0=SlowDown, 2=2, 3=1}, {0=HurryUp, 2=2, 3=3}, {0=SlowDown, 2=3, 3=2}], 3=[{1=slow, 4=1, 5=[{0=11, 1=7.0, 2=0.0, 3=0, 4=1}]}, {1=mode, 4=3, 5=[{0=11, 1=10.0, 2=7.0, 3=0, 4=1}]}, {1=fast, 4=3, 5=[{0=11, 1=14.0, 2=10.0, 3=0, 4=1}]}, {1=vfast, 4=2, 5=[{0=11, 1=20.0, 2=14.0, 3=0, 4=1}]}], 4=[1, 2]}");
+			//model = TrainingLoader.getDefaultModel();
 			r.put("msg", "File not found.");
 			callbackContext.error(r);
 		} else {

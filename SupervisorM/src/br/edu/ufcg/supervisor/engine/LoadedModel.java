@@ -29,7 +29,7 @@ public class LoadedModel {
 	
 	public static Automaton getModel() { return modelo; }
 
-	public static void setModelo(Automaton _modelo) { modelo = _modelo; }
+	public static void setModel(Automaton _modelo) { modelo = _modelo; }
 	
 	public static ArrayList<String> getNomesVariaveisMonitoradas(){
 		String[] sArray = modelo.getNome().split("_");

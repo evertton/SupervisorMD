@@ -39,12 +39,12 @@ public class Simulation {
 	private static Automaton automaton;
 	private static HashMap<Integer,Float> map;
 	private static int[] arrayIds;
-	//private List<String> nomes;// = new ArrayList<String>();
 
 	public static void start() {
 		automaton = LoadedModel.getModel();
 		initMap();
 	}
+	
 	private static void initMap(){
 		map = new HashMap<Integer,Float>();
 		State e = automaton.getArrayEstadosAceitos().get(0);
@@ -53,18 +53,16 @@ public class Simulation {
 		}
 		imprimeMap();
 	}
+	
 	private static void imprimeMap(){
 		StringBuffer sMap = new StringBuffer("");
 		for (int i : arrayIds){
 			sMap.append(AttributeList.getAtributoDoId("" + i)+ ": " + map.get(i) + "\n");
 		}
-	}	
-	
-
-	private static float getMediaDoIntervalo(Range i){
-		return ( i.getValorMaximo() + i.getValorMinimo() )/2;
 	}
-
+	
+	private static float getMediaDoIntervalo(Range i){ return ( i.getValorMaximo() + i.getValorMinimo() )/2; }
+	
 	public static void executeModel(JSONObject r, Automaton model, HashMap<String, Float> map1, 
 			HashMap<Integer, Float> map2, String currentState, String recommendation, String logString) throws Exception{
 		ArrayList<String> names = LoadedModel.getNomesVariaveisMonitoradas();
@@ -95,7 +93,7 @@ public class Simulation {
 			logString = logString + "("+recommendation+")\n";
 		}
 		r.put("rec",recommendation);
-	}
+	}	
 	
 	private static String getShortestPath(ArrayList<String> array){
 		if (array.size() == 0){	return ""; }
@@ -111,6 +109,7 @@ public class Simulation {
 		}
 		return array.get(indexMenorCaminho);
 	}
+	
 	private static String eliminateReplicatedRecommendations(String rec){
 		String result = "";
 		rec = rec.replaceFirst(".", "");

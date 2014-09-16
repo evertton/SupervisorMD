@@ -52,7 +52,5 @@ public class MainActivity extends DroidGap {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
-	}
-	
-	
+	}	
 }
