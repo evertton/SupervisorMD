@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
 
 public class i16o {
 	private static final String BUNDLE_NAME = "message";
-	private static Locale locale = null;
+	private static Locale locale = new Locale("en","US");
 	
 	public static void setLocale(Locale l){ locale = l; }
 	

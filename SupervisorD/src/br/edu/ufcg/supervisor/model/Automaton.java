@@ -208,7 +208,7 @@ public class Automaton {
 	 * Retorna o nome do automato.
 	 * @return	Uma String contendo o nome do estado.
 	 */
-	public String getNome(){ return nome; }
+	public String getNome(){ return this.nome; }
 
 	/**
 	 * Retorna a lista de rótulos.

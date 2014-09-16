@@ -37,7 +37,6 @@ public class AttributeList {
 	private static Vector<String> arrayUnidadeAtributo = new Vector<String>();	//{"bpm", "ºC"};
 	private static Vector<String> arrayClassificacaoEstado = new Vector<String>();
 
-	////TODO NOVO
 	private static HashMap<String, Integer> mapAtributoID  = new HashMap<String, Integer>(); 
 	private static HashMap<String,String > mapIDAtributo  = new HashMap<String,String>(); 
 	
