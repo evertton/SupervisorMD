@@ -37,7 +37,7 @@ public class Attribute {
 	public static final int ID_SYSTOLIC_BLOOD_PRESSURE 		= 3;
 	public static final int ID_DIASTOLIC_BLOOD_PRESSURE 	= 4;
 	public static final int ID_BODY_TEMPERATURE 			= 5;
-	public static final int ID_BLOOD_LACTATE 				= 6;
+	public static final int ID_DISTANCE						= 6;
 	public static final int ID_BLOOD_GLUCOSE 				= 7;
 	public static final int ID_OXIGEN_CONSUMPTION 			= 8; 
 	public static final int ID_AMBIENT_PRESSURE				= 9;

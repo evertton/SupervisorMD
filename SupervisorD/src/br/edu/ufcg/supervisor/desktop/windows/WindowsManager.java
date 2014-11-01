@@ -51,10 +51,11 @@ public class WindowsManager {
 		telaTransicao 	= new JFrameTransition(this);
 		telaSalvar 		= new JFrameModelGenerator(this);
 		arrayAtributos	= new ArrayList<Attribute>();
-		AutomataFiller.preencheFreqCar_Temp_Velo(arrayAtributos);
-		telaAtributo.removerAtributoUtilizado(11);
-		telaAtributo.removerAtributoUtilizado(9);
-		telaAtributo.removerAtributoUtilizado(0);
+		//AutomataFiller.preencheFreqCar_Temp_Velo(arrayAtributos);
+		AutomataFiller.preencheSujeito(1,arrayAtributos);
+		//telaAtributo.removerAtributoUtilizado(11);
+		//telaAtributo.removerAtributoUtilizado(9);
+		//telaAtributo.removerAtributoUtilizado(0);
 	}
 
 	public void initListaAtributos() {

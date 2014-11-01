@@ -41,18 +41,18 @@ public class AttributeList {
 	private static HashMap<String,String > mapIDAtributo  = new HashMap<String,String>(); 
 	
 	static {
-		preencherArrays(i16o.label("AT_HEART_RATE"),Attribute.ID_HEART_RATE, Attribute.PHYSIOLOGICAL,"bpm");
-		preencherArrays(i16o.label("AT_RESPIRATORY_EXCHANGE_RATIO"),Attribute.ID_RESPIRATORY_EXCHANGE_RATIO,Attribute.PHYSIOLOGICAL,"VCO2/VO2");
-		preencherArrays(i16o.label("AT_SYSTOLIC_BLOOD_PRESSURE"),Attribute.ID_SYSTOLIC_BLOOD_PRESSURE,Attribute.PHYSIOLOGICAL,"mmHg");
-		preencherArrays(i16o.label("AT_DIASTOLIC_BLOOD_PRESSURE"),Attribute.ID_DIASTOLIC_BLOOD_PRESSURE,Attribute.PHYSIOLOGICAL,"mmHg");
-		preencherArrays(i16o.label("AT_BODY_TEMPERATURE"),Attribute.ID_BODY_TEMPERATURE,Attribute.PHYSIOLOGICAL, "ºC");
-		preencherArrays(i16o.label("AT_BLOOD_LACTATE"),Attribute.ID_BLOOD_LACTATE,Attribute.PHYSIOLOGICAL,"[La-]b");
-		preencherArrays(i16o.label("AT_BLOOD_GLUCOSE"),Attribute.ID_BLOOD_GLUCOSE,Attribute.PHYSIOLOGICAL,"md/dl");
-		preencherArrays(i16o.label("AT_OXIGEN_CONSUMPTION"),Attribute.ID_OXIGEN_CONSUMPTION, Attribute.PHYSIOLOGICAL,"VO2");
-		preencherArrays(i16o.label("AT_AMBIENT_PRESSURE"),Attribute.ID_AMBIENT_PRESSURE,Attribute.ENVIRONMENTAL,"atm");
-		preencherArrays(i16o.label("AT_ENVIRONMENTAL_TEMPERATURE"),Attribute.ID_ENVIRONMENTAL_TEMPERATURE,Attribute.ENVIRONMENTAL,"ºC");
 		preencherArrays(i16o.label("AT_AIR_RELATIVE_HUMIDITY"),Attribute.ID_AIR_RELATIVE_HUMIDITY,Attribute.ENVIRONMENTAL,"%");
+		preencherArrays(i16o.label("AT_AMBIENT_PRESSURE"),Attribute.ID_AMBIENT_PRESSURE,Attribute.ENVIRONMENTAL,"atm");
+		preencherArrays(i16o.label("AT_BLOOD_GLUCOSE"),Attribute.ID_BLOOD_GLUCOSE,Attribute.PHYSIOLOGICAL,"md/dl");
+		preencherArrays(i16o.label("AT_BODY_TEMPERATURE"),Attribute.ID_BODY_TEMPERATURE,Attribute.PHYSIOLOGICAL, "°C");
+		preencherArrays(i16o.label("AT_DIASTOLIC_BLOOD_PRESSURE"),Attribute.ID_DIASTOLIC_BLOOD_PRESSURE,Attribute.PHYSIOLOGICAL,"mmHg");
+		preencherArrays(i16o.label("AT_DISTANCE"),Attribute.ID_DISTANCE,Attribute.BEHAVIORAL,"km");
+		preencherArrays(i16o.label("AT_ENVIRONMENTAL_TEMPERATURE"),Attribute.ID_ENVIRONMENTAL_TEMPERATURE,Attribute.ENVIRONMENTAL,"°C");
+		preencherArrays(i16o.label("AT_HEART_RATE"),Attribute.ID_HEART_RATE, Attribute.PHYSIOLOGICAL,"bpm");
+		preencherArrays(i16o.label("AT_OXIGEN_CONSUMPTION"),Attribute.ID_OXIGEN_CONSUMPTION, Attribute.PHYSIOLOGICAL,"VO2");
+		preencherArrays(i16o.label("AT_RESPIRATORY_EXCHANGE_RATIO"),Attribute.ID_RESPIRATORY_EXCHANGE_RATIO,Attribute.PHYSIOLOGICAL,"VCO2/VO2");
 		preencherArrays(i16o.label("AT_SPEED"),Attribute.ID_SPEED,Attribute.BEHAVIORAL,"m/s");
+		preencherArrays(i16o.label("AT_SYSTOLIC_BLOOD_PRESSURE"),Attribute.ID_SYSTOLIC_BLOOD_PRESSURE,Attribute.PHYSIOLOGICAL,"mmHg");
 		arrayClassificacaoEstado.add(i16o.label("CL_TOLERAVEL"));//posição 1
 		arrayClassificacaoEstado.add(i16o.label("CL_PERIGOSO"));//posição 2
 		arrayClassificacaoEstado.add(i16o.label("CL_ACEITACAO"));//posição 3
