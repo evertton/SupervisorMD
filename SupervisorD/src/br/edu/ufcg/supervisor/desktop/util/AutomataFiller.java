@@ -36,6 +36,7 @@ import br.edu.ufcg.supervisor.model.Transition;
 public class AutomataFiller {
 
 	public static void preencheSujeito(int i, ArrayList<Attribute> arrayAtributos){
+		fillCommonAttributes(arrayAtributos);
 		switch (i) {
 		case 1:
 			preenche1Ellen(arrayAtributos);
@@ -79,58 +80,224 @@ public class AutomataFiller {
 	}
 	
 	private static void preenche1Ellen(ArrayList<Attribute> arrayAtributos){
-		
+		fillSpeed(arrayAtributos, 0,6,6,11,11,20);
+		fillDistance(arrayAtributos, 0,2,2,2.1f,2.1f,10);
+		fillHeartRate(arrayAtributos, 60,100,100,140,140,200);
 	}
 	
 	private static void preenche2Isadora(ArrayList<Attribute> arrayAtributos){
-		
+		fillSpeed(arrayAtributos, 0,5,5,7,7,20);
+		fillDistance(arrayAtributos, 0,2,2,2.1f,2.1f,10);
+		fillHeartRate(arrayAtributos, 60,100,100,130,130,200);
 	}
 	
 	private static void preenche3Clovis(ArrayList<Attribute> arrayAtributos){
-		
+		fillSpeed(arrayAtributos, 0,4,4,6.5f,6.5f,20);
+		fillDistance(arrayAtributos, 0,2,2,2.1f,2.1f,10);
+		fillHeartRate(arrayAtributos, 60,110,110,130,130,200);
 	}
 	
 	private static void preenche4Wanne(ArrayList<Attribute> arrayAtributos){
-		
+		fillSpeed(arrayAtributos, 0,4,4,6.5f,6.5f,20);
+		fillDistance(arrayAtributos, 0,1.5f,1.5f,1.6f,1.6f,10);
+		fillHeartRate(arrayAtributos, 60,110,110,130,130,200);
 	}
 	
 	private static void preenche5Carlos(ArrayList<Attribute> arrayAtributos){
-		
+		fillSpeed(arrayAtributos, 0,5.5f,5.5f,8,8,20);
+		fillDistance(arrayAtributos, 0,2,2,2.1f,2.1f,10);
+		fillHeartRate(arrayAtributos, 60,110,110,150,150,200);
 	}
 	
 	private static void preenche6Filipe(ArrayList<Attribute> arrayAtributos){
-		
+		fillSpeed(arrayAtributos, 0,5.5f,5.5f,8,8,20);
+		fillDistance(arrayAtributos, 0,2,2,2.1f,2.1f,10);
+		fillHeartRate(arrayAtributos, 60,100,100,145,145,200);
 	}
 	
 	private static void preenche7Matheus(ArrayList<Attribute> arrayAtributos){
-		
+		fillSpeed(arrayAtributos, 0,6,6,10,10,20);
+		fillDistance(arrayAtributos, 0,2.5f,2.5f,2.6f,2.6f,10);
+		fillHeartRate(arrayAtributos, 60,120,120,160,160,200);
 	}
 	
 	private static void preenche8Anderson(ArrayList<Attribute> arrayAtributos){
-		
+		fillSpeed(arrayAtributos, 0,6,6,10,10,20);
+		fillDistance(arrayAtributos, 0,2,2,2.1f,2.1f,10);
+		fillHeartRate(arrayAtributos, 60,115,115,145,145,200);
 	}
 	
 	private static void preenche9Jose(ArrayList<Attribute> arrayAtributos){
-		
+		fillSpeed(arrayAtributos, 0,6,6,10,10,20);
+		fillDistance(arrayAtributos, 0,2,2,2.1f,2.1f,10);
+		fillHeartRate(arrayAtributos, 60,120,120,160,160,200);
 	}
 	
 	private static void preenche10Denise(ArrayList<Attribute> arrayAtributos){
-		
+		fillSpeed(arrayAtributos, 0,7,7,12,12,20);
+		fillDistance(arrayAtributos, 0,2.2f,2.2f,2.3f,2.3f,10);
+		fillHeartRate(arrayAtributos, 60,135,135,170,170,200);
 	}
 	
 	private static void preenche11Tati(ArrayList<Attribute> arrayAtributos){
-		
+		fillSpeed(arrayAtributos, 0,7,7,12,12,20);
+		fillDistance(arrayAtributos, 0,2,2,2.1f,2.1f,10);
+		fillHeartRate(arrayAtributos, 60,135,135,165,165,200);
 	}
 	
 	private static void preenche12Ge(ArrayList<Attribute> arrayAtributos){
+		fillSpeed(arrayAtributos, 0,6,6,10,10,20);
+		fillDistance(arrayAtributos, 0,1.8f,1.8f,2,2,10);
+		fillHeartRate(arrayAtributos, 60,130,130,155,155,200);
+	}
 		
+	/**
+	 * Fill information common to all subjects 
+	 * @param arrayAtributos
+	 */
+	private static void fillCommonAttributes(ArrayList<Attribute> arrayAtributos){
+		fillEnvironmentalTemperature(arrayAtributos, 0, 19, 19, 29, 29, 40);
+		fillAirRelativeHumidity(arrayAtributos, 0, 30, 30, 60, 60, 100);
+		fillBodyTemperature(arrayAtributos, 30f, 36.5f, 36.5f, 40f, 40f, 41.5f, 41.4f, 50f);
+	}
+
+	/**
+	 * Model used at tests on field
+	 * @param arrayAtributos
+	 */
+	private static void fillSpeed(ArrayList<Attribute> arrayAtributos, 
+			float i1,float i2,float j1,float j2,float k1,float k2){
+		
+		Attribute atributo = new Attribute();
+		atributo.setName(i16o.label("AT_SPEED"));
+		atributo.setType(Attribute.BEHAVIORAL);
+		atributo.setUnitOfMeasure("km/h");
+		int identificador = Attribute.ID_SPEED;
+
+		Automaton aI  = new Automaton();
+		aI.setNome(i16o.label("AT_SPEED"));
+
+		State lenta = createEstado("lenta", i1, Range.MENOR_OU_IGUAL_A, Range.MENOR_QUE, i2, State.INT_CL_TOLERAVEL, identificador);
+		aI.addEstado(lenta);
+		
+		State boa = createEstado("boa", j1, Range.MENOR_OU_IGUAL_A, Range.MENOR_QUE, j2, State.INT_CL_ACEITACAO, identificador);
+		aI.addEstado(boa);
+
+		State rapida = createEstado("rapida", k1, Range.MENOR_OU_IGUAL_A, Range.MENOR_OU_IGUAL_A, k2, State.INT_CL_PERIGOSO, identificador);
+		aI.addEstado(rapida);
+
+		Transition lenta_boa = createTransicao("is", lenta, boa, "Increase_speed.");
+		aI.addTransicao(lenta_boa);
+
+		Transition boa_lenta = createTransicao("ds", boa, lenta, "Decrease_speed.");
+		aI.addTransicao(boa_lenta);
+		
+		Transition boa_rapida = createTransicao("is", boa, rapida, "Increase_speed.");
+		aI.addTransicao(boa_rapida);
+		
+		Transition rapida_boa = createTransicao("ds", rapida, boa, "Decrease_speed.");
+		aI.addTransicao(rapida_boa);
+	
+		atributo.setAutomaton(aI);
+		arrayAtributos.add(atributo);		
 	}
 	
 	/**
 	 * Model used at tests on field
 	 * @param arrayAtributos
 	 */
-	private static void fillEnvTemp(ArrayList<Attribute> arrayAtributos, 
+	private static void fillDistance(ArrayList<Attribute> arrayAtributos, 
+			float i1,float i2,float j1,float j2,float k1,float k2){
+
+		Attribute atributo = new Attribute();
+		atributo.setName(i16o.label("AT_DISTANCE"));
+		atributo.setType(Attribute.BEHAVIORAL);
+		atributo.setUnitOfMeasure("km");
+		int identificador = Attribute.ID_DISTANCE;
+
+		Automaton aI  = new Automaton();
+		aI.setNome(i16o.label("AT_DISTANCE"));
+
+		State inicio = createEstado("inicio", i1, Range.MENOR_OU_IGUAL_A, Range.MENOR_QUE, i2, State.INT_CL_TOLERAVEL, identificador);
+		aI.addEstado(inicio);
+		
+		State prox = createEstado("prox", j1, Range.MENOR_OU_IGUAL_A, Range.MENOR_QUE, j2, State.INT_CL_ACEITACAO, identificador);
+		aI.addEstado(prox);
+
+		State fim = createEstado("fim", k1, Range.MENOR_OU_IGUAL_A, Range.MENOR_OU_IGUAL_A, k2, State.INT_CL_TOLERAVEL, identificador);
+		aI.addEstado(fim);
+
+		Transition inicio_prox = createTransicao("id", inicio, prox, "Keep_jogging.");
+		aI.addTransicao(inicio_prox);
+
+		Transition prox_fim = createTransicao("id", prox, fim, "Just_walk.");
+		aI.addTransicao(prox_fim);
+		
+		Transition rapida_rapida = createTransicao("stop", fim, fim, "Stop.");
+		aI.addTransicao(rapida_rapida);
+	
+		atributo.setAutomaton(aI);
+		arrayAtributos.add(atributo);
+	}
+	
+	/**
+	 * Model used at tests on field
+	 * @param arrayAtributos
+	 */
+	private static void fillHeartRate(ArrayList<Attribute> arrayAtributos, 
+			float i1,float i2,float j1,float j2,float k1,float k2){
+		
+		Attribute atributo = new Attribute();
+		atributo.setName(i16o.label("AT_HEART_RATE"));
+		atributo.setType(Attribute.PHYSIOLOGICAL);
+		atributo.setUnitOfMeasure("bpm");
+		int identificador = Attribute.ID_HEART_RATE;
+
+		Automaton aI  = new Automaton();
+		aI.setNome(i16o.label("AT_HEART_RATE"));
+
+		State tole = createEstado("tole", i1, Range.MENOR_OU_IGUAL_A, Range.MENOR_QUE, i2, State.INT_CL_TOLERAVEL, identificador);
+		aI.addEstado(tole);
+		
+		State objet = createEstado("objet", j1, Range.MENOR_OU_IGUAL_A, Range.MENOR_QUE, j2, State.INT_CL_ACEITACAO, identificador);
+		aI.addEstado(objet);
+
+		State perigo = createEstado("perigo", k1, Range.MENOR_OU_IGUAL_A, Range.MENOR_OU_IGUAL_A, k2, State.INT_CL_PERIGOSO, identificador);
+		aI.addEstado(perigo);
+
+		Transition tole_objet = createTransicao("iet", tole, objet, "Increase_temperature.");
+		aI.addTransicao(tole_objet);
+		Transition tole_objet2 = createTransicao("is", tole, objet, "Increase_speed.");
+		aI.addTransicao(tole_objet2);
+		Transition tole_objet3 = createTransicao("ihr", tole, objet, "Increase_heart_rate.");
+		aI.addTransicao(tole_objet3);
+
+		Transition objet_tole = createTransicao("dhr", objet, tole, "Decrease_heart_rate.");
+		aI.addTransicao(objet_tole);
+		Transition objet_tole2 = createTransicao("ds", objet, tole, "Decrease_speed.");
+		aI.addTransicao(objet_tole2);
+		
+		Transition objet_perigo = createTransicao("iet", objet, perigo, "Increase_temperature.");
+		aI.addTransicao(objet_perigo);
+		Transition objet_perigo2 = createTransicao("is", objet, perigo, "Increase_speed.");
+		aI.addTransicao(objet_perigo2);
+		Transition objet_perigo3 = createTransicao("ihr", objet, perigo, "Increase_heart_rate.");
+		aI.addTransicao(objet_perigo3);
+		
+		Transition perigo_objet = createTransicao("dhr", perigo, objet, "Decrease_heart_rate.");
+		aI.addTransicao(perigo_objet);
+		Transition perigo_objet2 = createTransicao("ds", perigo, objet, "Decrease_speed.");
+		aI.addTransicao(perigo_objet2);
+	
+		atributo.setAutomaton(aI);
+		arrayAtributos.add(atributo);
+	}
+	
+	/**
+	 * Model used at tests on field
+	 * @param arrayAtributos
+	 */
+	private static void fillEnvironmentalTemperature(ArrayList<Attribute> arrayAtributos, 
 			float i1,float i2,float j1,float j2,float k1,float k2){
 		
 		Attribute atributo = new Attribute();
@@ -151,16 +318,16 @@ public class AutomataFiller {
 		State quente = createEstado("quente", k1, Range.MENOR_OU_IGUAL_A, Range.MENOR_OU_IGUAL_A, k2, State.INT_CL_PERIGOSO, identificador);
 		aI.addEstado(quente);
 
-		Transition fria_amena = createTransicao("it", fria, amena, "Increase_temperature.");
+		Transition fria_amena = createTransicao("iet", fria, amena, "Increase_temperature.");
 		aI.addTransicao(fria_amena);
 
-		Transition amena_fria = createTransicao("dt", amena, fria, "Decrease_temperature(or_hydrate!).");
+		Transition amena_fria = createTransicao("det", amena, fria, "Decrease_temperature.");
 		aI.addTransicao(amena_fria);
 		
-		Transition amena_quente = createTransicao("it", amena, quente, "Increase_temperature.");
+		Transition amena_quente = createTransicao("iet", amena, quente, "Increase_temperature.");
 		aI.addTransicao(amena_quente);
 		
-		Transition quente_amena = createTransicao("dt", quente, amena, "Decrease_temperature(or_hydrate!).");
+		Transition quente_amena = createTransicao("det", quente, amena, "Decrease_temperature.");
 		aI.addTransicao(quente_amena);
 	
 		atributo.setAutomaton(aI);
@@ -171,7 +338,7 @@ public class AutomataFiller {
 	 * Model used at tests on field
 	 * @param arrayAtributos
 	 */
-	private static void fillAirRelHum(ArrayList<Attribute> arrayAtributos, 
+	private static void fillAirRelativeHumidity(ArrayList<Attribute> arrayAtributos, 
 			float i1,float i2,float j1,float j2,float k1,float k2){
 		
 		Attribute atributo = new Attribute();
@@ -183,19 +350,19 @@ public class AutomataFiller {
 		Automaton aI  = new Automaton();
 		aI.setNome(i16o.label("AT_AIR_RELATIVE_HUMIDITY"));
 
-		State baixa = createEstado("baixa", i1, Range.MENOR_OU_IGUAL_A, Range.MENOR_QUE, i2, State.INT_CL_ACEITACAO, identificador);
+		State baixa = createEstado("baixa", i1, Range.MENOR_OU_IGUAL_A, Range.MENOR_QUE, i2, State.INT_CL_PERIGOSO, identificador);
 		aI.addEstado(baixa);
 		
-		State segura = createEstado("segura", j1, Range.MENOR_OU_IGUAL_A, Range.MENOR_QUE, j2, State.INT_CL_PERIGOSO, identificador);
+		State segura = createEstado("segura", j1, Range.MENOR_OU_IGUAL_A, Range.MENOR_QUE, j2, State.INT_CL_ACEITACAO, identificador);
 		aI.addEstado(segura);
 
 		State alta = createEstado("alta", k1, Range.MENOR_OU_IGUAL_A, Range.MENOR_OU_IGUAL_A, k2, State.INT_CL_PERIGOSO, identificador);
 		aI.addEstado(alta);
 
-		Transition baixa_segura = createTransicao("hyd", baixa, segura, "Stop.exercising.and.hydrate!");
+		Transition baixa_segura = createTransicao("hyd", baixa, segura, "Stop_exercising_and_hydrate!");
 		aI.addTransicao(baixa_segura);
 
-		Transition alta_segura = createTransicao("hyd", alta, segura, "Hydrate!");
+		Transition alta_segura = createTransicao("hyd", alta, segura, "Hydrate.");
 		aI.addTransicao(alta_segura);
 	
 		atributo.setAutomaton(aI);
@@ -206,7 +373,7 @@ public class AutomataFiller {
 	 * Model used at tests on field
 	 * @param arrayAtributos
 	 */
-	private static void fillBodTemp(ArrayList<Attribute> arrayAtributos, 
+	private static void fillBodyTemperature(ArrayList<Attribute> arrayAtributos, 
 			float i1,float i2,float j1,float j2,float k1,float k2,float l1,float l2){
 		
 		Attribute atributo = new Attribute();
@@ -230,31 +397,57 @@ public class AutomataFiller {
 		State alta = createEstado("alta", l1, Range.MENOR_OU_IGUAL_A, Range.MENOR_OU_IGUAL_A, l2, State.INT_CL_PERIGOSO, identificador);
 		aI.addEstado(alta);
 
-		Transition baixa_normal = createTransicao("it", baixa, normal, "Increase_temperature.");
+		Transition baixa_normal = createTransicao("iet", baixa, normal, "Increase_temperature.");
 		aI.addTransicao(baixa_normal);
+		Transition baixa_normal2 = createTransicao("is", baixa, normal, "Increase_speed.");
+		aI.addTransicao(baixa_normal2);
+		Transition baixa_normal3 = createTransicao("ihr", baixa, normal, "Increase_heart_rate.");
+		aI.addTransicao(baixa_normal3);
 
-		Transition normal_baixa = createTransicao("dt", normal, baixa, "Decrease_temperature(or_hydrate!).");
+		Transition normal_baixa = createTransicao("det", normal, baixa, "Decrease_temperature.");
 		aI.addTransicao(normal_baixa);
+		Transition normal_baixa2 = createTransicao("hyd", normal, baixa, "Hydrate.");
+		aI.addTransicao(normal_baixa2);
+		Transition normal_baixa3 = createTransicao("dhr", normal, baixa, "Decrease_heart_rate.");
+		aI.addTransicao(normal_baixa3);
+		Transition normal_baixa4 = createTransicao("ds", normal, baixa, "Decrease_speed.");
+		aI.addTransicao(normal_baixa4);
 		
-		Transition normal_alerta = createTransicao("it", normal, alerta, "Increase_temperature.");
+		Transition normal_alerta = createTransicao("iet", normal, alerta, "Increase_temperature.");
 		aI.addTransicao(normal_alerta);
-		////////////////////////////
-		Transition alerta_normal = createTransicao("dt", alerta, normal, "Decrease_temperature(or_hydrate!).");
+		Transition normal_alerta2 = createTransicao("is", baixa, normal, "Increase_speed.");
+		aI.addTransicao(normal_alerta2);
+		Transition normal_alerta3 = createTransicao("ihr", baixa, normal, "Increase_heart_rate.");
+		aI.addTransicao(normal_alerta3);
+		
+		Transition alerta_normal = createTransicao("det", alerta, normal, "Decrease_temperature.");
 		aI.addTransicao(alerta_normal);
+		Transition alerta_normal2 = createTransicao("hyd", normal, baixa, "Hydrate.");
+		aI.addTransicao(alerta_normal2);
+		Transition alerta_normal3 = createTransicao("dhr", normal, baixa, "Decrease_heart_rate.");
+		aI.addTransicao(alerta_normal3);
+		Transition alerta_normal4 = createTransicao("ds", normal, baixa, "Decrease_speed.");
+		aI.addTransicao(alerta_normal4);
 	
-		Transition alerta_alta = createTransicao("dt", alerta, alta, "Decrease_temperature(or_hydrate!).");
+		Transition alerta_alta = createTransicao("iet", alerta, alta, "Increase_temperature.");
 		aI.addTransicao(alerta_alta);
+		Transition alerta_alta2 = createTransicao("is", baixa, normal, "Increase_speed.");
+		aI.addTransicao(alerta_alta2);
+		Transition alerta_alta3 = createTransicao("ihr", baixa, normal, "Increase_heart_rate.");
+		aI.addTransicao(alerta_alta3);
 	
-		Transition alta_alerta = createTransicao("dt", alta, alerta, "Decrease_temperature(or_hydrate!).");
+		Transition alta_alerta = createTransicao("det", alta, alerta, "Decrease_temperature.");
 		aI.addTransicao(alta_alerta);
+		Transition alta_alerta2 = createTransicao("hyd", normal, baixa, "Hydrate.");
+		aI.addTransicao(alta_alerta2);
+		Transition alta_alerta3 = createTransicao("dhr", normal, baixa, "Decrease_heart_rate.");
+		aI.addTransicao(alta_alerta3);
+		Transition alta_alerta4 = createTransicao("ds", normal, baixa, "Decrease_speed.");
+		aI.addTransicao(alta_alerta4);
 	
 		atributo.setAutomaton(aI);
 		arrayAtributos.add(atributo);
 	}
-
-	
-	
-	
 	
 	/**
 	 * First model presented

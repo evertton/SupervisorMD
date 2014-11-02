@@ -51,7 +51,7 @@ public class AttributeList {
 		preencherArrays(i16o.label("AT_HEART_RATE"),Attribute.ID_HEART_RATE, Attribute.PHYSIOLOGICAL,"bpm");
 		preencherArrays(i16o.label("AT_OXIGEN_CONSUMPTION"),Attribute.ID_OXIGEN_CONSUMPTION, Attribute.PHYSIOLOGICAL,"VO2");
 		preencherArrays(i16o.label("AT_RESPIRATORY_EXCHANGE_RATIO"),Attribute.ID_RESPIRATORY_EXCHANGE_RATIO,Attribute.PHYSIOLOGICAL,"VCO2/VO2");
-		preencherArrays(i16o.label("AT_SPEED"),Attribute.ID_SPEED,Attribute.BEHAVIORAL,"m/s");
+		preencherArrays(i16o.label("AT_SPEED"),Attribute.ID_SPEED,Attribute.BEHAVIORAL,"km/h");
 		preencherArrays(i16o.label("AT_SYSTOLIC_BLOOD_PRESSURE"),Attribute.ID_SYSTOLIC_BLOOD_PRESSURE,Attribute.PHYSIOLOGICAL,"mmHg");
 		arrayClassificacaoEstado.add(i16o.label("CL_TOLERAVEL"));//posição 1
 		arrayClassificacaoEstado.add(i16o.label("CL_PERIGOSO"));//posição 2

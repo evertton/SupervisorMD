@@ -175,10 +175,34 @@ public class ParallelComposition {
 
 	/* Determina a classificação do estado após o produto de dois outros estados */
 	private int getClassificacao(State eA, State eB){
+		return getClassificacao1(eA,eB);
+	}
+	
+	/* original - mais estrito*/
+	private int getClassificacao1(State eA, State eB){
 		if (eA.getClassificacao() == State.INT_CL_PERIGOSO || (eB.getClassificacao() == State.INT_CL_PERIGOSO))
 			return State.INT_CL_PERIGOSO;
 		else if ((eA.getClassificacao() == State.INT_CL_TOLERAVEL) || (eB.getClassificacao() == State.INT_CL_TOLERAVEL))
 			return State.INT_CL_TOLERAVEL;
 		return State.INT_CL_ACEITACAO;
 	}
+
+	/* versao menos estrita - developed based on tests on field*/
+	private int getClassificacao2(State eA, State eB){
+		if (eA.getClassificacao() == State.INT_CL_PERIGOSO || (eB.getClassificacao() == State.INT_CL_PERIGOSO))
+			return State.INT_CL_PERIGOSO;
+		else if ((eA.getClassificacao() == State.INT_CL_ACEITACAO) || (eB.getClassificacao() == State.INT_CL_ACEITACAO))
+			return State.INT_CL_ACEITACAO;
+		return State.INT_CL_TOLERAVEL;
+	}
+
+	/* developed based on tests on field - hear-rate is a pivot */
+	private int getClassificacao3(State eA, State eB){
+		if (eA.getClassificacao() == State.INT_CL_PERIGOSO || (eB.getClassificacao() == State.INT_CL_PERIGOSO))
+			return State.INT_CL_PERIGOSO;
+		else if ((eA.getClassificacao() == State.INT_CL_ACEITACAO) || (eB.getClassificacao() == State.INT_CL_ACEITACAO))
+			return State.INT_CL_ACEITACAO;
+		return State.INT_CL_TOLERAVEL;
+	}
+	
 }
