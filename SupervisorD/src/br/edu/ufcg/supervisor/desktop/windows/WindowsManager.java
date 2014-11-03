@@ -52,7 +52,7 @@ public class WindowsManager {
 		telaSalvar 		= new JFrameModelGenerator(this);
 		arrayAtributos	= new ArrayList<Attribute>();
 		//AutomataFiller.preencheFreqCar_Temp_Velo(arrayAtributos);
-		AutomataFiller.preencheSujeito(1,arrayAtributos);
+		AutomataFiller.preencheSujeito(12,arrayAtributos);
 		//telaAtributo.removerAtributoUtilizado(11);
 		//telaAtributo.removerAtributoUtilizado(9);
 		//telaAtributo.removerAtributoUtilizado(0);

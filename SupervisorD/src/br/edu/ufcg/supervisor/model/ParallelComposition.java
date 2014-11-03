@@ -65,7 +65,7 @@ public class ParallelComposition {
 			for(State eA : automatoA.getVectorEstados()){
 				State eNovo = new State();
 				eNovo.setNome(eA.getNome()+"."+eB.getNome());
-				eNovo.setClassificacao(getClassificacao(eA, eB));
+				eNovo.setClassificacao(getClassificacao(eA,eB));
 				eNovo.addListaIntervalos(eA.getListaIntervalos());
 				eNovo.addListaIntervalos(eB.getListaIntervalos());
 				resultado.addEstado(eNovo);

@@ -158,7 +158,7 @@ public class AutomataFiller {
 	private static void fillCommonAttributes(ArrayList<Attribute> arrayAtributos){
 		fillEnvironmentalTemperature(arrayAtributos, 0, 19, 19, 29, 29, 40);
 		fillAirRelativeHumidity(arrayAtributos, 0, 30, 30, 60, 60, 100);
-		fillBodyTemperature(arrayAtributos, 30f, 36.5f, 36.5f, 40f, 40f, 41.5f, 41.4f, 50f);
+		fillBodyTemperature(arrayAtributos, 30, 36.5f, 36.5f, 40, 40, 41.5f, 41.4f, 50);
 	}
 
 	/**
@@ -230,10 +230,10 @@ public class AutomataFiller {
 		Transition inicio_prox = createTransicao("id", inicio, prox, "Keep_jogging.");
 		aI.addTransicao(inicio_prox);
 
-		Transition prox_fim = createTransicao("id", prox, fim, "Just_walk.");
+		Transition prox_fim = createTransicao("id", prox, fim, "Keep_jogging.Almost_there.");
 		aI.addTransicao(prox_fim);
 		
-		Transition rapida_rapida = createTransicao("stop", fim, fim, "Stop.");
+		Transition rapida_rapida = createTransicao("stop", fim, fim, "Just_walk.");
 		aI.addTransicao(rapida_rapida);
 	
 		atributo.setAutomaton(aI);
@@ -265,29 +265,29 @@ public class AutomataFiller {
 		State perigo = createEstado("perigo", k1, Range.MENOR_OU_IGUAL_A, Range.MENOR_OU_IGUAL_A, k2, State.INT_CL_PERIGOSO, identificador);
 		aI.addEstado(perigo);
 
-		Transition tole_objet = createTransicao("iet", tole, objet, "Increase_temperature.");
+		//Transition tole_objet = createTransicao("iet", tole, objet, "Increase_temperature.");
+		//aI.addTransicao(tole_objet);
+		//Transition tole_objet2 = createTransicao("is", tole, objet, "Increase_speed.");
+		//aI.addTransicao(tole_objet2);
+		Transition tole_objet = createTransicao("ihr", tole, objet, "Increase_heart_rate.");
 		aI.addTransicao(tole_objet);
-		Transition tole_objet2 = createTransicao("is", tole, objet, "Increase_speed.");
-		aI.addTransicao(tole_objet2);
-		Transition tole_objet3 = createTransicao("ihr", tole, objet, "Increase_heart_rate.");
-		aI.addTransicao(tole_objet3);
 
 		Transition objet_tole = createTransicao("dhr", objet, tole, "Decrease_heart_rate.");
 		aI.addTransicao(objet_tole);
-		Transition objet_tole2 = createTransicao("ds", objet, tole, "Decrease_speed.");
-		aI.addTransicao(objet_tole2);
+		//Transition objet_tole2 = createTransicao("ds", objet, tole, "Decrease_speed.");
+		//aI.addTransicao(objet_tole2);
 		
-		Transition objet_perigo = createTransicao("iet", objet, perigo, "Increase_temperature.");
+		//Transition objet_perigo = createTransicao("iet", objet, perigo, "Increase_temperature.");
+		//aI.addTransicao(objet_perigo);
+		//Transition objet_perigo2 = createTransicao("is", objet, perigo, "Increase_speed.");
+		//aI.addTransicao(objet_perigo2);
+		Transition objet_perigo = createTransicao("ihr", objet, perigo, "Increase_heart_rate.");
 		aI.addTransicao(objet_perigo);
-		Transition objet_perigo2 = createTransicao("is", objet, perigo, "Increase_speed.");
-		aI.addTransicao(objet_perigo2);
-		Transition objet_perigo3 = createTransicao("ihr", objet, perigo, "Increase_heart_rate.");
-		aI.addTransicao(objet_perigo3);
 		
 		Transition perigo_objet = createTransicao("dhr", perigo, objet, "Decrease_heart_rate.");
 		aI.addTransicao(perigo_objet);
-		Transition perigo_objet2 = createTransicao("ds", perigo, objet, "Decrease_speed.");
-		aI.addTransicao(perigo_objet2);
+		//Transition perigo_objet2 = createTransicao("ds", perigo, objet, "Decrease_speed.");
+		//aI.addTransicao(perigo_objet2);
 	
 		atributo.setAutomaton(aI);
 		arrayAtributos.add(atributo);
@@ -399,51 +399,51 @@ public class AutomataFiller {
 
 		Transition baixa_normal = createTransicao("iet", baixa, normal, "Increase_temperature.");
 		aI.addTransicao(baixa_normal);
-		Transition baixa_normal2 = createTransicao("is", baixa, normal, "Increase_speed.");
-		aI.addTransicao(baixa_normal2);
-		Transition baixa_normal3 = createTransicao("ihr", baixa, normal, "Increase_heart_rate.");
-		aI.addTransicao(baixa_normal3);
+		//Transition baixa_normal2 = createTransicao("is", baixa, normal, "Increase_speed.");
+		//aI.addTransicao(baixa_normal2);
+		//Transition baixa_normal3 = createTransicao("ihr", baixa, normal, "Increase_heart_rate.");
+		//aI.addTransicao(baixa_normal3);
 
 		Transition normal_baixa = createTransicao("det", normal, baixa, "Decrease_temperature.");
 		aI.addTransicao(normal_baixa);
-		Transition normal_baixa2 = createTransicao("hyd", normal, baixa, "Hydrate.");
-		aI.addTransicao(normal_baixa2);
-		Transition normal_baixa3 = createTransicao("dhr", normal, baixa, "Decrease_heart_rate.");
-		aI.addTransicao(normal_baixa3);
-		Transition normal_baixa4 = createTransicao("ds", normal, baixa, "Decrease_speed.");
-		aI.addTransicao(normal_baixa4);
+		//Transition normal_baixa2 = createTransicao("hyd", normal, baixa, "Hydrate.");
+		//aI.addTransicao(normal_baixa2);
+		//Transition normal_baixa3 = createTransicao("dhr", normal, baixa, "Decrease_heart_rate.");
+		//aI.addTransicao(normal_baixa3);
+		//Transition normal_baixa4 = createTransicao("ds", normal, baixa, "Decrease_speed.");
+		//aI.addTransicao(normal_baixa4);
 		
 		Transition normal_alerta = createTransicao("iet", normal, alerta, "Increase_temperature.");
 		aI.addTransicao(normal_alerta);
-		Transition normal_alerta2 = createTransicao("is", baixa, normal, "Increase_speed.");
-		aI.addTransicao(normal_alerta2);
-		Transition normal_alerta3 = createTransicao("ihr", baixa, normal, "Increase_heart_rate.");
-		aI.addTransicao(normal_alerta3);
+		//Transition normal_alerta2 = createTransicao("is", baixa, normal, "Increase_speed.");
+		//aI.addTransicao(normal_alerta2);
+		//Transition normal_alerta3 = createTransicao("ihr", baixa, normal, "Increase_heart_rate.");
+		//aI.addTransicao(normal_alerta3);
 		
 		Transition alerta_normal = createTransicao("det", alerta, normal, "Decrease_temperature.");
 		aI.addTransicao(alerta_normal);
-		Transition alerta_normal2 = createTransicao("hyd", normal, baixa, "Hydrate.");
-		aI.addTransicao(alerta_normal2);
-		Transition alerta_normal3 = createTransicao("dhr", normal, baixa, "Decrease_heart_rate.");
-		aI.addTransicao(alerta_normal3);
-		Transition alerta_normal4 = createTransicao("ds", normal, baixa, "Decrease_speed.");
-		aI.addTransicao(alerta_normal4);
+		//Transition alerta_normal2 = createTransicao("hyd", normal, baixa, "Hydrate.");
+		//aI.addTransicao(alerta_normal2);
+		//Transition alerta_normal3 = createTransicao("dhr", normal, baixa, "Decrease_heart_rate.");
+		//aI.addTransicao(alerta_normal3);
+		//Transition alerta_normal4 = createTransicao("ds", normal, baixa, "Decrease_speed.");
+		//aI.addTransicao(alerta_normal4);
 	
 		Transition alerta_alta = createTransicao("iet", alerta, alta, "Increase_temperature.");
 		aI.addTransicao(alerta_alta);
-		Transition alerta_alta2 = createTransicao("is", baixa, normal, "Increase_speed.");
-		aI.addTransicao(alerta_alta2);
-		Transition alerta_alta3 = createTransicao("ihr", baixa, normal, "Increase_heart_rate.");
-		aI.addTransicao(alerta_alta3);
+		//Transition alerta_alta2 = createTransicao("is", baixa, normal, "Increase_speed.");
+		//aI.addTransicao(alerta_alta2);
+		//Transition alerta_alta3 = createTransicao("ihr", baixa, normal, "Increase_heart_rate.");
+		//aI.addTransicao(alerta_alta3);
 	
 		Transition alta_alerta = createTransicao("det", alta, alerta, "Decrease_temperature.");
 		aI.addTransicao(alta_alerta);
-		Transition alta_alerta2 = createTransicao("hyd", normal, baixa, "Hydrate.");
-		aI.addTransicao(alta_alerta2);
-		Transition alta_alerta3 = createTransicao("dhr", normal, baixa, "Decrease_heart_rate.");
-		aI.addTransicao(alta_alerta3);
-		Transition alta_alerta4 = createTransicao("ds", normal, baixa, "Decrease_speed.");
-		aI.addTransicao(alta_alerta4);
+		//Transition alta_alerta2 = createTransicao("hyd", normal, baixa, "Hydrate.");
+		//aI.addTransicao(alta_alerta2);
+		//Transition alta_alerta3 = createTransicao("dhr", normal, baixa, "Decrease_heart_rate.");
+		//aI.addTransicao(alta_alerta3);
+		//Transition alta_alerta4 = createTransicao("ds", normal, baixa, "Decrease_speed.");
+		//aI.addTransicao(alta_alerta4);
 	
 		atributo.setAutomaton(aI);
 		arrayAtributos.add(atributo);
