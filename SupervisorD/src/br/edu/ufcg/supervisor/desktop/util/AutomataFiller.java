@@ -218,13 +218,13 @@ public class AutomataFiller {
 		Automaton aI  = new Automaton();
 		aI.setNome(i16o.label("AT_DISTANCE"));
 
-		State inicio = createEstado("inicio", i1, Range.MENOR_OU_IGUAL_A, Range.MENOR_QUE, i2, State.INT_CL_TOLERAVEL, identificador);
+		State inicio = createEstado("inicio", i1, Range.MENOR_OU_IGUAL_A, Range.MENOR_QUE, i2, State.INT_CL_PERIGOSO, identificador);
 		aI.addEstado(inicio);
 		
-		State prox = createEstado("prox", j1, Range.MENOR_OU_IGUAL_A, Range.MENOR_QUE, j2, State.INT_CL_ACEITACAO, identificador);
+		State prox = createEstado("prox", j1, Range.MENOR_OU_IGUAL_A, Range.MENOR_QUE, j2, State.INT_CL_PERIGOSO, identificador);
 		aI.addEstado(prox);
 
-		State fim = createEstado("fim", k1, Range.MENOR_OU_IGUAL_A, Range.MENOR_OU_IGUAL_A, k2, State.INT_CL_TOLERAVEL, identificador);
+		State fim = createEstado("fim", k1, Range.MENOR_OU_IGUAL_A, Range.MENOR_OU_IGUAL_A, k2, State.INT_CL_ACEITACAO, identificador);
 		aI.addEstado(fim);
 
 		Transition inicio_prox = createTransicao("id", inicio, prox, "Keep_jogging.");
@@ -259,7 +259,7 @@ public class AutomataFiller {
 		State tole = createEstado("tole", i1, Range.MENOR_OU_IGUAL_A, Range.MENOR_QUE, i2, State.INT_CL_TOLERAVEL, identificador);
 		aI.addEstado(tole);
 		
-		State objet = createEstado("objet", j1, Range.MENOR_OU_IGUAL_A, Range.MENOR_QUE, j2, State.INT_CL_ACEITACAO, identificador);
+		State objet = createEstado("HhrRobjet", j1, Range.MENOR_OU_IGUAL_A, Range.MENOR_QUE, j2, State.INT_CL_ACEITACAO, identificador);
 		aI.addEstado(objet);
 
 		State perigo = createEstado("perigo", k1, Range.MENOR_OU_IGUAL_A, Range.MENOR_OU_IGUAL_A, k2, State.INT_CL_PERIGOSO, identificador);
