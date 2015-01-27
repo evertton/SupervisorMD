@@ -39,115 +39,109 @@ public class AutomataFiller {
 		fillCommonAttributes(arrayAtributos);
 		switch (i) {
 		case 1:
-			preenche1Ellen(arrayAtributos);
+			preencheClovis(arrayAtributos);
 			break;
 		case 2:
-			preenche2Isadora(arrayAtributos);
+			preencheJose(arrayAtributos);
 			break;
 		case 3:
-			preenche3Clovis(arrayAtributos);
+			preencheAnderson(arrayAtributos);
 			break;
 		case 4:
-			preenche4Wanne(arrayAtributos);
+			preencheElthon(arrayAtributos);
 			break;
 		case 5:
-			preenche5Carlos(arrayAtributos);
+			preencheEllen(arrayAtributos);
 			break;
 		case 6:
-			preenche6Filipe(arrayAtributos);
+			preencheIsadora(arrayAtributos);
 			break;
 		case 7:
-			preenche7Matheus(arrayAtributos);
+			preencheWanne(arrayAtributos);
 			break;
 		case 8:
-			preenche8Anderson(arrayAtributos);
+			preencheDenise(arrayAtributos);
 			break;
 		case 9:
-			preenche9Jose(arrayAtributos);
+			preencheTati(arrayAtributos);
 			break;
 		case 10:
-			preenche10Denise(arrayAtributos);
-			break;
-		case 11:
-			preenche11Tati(arrayAtributos);
-			break;
-		case 12:
-			preenche12Ge(arrayAtributos);
+			preencheGe(arrayAtributos);
 			break;
 		default:
 			break;
 		}
 	}
 	
-	private static void preenche1Ellen(ArrayList<Attribute> arrayAtributos){
+	private static void preencheEllen(ArrayList<Attribute> arrayAtributos){
 		fillSpeed(arrayAtributos, 0,6,6,11,11,20);
 		fillDistance(arrayAtributos, 0,2,2,2.1f,2.1f,10);
 		fillHeartRate(arrayAtributos, 60,100,100,140,140,200);
 	}
 	
-	private static void preenche2Isadora(ArrayList<Attribute> arrayAtributos){
+	private static void preencheIsadora(ArrayList<Attribute> arrayAtributos){
 		fillSpeed(arrayAtributos, 0,5,5,7,7,20);
 		fillDistance(arrayAtributos, 0,2,2,2.1f,2.1f,10);
 		fillHeartRate(arrayAtributos, 60,100,100,130,130,200);
 	}
 	
-	private static void preenche3Clovis(ArrayList<Attribute> arrayAtributos){
+	private static void preencheClovis(ArrayList<Attribute> arrayAtributos){
 		fillSpeed(arrayAtributos, 0,4,4,6.5f,6.5f,20);
 		fillDistance(arrayAtributos, 0,2,2,2.1f,2.1f,10);
 		fillHeartRate(arrayAtributos, 60,110,110,130,130,200);
 	}
 	
-	private static void preenche4Wanne(ArrayList<Attribute> arrayAtributos){
+	private static void preencheWanne(ArrayList<Attribute> arrayAtributos){
 		fillSpeed(arrayAtributos, 0,4,4,6.5f,6.5f,20);
 		fillDistance(arrayAtributos, 0,1.5f,1.5f,1.6f,1.6f,10);
 		fillHeartRate(arrayAtributos, 60,110,110,130,130,200);
 	}
-	
-	private static void preenche5Carlos(ArrayList<Attribute> arrayAtributos){
-		fillSpeed(arrayAtributos, 0,5.5f,5.5f,8,8,20);
-		fillDistance(arrayAtributos, 0,2,2,2.1f,2.1f,10);
-		fillHeartRate(arrayAtributos, 60,110,110,150,150,200);
+	//atualizar!
+	private static void preencheElthon(ArrayList<Attribute> arrayAtributos){
+		fillSpeed(arrayAtributos, 0,10,10,12,12,20);
+		fillDistance(arrayAtributos, 0,1,1,1.01f,1.01f,10);
+		fillHeartRate(arrayAtributos, 60,160,160,180,180,200);
 	}
 	
-	private static void preenche6Filipe(ArrayList<Attribute> arrayAtributos){
-		fillSpeed(arrayAtributos, 0,5.5f,5.5f,8,8,20);
-		fillDistance(arrayAtributos, 0,2,2,2.1f,2.1f,10);
-		fillHeartRate(arrayAtributos, 60,100,100,145,145,200);
-	}
+//	private static void preencheXFilipe(ArrayList<Attribute> arrayAtributos){
+//		fillSpeed(arrayAtributos, 0,5.5f,5.5f,8,8,20);
+//		fillDistance(arrayAtributos, 0,2,2,2.1f,2.1f,10);
+//		fillHeartRate(arrayAtributos, 60,100,100,145,145,200);
+//	}
+//	
+//	private static void preencheYMatheus(ArrayList<Attribute> arrayAtributos){
+//		fillSpeed(arrayAtributos, 0,6,6,10,10,20);
+//		fillDistance(arrayAtributos, 0,2.5f,2.5f,2.6f,2.6f,10);
+//		fillHeartRate(arrayAtributos, 60,120,120,160,160,200);
+//	}
 	
-	private static void preenche7Matheus(ArrayList<Attribute> arrayAtributos){
-		fillSpeed(arrayAtributos, 0,6,6,10,10,20);
-		fillDistance(arrayAtributos, 0,2.5f,2.5f,2.6f,2.6f,10);
-		fillHeartRate(arrayAtributos, 60,120,120,160,160,200);
-	}
-	
-	private static void preenche8Anderson(ArrayList<Attribute> arrayAtributos){
+	private static void preencheAnderson(ArrayList<Attribute> arrayAtributos){
 		fillSpeed(arrayAtributos, 0,6,6,10,10,20);
 		fillDistance(arrayAtributos, 0,2,2,2.1f,2.1f,10);
 		fillHeartRate(arrayAtributos, 60,115,115,145,145,200);
 	}
 	
-	private static void preenche9Jose(ArrayList<Attribute> arrayAtributos){
+	private static void preencheJose(ArrayList<Attribute> arrayAtributos){
 		fillSpeed(arrayAtributos, 0,6,6,10,10,20);
 		fillDistance(arrayAtributos, 0,2,2,2.1f,2.1f,10);
 		fillHeartRate(arrayAtributos, 60,120,120,160,160,200);
 	}
 	
-	private static void preenche10Denise(ArrayList<Attribute> arrayAtributos){
+	private static void preencheDenise(ArrayList<Attribute> arrayAtributos){
 		fillSpeed(arrayAtributos, 0,7,7,12,12,20);
 		fillDistance(arrayAtributos, 0,2.2f,2.2f,2.3f,2.3f,10);
 		fillHeartRate(arrayAtributos, 60,135,135,170,170,200);
 	}
 	
-	private static void preenche11Tati(ArrayList<Attribute> arrayAtributos){
+	private static void preencheTati(ArrayList<Attribute> arrayAtributos){
 		fillSpeed(arrayAtributos, 0,7,7,12,12,20);
 		fillDistance(arrayAtributos, 0,2,2,2.1f,2.1f,10);
 		fillHeartRate(arrayAtributos, 60,135,135,165,165,200);
 	}
 	
-	private static void preenche12Ge(ArrayList<Attribute> arrayAtributos){
+	private static void preencheGe(ArrayList<Attribute> arrayAtributos){
 		fillSpeed(arrayAtributos, 0,6,6,10,10,20);
-		fillDistance(arrayAtributos, 0,1.8f,1.8f,2,2,10);
+		fillDistance(arrayAtributos, 0,1.9f,1.9f,2,2,10);
 		fillHeartRate(arrayAtributos, 60,130,130,155,155,200);
 	}
 		
@@ -230,11 +224,11 @@ public class AutomataFiller {
 		Transition inicio_prox = createTransicao("id", inicio, prox, "Keep_jogging.");
 		aI.addTransicao(inicio_prox);
 
-		Transition prox_fim = createTransicao("id", prox, fim, "Keep_jogging.Almost_there.");
+		Transition prox_fim = createTransicao("id", prox, fim, "Distance_reached!");
 		aI.addTransicao(prox_fim);
 		
-		Transition rapida_rapida = createTransicao("stop", fim, fim, "Just_walk.");
-		aI.addTransicao(rapida_rapida);
+		Transition fim_fim = createTransicao("stop", fim, fim, "Quit_exercising.");
+		aI.addTransicao(fim_fim);
 	
 		atributo.setAutomaton(aI);
 		arrayAtributos.add(atributo);

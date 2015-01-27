@@ -65,6 +65,7 @@ public class Simulation {
 	
 	public static void executeModel(JSONObject r, Automaton model, HashMap<String, Float> map1, 
 			HashMap<Integer, Float> map2, String currentState, String recommendation, String logString) throws Exception{
+		
 		ArrayList<String> names = LoadedModel.getNomesVariaveisMonitoradas();
 		ArrayList<String> arrayMensagens = new ArrayList<String>();
 		for (int i = 0; i < map1.size(); i++) { currentState = currentState+"- "+names.get(i)+": "+map1.get(names.get(i))+".<br>"; }
