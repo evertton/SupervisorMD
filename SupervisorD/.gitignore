@@ -2,3 +2,7 @@
 /doc
 /comparar.sup
 /comparar.sup~
+/target/
+.settings
+.classpath
+.project
